@@ -43,13 +43,18 @@ SHORT: NOT_FOUND`;
 
 let client: Anthropic | null = null;
 
-export async function webAnswer(question: string, history: { role: "user" | "assistant"; text: string }[], dests: Destination[]): Promise<WebResult> {
+export async function webAnswer(
+  question: string,
+  history: { role: "user" | "assistant"; text: string }[],
+  dests: Destination[],
+  languageInstruction: string,
+): Promise<WebResult> {
   client ??= new Anthropic();
   const context = history.slice(-4).map((t) => `${t.role === "user" ? "Traveller" : "Didi"}: ${t.text}`).join("\n");
   const messages: Anthropic.Beta.BetaMessageParam[] = [
     {
       role: "user",
-      content: `${context ? `Earlier in the chat:\n${context}\n\n` : ""}Destination: ${dests.map((d) => d.name).join(", ")}\nQuestion: ${question}`,
+      content: `${context ? `Earlier in the chat:\n${context}\n\n` : ""}Destination: ${dests.map((d) => d.name).join(", ")}\nQuestion: ${question}\n\nLanguage: ${languageInstruction} Keep the SHORT: marker and [source: url] links exactly as specified.`,
     },
   ];
   const usage = { input: 0, output: 0, searches: 0 };

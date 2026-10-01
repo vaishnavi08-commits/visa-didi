@@ -2,7 +2,8 @@
 // When the stored official pages can't answer, Claude searches the web live (labelled as such).
 // Without an API key, the official text is shown directly.
 import Anthropic from "@anthropic-ai/sdk";
-import { DESTINATIONS, type Destination } from "./destinations";
+import { DESTINATIONS, displayName, type Destination } from "./destinations";
+import { detectLang, englishTopicTerms, MESSAGES, writingInstruction, type Lang } from "./language";
 import { bestSnippet, retrieve, type Retrieved } from "./retrieve";
 import { route } from "./router";
 import { isStale, isUsable, loadStore, recentlyUpdated, type Store } from "./store";
@@ -46,6 +47,8 @@ export type Answer = {
   verifyLine: boolean;
   // Why live web search didn't produce an answer, if it was tried (diagnostics only).
   webIssue?: string;
+  // Language the answer is written in (drives the read-aloud voice).
+  lang: Lang;
 };
 
 export type Turn = { role: "user" | "assistant"; text: string };
@@ -54,10 +57,11 @@ const MODEL = "claude-opus-5-5";
 // USD per million tokens, and per web search, for the spending cap.
 const PRICE_IN = 4, PRICE_OUT = 20, PRICE_SEARCH = 0.01;
 
-const coveredList = () => DESTINATIONS.map((d) => d.name).join(", ");
+const coveredList = (lang: Lang) => DESTINATIONS.map((d) => displayName(d, lang)).join(", ");
+const siteLink = (d: Destination, lang: Lang) => ({ label: MESSAGES.official_site[lang](displayName(d, lang)), url: d.officialLink });
 
 function rule(kind: AnswerKind, shortAnswer: string, extra: Partial<Answer> = {}): Answer {
-  return { kind, shortAnswer, details: [], sources: [], mode: "rule", verifyLine: false, ...extra };
+  return { kind, shortAnswer, details: [], sources: [], mode: "rule", verifyLine: false, lang: "en", ...extra };
 }
 
 function toAnswerSource(store: Store, sourceId: string): AnswerSource | null {
@@ -142,7 +146,7 @@ function budgetLeft() {
   return Number(process.env.MONTHLY_BUDGET_USD ?? 20) - spend.usd;
 }
 
-async function askClaude(question: string, history: Turn[], chunks: Retrieved[], store: Store, dests: Destination[]) {
+async function askClaude(question: string, history: Turn[], chunks: Retrieved[], store: Store, dests: Destination[], lang: Lang) {
   client ??= new Anthropic();
   const labelled = chunks.map((c, i) => ({ label: `S${i + 1}`, chunk: c }));
   const sourcesXml = labelled
@@ -164,7 +168,7 @@ async function askClaude(question: string, history: Turn[], chunks: Retrieved[],
   const messages: Anthropic.Beta.BetaMessageParam[] = turns.map((t) => ({ role: t.role, content: t.text }));
   messages.push({
     role: "user",
-    content: `Destination(s) detected: ${dests.map((d) => d.name).join(", ")}\n\n<sources>\n${sourcesXml}\n</sources>\n\nQuestion: ${question}`,
+    content: `Destination(s) detected: ${dests.map((d) => d.name).join(", ")}\n\n<sources>\n${sourcesXml}\n</sources>\n\nQuestion: ${question}\n\nLanguage: ${writingInstruction(lang)}`,
   });
 
   const response = await client.beta.messages.create({
@@ -213,6 +217,7 @@ function officialTextAnswer(question: string, chunks: Retrieved[], store: Store,
     sources: sourceIds.map((id) => toAnswerSource(store, id)).filter((s): s is AnswerSource => !!s),
     mode: "official_text",
     verifyLine: true,
+    lang: "en",
   };
 }
 
@@ -222,27 +227,35 @@ const cache = new Map<string, { at: number; answer: Answer }>();
 const DAY = 86_400_000;
 
 export async function answerQuestion(question: string, history: Turn[]): Promise<Answer> {
+  // Answer in the language of the question (English, Hindi or Hinglish).
+  const lang = detectLang(question);
+  const answer = await answerIn(question, history, lang);
+  // Official-text mode quotes English pages as they are.
+  return answer.mode === "official_text" ? answer : { ...answer, lang };
+}
+
+async function answerIn(question: string, history: Turn[], lang: Lang): Promise<Answer> {
   const r = route(question, history.filter((t) => t.role === "user").map((t) => t.text));
 
   switch (r.kind) {
     case "off_topic":
-      return rule("off_topic", "I'm only good at one thing: visa and entry rules for Indian passport holders 🙂 Try asking something like \"Do I need a visa for Vietnam?\"");
+      return rule("off_topic", MESSAGES.off_topic[lang]);
     case "ask_destination":
-      return rule("clarify", `Which country are you travelling to? I can help with ${coveredList()}.`);
+      return rule("clarify", MESSAGES.ask_destination[lang](coveredList(lang)));
     case "uncovered_destination":
-      return rule("refused", `I don't cover ${titleCase(r.name)} yet, sorry! Right now I can help with ${coveredList()}.`);
+      return rule("refused", MESSAGES.uncovered[lang](titleCase(r.name), coveredList(lang)));
     case "out_of_scope_visa":
-      return rule("refused", `I only cover tourist and short business visits for now, so I can't help with ${r.what}. Please check the destination's official embassy or immigration website for those.`);
+      return rule("refused", MESSAGES.out_of_scope[lang](MESSAGES.out_of_scope_what[r.what]?.[lang] ?? r.what));
     case "other_passport":
-      return rule("refused", "I only cover Indian passport holders for now. For other passports, please check the destination's official immigration website.");
+      return rule("refused", MESSAGES.other_passport[lang]);
   }
 
   const store = loadStore();
   const dests = r.destinations;
   const hasKey = !!(process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN);
-  const link = { label: `${dests[0].name} official site`, url: dests[0].officialLink };
+  const link = siteLink(dests[0], lang);
 
-  const cacheKey = JSON.stringify([dests.map((d) => d.id), question.toLowerCase().replace(/\s+/g, " ").trim(), r.judgment]);
+  const cacheKey = JSON.stringify([dests.map((d) => d.id), question.toLowerCase().replace(/\s+/g, " ").trim(), r.judgment, lang]);
   const hit = cache.get(cacheKey);
   if (hit && Date.now() - hit.at < DAY && history.length === 0) return hit.answer;
   const remember = (answer: Answer) => {
@@ -251,7 +264,7 @@ export async function answerQuestion(question: string, history: Turn[]): Promise
   };
 
   if (hasKey && budgetLeft() <= 0) {
-    return rule("limit", "Didi needs a little break — I've hit my monthly limit. Please try again later, or check the official site meanwhile.", { officialLink: link });
+    return rule("limit", MESSAGES.limit[lang], { officialLink: link });
   }
 
   const usableDests = dests.filter((d) => d.sources.some((s) => store.sources[s.id] && isUsable(store.sources[s.id])));
@@ -259,26 +272,27 @@ export async function answerQuestion(question: string, history: Turn[]): Promise
   // No stored official pages for this destination: search the web, or say so honestly.
   if (!usableDests.length) {
     if (hasKey) {
-      const web = await tryWeb(question, history, dests);
+      const web = await tryWeb(question, history, dests, lang);
       if (web) return remember(web);
     }
-    return rule("unavailable", `I don't have ${dests[0].name}'s official pages yet, so I can't confirm this. Please check the official site directly.`, {
+    return rule("unavailable", MESSAGES.unavailable[lang](displayName(dests[0], lang)), {
       officialLink: link,
       webIssue: hasKey ? lastWebIssue : undefined,
     });
   }
 
   const priorUser = history.filter((t) => t.role === "user").slice(-1).map((t) => t.text).join(" ");
-  const chunks = retrieve(store, usableDests.map((d) => d.id), `${question} ${findsPurpose(priorUser)}`);
+  // Hindi / Hinglish questions also search with English topic words, since the official pages are in English.
+  const chunks = retrieve(store, usableDests.map((d) => d.id), `${question} ${englishTopicTerms(`${question} ${priorUser}`)} ${findsPurpose(priorUser)}`);
 
   if (!hasKey) return officialTextAnswer(question, chunks, store, usableDests, r.judgment);
 
-  const result = await askClaude(question, history, chunks, store, usableDests);
-  const official = result ? toAnswer(result.out, result.labelled, store, usableDests) : null;
+  const result = await askClaude(question, history, chunks, store, usableDests, lang);
+  const official = result ? toAnswer(result.out, result.labelled, store, usableDests, lang) : null;
 
   // Stored official pages don't cover it: fill the gap from the web.
   if (!official || official.kind === "not_covered") {
-    const web = await tryWeb(question, history, dests);
+    const web = await tryWeb(question, history, dests, lang);
     if (web) return remember(web);
   }
   return remember(official ?? officialTextAnswer(question, chunks, store, usableDests, r.judgment));
@@ -286,9 +300,9 @@ export async function answerQuestion(question: string, history: Turn[]): Promise
 
 let lastWebIssue: string | undefined;
 
-async function tryWeb(question: string, history: Turn[], dests: Destination[]): Promise<Answer | null> {
+async function tryWeb(question: string, history: Turn[], dests: Destination[], lang: Lang): Promise<Answer | null> {
   try {
-    const web = await webAnswer(question, history, dests);
+    const web = await webAnswer(question, history, dests, writingInstruction(lang));
     spend.usd += (web.usage.input * PRICE_IN + web.usage.output * PRICE_OUT) / 1e6 + web.usage.searches * PRICE_SEARCH;
     if (!web.found) {
       lastWebIssue = web.reason ?? "not found";
@@ -311,9 +325,10 @@ async function tryWeb(question: string, history: Turn[], dests: Destination[]): 
         origin: "web",
         official: s.official,
       })),
-      officialLink: { label: `${dests[0].name} official site`, url: dests[0].officialLink },
+      officialLink: siteLink(dests[0], lang),
       mode: "web",
       verifyLine: true,
+      lang,
     };
   } catch (e) {
     console.error("web search failed", e);
@@ -330,7 +345,7 @@ function hostname(url: string) {
   }
 }
 
-function toAnswer(out: ModelOutput, labelled: { label: string; chunk: Retrieved }[], store: Store, dests: Destination[]): Answer {
+function toAnswer(out: ModelOutput, labelled: { label: string; chunk: Retrieved }[], store: Store, dests: Destination[], lang: Lang): Answer {
   const byLabel = new Map(labelled.map((l) => [l.label, l.chunk.sourceId]));
   // Only citations that point at excerpts we actually sent are kept.
   const resolve = (ids: string[]) => [...new Set(ids.map((id) => byLabel.get(id)).filter((x): x is string => !!x))];
@@ -340,14 +355,14 @@ function toAnswer(out: ModelOutput, labelled: { label: string; chunk: Retrieved 
     .filter((d) => d.sources.length > 0);
   const usedIds = [...new Set([...resolve(out.source_ids), ...details.flatMap((d) => d.sources)])];
   const sources = usedIds.map((id) => toAnswerSource(store, id)).filter((s): s is AnswerSource => !!s);
-  const link = { label: `${dests[0].name} official site`, url: dests[0].officialLink };
+  const link = siteLink(dests[0], lang);
 
   if (out.status === "clarify") {
     return rule("clarify", out.clarify_question || out.short_answer, { mode: "ai" });
   }
   // A substantive answer with no valid citation is treated as not covered — never shown uncited.
   if ((out.status === "answered" || out.status === "partial") && sources.length === 0) {
-    return rule("not_covered", `I couldn't find this in the official ${dests.map((d) => d.name).join(" / ")} sources I have.`, {
+    return rule("not_covered", MESSAGES.not_covered[lang](dests.map((d) => displayName(d, lang)).join(" / ")), {
       officialLink: link, mode: "ai", verifyLine: true,
     });
   }
@@ -361,6 +376,7 @@ function toAnswer(out: ModelOutput, labelled: { label: string; chunk: Retrieved 
     officialLink: out.status === "not_covered" || out.status === "partial" ? link : undefined,
     mode: "ai",
     verifyLine: true,
+    lang,
   };
 }
 

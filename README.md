@@ -36,6 +36,7 @@ Copy `.env.example` to `.env.local` and set `ANTHROPIC_API_KEY` to get AI-writte
 | Guardrails: uncovered destination, student/work/residency, other passports, approval predictions, off-topic, missing destination | `lib/router.ts` (deterministic, runs before any model call) |
 | Answer format: short answer → details → sources with dates → verify line + fixed disclaimer | `lib/answer.ts`, `app/page.tsx` |
 | Never uncited: citations must point at retrieved excerpts, otherwise "not covered" | `toAnswer()` in `lib/answer.ts` |
+| **Change from PRD (v2 item brought forward):** Hindi and Hinglish. Didi answers in the language of the question; an EN / हिं toggle switches the page text and the mic language; Hindi answers are read aloud in a Hindi female voice | `lib/language.ts`, `app/strings.ts` |
 | **Change from PRD:** when the stored official pages can't answer (e.g. Vietnam, US, Australia), Claude searches the web live. Answers are labelled, each source is tagged "Official site" or "Travel site", and only cited claims are kept | `lib/websearch.ts` |
 | One follow-up when destination/purpose is missing | router (destination) + model `clarify` status (purpose) |
 | Voice in (mic) and read-aloud in a female voice, only on tap | browser Web Speech API in `app/page.tsx` |
