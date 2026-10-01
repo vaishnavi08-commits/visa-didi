@@ -76,6 +76,10 @@ export async function webAnswer(question: string, history: { role: "user" | "ass
   if (!response || response.stop_reason === "refusal") return empty;
 
   const parsed = parseWebContent(response.content);
+  if (!parsed) {
+    const text = response.content.flatMap((b) => (b.type === "text" ? [b.text] : [])).join("");
+    console.warn("web answer rejected", { stop: response.stop_reason, searches: usage.searches, text: text.slice(0, 600) });
+  }
   return parsed ? { found: true, ...parsed, usage } : empty;
 }
 
@@ -103,15 +107,21 @@ export function parseWebContent(content: Anthropic.Beta.BetaContentBlock[]) {
     });
   }
 
-  const clean = lines.map((l) => ({ text: l.text.trim(), urls: [...l.urls] })).filter((l) => l.text);
-  const shortIdx = clean.findIndex((l) => l.text.startsWith("SHORT:"));
+  // Tolerate markdown the model may add: **SHORT:**, headings, numbered lists.
+  const clean = lines
+    .map((l) => ({ text: l.text.replace(/\*\*/g, "").replace(/^#+\s*/, "").replace(/^\d+[.)]\s+/, "- ").trim(), urls: [...l.urls] }))
+    .filter((l) => l.text);
+  let shortIdx = clean.findIndex((l) => /^SHORT\s*:/i.test(l.text));
+  // No marker at all: fall back to the first cited line as the short answer.
+  if (shortIdx < 0) shortIdx = clean.findIndex((l) => l.urls.length > 0);
   if (shortIdx < 0) return null;
-  const shortAnswer = clean[shortIdx].text.replace(/^SHORT:\s*/, "");
+  const shortAnswer = clean[shortIdx].text.replace(/^SHORT\s*:\s*/i, "");
   if (/NOT_FOUND/.test(shortAnswer)) return null;
 
   const details = clean
     .slice(shortIdx + 1)
-    .filter((l) => /^[-•*]\s/.test(l.text))
+    // Bullets, or any later line that carries a citation.
+    .filter((l) => /^[-•*]\s/.test(l.text) || l.urls.length > 0)
     .map((l) => ({ text: l.text.replace(/^[-•*]\s*/, ""), sources: l.urls }));
   const cited = new Set([...clean[shortIdx].urls, ...details.flatMap((d) => d.sources)]);
   // No citations means nothing to back the answer: treat it as not found.
