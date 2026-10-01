@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { answerQuestion, type Turn } from "@/lib/answer";
 import { allow } from "@/lib/ratelimit";
+import { signSpeech, voiceConfigured } from "@/lib/voice";
 
 export const runtime = "nodejs";
 // Live web search can take 10–20 seconds.
@@ -30,7 +31,9 @@ export async function POST(req: Request) {
   try {
     const started = Date.now();
     const answer = await answerQuestion(question, history);
-    return NextResponse.json({ answer, ms: Date.now() - started });
+    // Lets /api/speak read this exact answer in Didi's own voice (and nothing else).
+    const speakToken = voiceConfigured() ? signSpeech(answer.shortAnswer) : undefined;
+    return NextResponse.json({ answer: { ...answer, speakToken }, ms: Date.now() - started });
   } catch (e) {
     console.error(e);
     return NextResponse.json({ error: "Something went wrong on my side. Please try again in a moment." }, { status: 500 });

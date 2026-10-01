@@ -49,6 +49,8 @@ export type Answer = {
   webIssue?: string;
   // Language the answer is written in (drives the read-aloud voice).
   lang: Lang;
+  // Signature that lets /api/speak voice this answer in Didi's own voice (set by the API route).
+  speakToken?: string;
   // When official pages only partly answer: what live web search found for the rest.
   webExtra?: { shortAnswer: string; details: { text: string; sources: string[] }[] };
 };

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { Answer, Turn } from "@/lib/answer";
 import { DESTINATIONS } from "@/lib/destinations";
+import { speakable } from "@/lib/speech";
 import { STRINGS, type Strings, type UiLang } from "./strings";
 
 type Item =
@@ -36,14 +37,6 @@ function pickDidiVoice(text: string): SpeechSynthesisVoice | undefined {
     all.find((v) => lang(v).startsWith("en") && named(v, OTHER_FEMALE)) ??
     all.find((v) => lang(v).startsWith("en"))
   );
-}
-
-// Voices read emoji out as words ("smiling face"), so drop them before speaking.
-function speakable(text: string) {
-  return text
-    .replace(/[\p{Extended_Pictographic}\p{Emoji_Modifier}\p{Regional_Indicator}\u200d\ufe0f\u20e3]/gu, "")
-    .replace(/\s{2,}/g, " ")
-    .trim();
 }
 
 type Recognition = {
@@ -95,6 +88,8 @@ export default function Home() {
   const [listening, setListening] = useState(false);
   const [micSupported, setMicSupported] = useState(false);
   const [speakingIdx, setSpeakingIdx] = useState<number | null>(null);
+  const [voiceLoadingIdx, setVoiceLoadingIdx] = useState<number | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const recRef = useRef<Recognition | null>(null);
   const endRef = useRef<HTMLDivElement>(null);
   const taRef = useRef<HTMLTextAreaElement>(null);
@@ -190,15 +185,18 @@ export default function Home() {
     rec.start();
   }
 
-  function speak(idx: number, answer: Answer) {
+  function stopSpeaking() {
+    window.speechSynthesis?.cancel();
+    audioRef.current?.pause();
+    audioRef.current = null;
+    setSpeakingIdx(null);
+    setVoiceLoadingIdx(null);
+  }
+
+  // Browser's built-in voice (fallback when Didi's own voice isn't set up or fails).
+  function speakWithBrowser(idx: number, answer: Answer) {
     const synth = window.speechSynthesis;
     if (!synth) return;
-    if (speakingIdx === idx) {
-      synth.cancel();
-      setSpeakingIdx(null);
-      return;
-    }
-    synth.cancel();
     const u = new SpeechSynthesisUtterance(speakable(answer.shortAnswer));
     const voice = pickDidiVoice(answer.shortAnswer);
     if (voice) u.voice = voice;
@@ -209,9 +207,39 @@ export default function Home() {
     synth.speak(u);
   }
 
+  async function speak(idx: number, answer: Answer) {
+    const wasThis = speakingIdx === idx || voiceLoadingIdx === idx;
+    stopSpeaking();
+    if (wasThis) return;
+    if (!answer.speakToken) return speakWithBrowser(idx, answer);
+
+    // Didi's own (cloned) voice, generated on the server.
+    setVoiceLoadingIdx(idx);
+    try {
+      const res = await fetch("/api/speak", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: answer.shortAnswer, token: answer.speakToken, deviceId: deviceId() }),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      const url = URL.createObjectURL(await res.blob());
+      const audio = new Audio(url);
+      audio.onended = () => {
+        URL.revokeObjectURL(url);
+        setSpeakingIdx((cur) => (cur === idx ? null : cur));
+      };
+      audioRef.current = audio;
+      setVoiceLoadingIdx(null);
+      setSpeakingIdx(idx);
+      await audio.play();
+    } catch {
+      setVoiceLoadingIdx(null);
+      speakWithBrowser(idx, answer);
+    }
+  }
+
   function reset() {
-    window.speechSynthesis?.cancel();
-    setSpeakingIdx(null);
+    stopSpeaking();
     setItems([]);
     setInput("");
   }
@@ -265,7 +293,7 @@ export default function Home() {
           ) : it.role === "error" ? (
             <div key={i} className="error" role="alert">{it.text}</div>
           ) : (
-            <AnswerCard key={i} t={t} uiLang={uiLang} answer={it.answer} speaking={speakingIdx === i} onSpeak={() => speak(i, it.answer)} />
+            <AnswerCard key={i} t={t} uiLang={uiLang} answer={it.answer} speaking={speakingIdx === i} voiceLoading={voiceLoadingIdx === i} onSpeak={() => speak(i, it.answer)} />
           ),
         )}
 
@@ -319,7 +347,7 @@ export default function Home() {
   );
 }
 
-function AnswerCard({ t, uiLang, answer, speaking, onSpeak }: { t: Strings; uiLang: UiLang; answer: Answer; speaking: boolean; onSpeak: () => void }) {
+function AnswerCard({ t, uiLang, answer, speaking, voiceLoading, onSpeak }: { t: Strings; uiLang: UiLang; answer: Answer; speaking: boolean; voiceLoading: boolean; onSpeak: () => void }) {
   const sourceIndex = new Map(answer.sources.map((s, i) => [s.id, i + 1]));
   const stale = answer.sources.filter((s) => s.stale);
   const hasFacts = answer.sources.length > 0;
@@ -329,8 +357,8 @@ function AnswerCard({ t, uiLang, answer, speaking, onSpeak }: { t: Strings; uiLa
       <div className="card-head">
         <span className="avatar" aria-hidden>D</span>
         <p className="short" lang={answer.lang === "hi" ? "hi" : "en"}>{answer.shortAnswer}</p>
-        <button className="speak" onClick={onSpeak} aria-label={speaking ? t.stopReading : t.readAloud} aria-pressed={speaking}>
-          {speaking ? <StopIcon /> : <SpeakerIcon />}
+        <button className={`speak ${voiceLoading ? "loading" : ""}`} onClick={onSpeak} aria-label={speaking || voiceLoading ? t.stopReading : t.readAloud} aria-pressed={speaking} aria-busy={voiceLoading}>
+          {speaking || voiceLoading ? <StopIcon /> : <SpeakerIcon />}
         </button>
       </div>
 

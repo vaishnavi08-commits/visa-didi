@@ -119,6 +119,7 @@ button { font: inherit; color: inherit; }
   display: grid; place-items: center; cursor: pointer; color: var(--ink-2);
 }
 .speak:hover, .speak[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); }
+.speak.loading { color: var(--accent); border-color: var(--accent); animation: pulse 1.4s infinite; }
 
 .details { margin: 14px 0 0 42px; padding: 0; list-style: none; display: grid; gap: 8px; }
 .details li { position: relative; padding-left: 16px; color: var(--ink); overflow-wrap: anywhere; }
