@@ -44,6 +44,8 @@ export type Answer = {
   mode: "ai" | "web" | "official_text" | "rule";
   // Whether to show the "confirm on the official site before booking" line.
   verifyLine: boolean;
+  // Why live web search didn't produce an answer, if it was tried (diagnostics only).
+  webIssue?: string;
 };
 
 export type Turn = { role: "user" | "assistant"; text: string };
@@ -262,6 +264,7 @@ export async function answerQuestion(question: string, history: Turn[]): Promise
     }
     return rule("unavailable", `I don't have ${dests[0].name}'s official pages yet, so I can't confirm this. Please check the official site directly.`, {
       officialLink: link,
+      webIssue: hasKey ? lastWebIssue : undefined,
     });
   }
 
@@ -281,11 +284,16 @@ export async function answerQuestion(question: string, history: Turn[]): Promise
   return remember(official ?? officialTextAnswer(question, chunks, store, usableDests, r.judgment));
 }
 
+let lastWebIssue: string | undefined;
+
 async function tryWeb(question: string, history: Turn[], dests: Destination[]): Promise<Answer | null> {
   try {
     const web = await webAnswer(question, history, dests);
     spend.usd += (web.usage.input * PRICE_IN + web.usage.output * PRICE_OUT) / 1e6 + web.usage.searches * PRICE_SEARCH;
-    if (!web.found) return null;
+    if (!web.found) {
+      lastWebIssue = web.reason ?? "not found";
+      return null;
+    }
     const today = new Date().toISOString().slice(0, 10);
     return {
       kind: "answered",
@@ -309,6 +317,7 @@ async function tryWeb(question: string, history: Turn[], dests: Destination[]): 
     };
   } catch (e) {
     console.error("web search failed", e);
+    lastWebIssue = `error: ${e instanceof Error ? e.message : String(e)}`.slice(0, 400);
     return null;
   }
 }

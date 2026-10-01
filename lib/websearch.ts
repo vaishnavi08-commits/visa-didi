@@ -11,6 +11,8 @@ export type WebResult = {
   details: { text: string; sources: string[] }[]; // sources = urls
   sources: WebSource[];
   usage: { input: number; output: number; searches: number };
+  // Why no answer was produced (for diagnosing; never shown in the UI).
+  reason?: string;
 };
 
 const MODEL = "claude-opus-5-5";
@@ -73,14 +75,17 @@ export async function webAnswer(question: string, history: { role: "user" | "ass
   }
 
   const empty: WebResult = { found: false, shortAnswer: "", details: [], sources: [], usage };
-  if (!response || response.stop_reason === "refusal") return empty;
+  if (!response || response.stop_reason === "refusal") return { ...empty, reason: `stop=${response?.stop_reason}` };
 
   const parsed = parseWebContent(response.content);
   if (!parsed) {
     const text = response.content.flatMap((b) => (b.type === "text" ? [b.text] : [])).join("");
-    console.warn("web answer rejected", { stop: response.stop_reason, searches: usage.searches, text: text.slice(0, 600) });
+    const citations = response.content.reduce((n, b) => n + (b.type === "text" ? (b.citations?.length ?? 0) : 0), 0);
+    const reason = `rejected: stop=${response.stop_reason} searches=${usage.searches} blocks=${response.content.map((b) => b.type).join(",")} citations=${citations} text=${JSON.stringify(text.slice(0, 400))}`;
+    console.warn("web answer rejected", reason);
+    return { ...empty, reason };
   }
-  return parsed ? { found: true, ...parsed, usage } : empty;
+  return { found: true, ...parsed, usage };
 }
 
 // Turns Claude's cited reply into a short answer, details and their sources.
