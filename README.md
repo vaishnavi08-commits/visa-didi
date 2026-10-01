@@ -1,4 +1,4 @@
-# Visa-it
+# Visa-didi
 
 A friendly chat that answers visa and entry questions for Indian passport holders, using only official government sources. Every answer shows its source and when it was last verified.
 
