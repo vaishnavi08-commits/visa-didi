@@ -39,6 +39,22 @@ const TOPIC_TERMS: [RegExp, string][] = [
   [/आवेदन|अप्लाई|apply|aavedan/i, "apply application"],
 ];
 
+// A coarse topic label for the question log (English questions included).
+const TOPIC_LABELS: [string, RegExp][] = [
+  ["fees", /fee|cost|price|charge|फीस|शुल्क|खर्च|paise|kharch/i],
+  ["documents", /document|checklist|papers|दस्तावेज़|दस्तावेज|कागज|kagaz|kaagaz/i],
+  ["processing time", /how long|processing|take to|कितने दिन|कितना समय|kitne din|kitna time/i],
+  ["business", /business|meeting|conference|client|बिज़नेस|बिजनेस|मीटिंग|कॉन्फ्रेंस/i],
+  ["passport", /passport|पासपोर्ट/i],
+  ["stay length", /stay|how many days|रुक|ठहर|ruk/i],
+  ["approval", /approv|reject|chance|मिलेगा|रिजेक्ट/i],
+  ["visa needed", /need a visa|visa required|visa.free|on arrival|e-?visa|वीज़ा चाहिए|वीजा चाहिए|visa chahiye|bina visa/i],
+];
+
+export function topicOf(text: string): string | null {
+  return TOPIC_LABELS.find(([, re]) => re.test(text))?.[0] ?? null;
+}
+
 export function englishTopicTerms(text: string) {
   return TOPIC_TERMS.filter(([re]) => re.test(text)).map(([, en]) => en).join(" ");
 }

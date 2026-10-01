@@ -27,7 +27,7 @@ export async function POST(req: Request) {
   if (!audio) {
     const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "local";
     const device = typeof body?.deviceId === "string" ? body.deviceId.slice(0, 64) : "";
-    if (!allow(`speak:${ip}:${device}`)) return new Response("Too many requests", { status: 429 });
+    if (!(await allow(`speak:${ip}:${device}`))) return new Response("Too many requests", { status: 429 });
     try {
       audio = await synthesize(spoken);
     } catch (e) {

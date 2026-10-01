@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 import { answerQuestion, type Turn } from "@/lib/answer";
+import { findDestinations } from "@/lib/router";
+import { detectLang, topicOf } from "@/lib/language";
+import { logQuestion } from "@/lib/persist";
 import { allow } from "@/lib/ratelimit";
 import { signSpeech, voiceConfigured } from "@/lib/voice";
 
@@ -21,7 +24,7 @@ export async function POST(req: Request) {
 
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "local";
   const device = typeof body?.deviceId === "string" ? body.deviceId.slice(0, 64) : "";
-  if (!allow(`${ip}:${device}`)) {
+  if (!(await allow(`${ip}:${device}`))) {
     return NextResponse.json(
       { error: "You're asking faster than Didi can keep up! Please wait a few minutes and try again." },
       { status: 429 },
@@ -33,7 +36,17 @@ export async function POST(req: Request) {
     const answer = await answerQuestion(question, history);
     // Lets /api/speak read this exact answer in Didi's own voice (and nothing else).
     const speakToken = voiceConfigured() ? signSpeech(answer.shortAnswer) : undefined;
-    return NextResponse.json({ answer: { ...answer, speakToken }, ms: Date.now() - started });
+    const ms = Date.now() - started;
+    // What was asked about and how it ended (no question text), to see what to add next.
+    await logQuestion({
+      lang: detectLang(question),
+      destinations: findDestinations(question).map((d) => d.id),
+      topic: topicOf(question),
+      kind: answer.kind,
+      mode: answer.mode,
+      ms,
+    });
+    return NextResponse.json({ answer: { ...answer, speakToken }, ms });
   } catch (e) {
     console.error(e);
     return NextResponse.json({ error: "Something went wrong on my side. Please try again in a moment." }, { status: 500 });

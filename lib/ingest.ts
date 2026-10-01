@@ -5,7 +5,8 @@ import fs from "node:fs";
 import path from "node:path";
 import * as cheerio from "cheerio";
 import { allSources } from "./destinations";
-import { loadStore, saveStore, type Chunk, type Store } from "./store";
+import { db, loadStoreFromDb, saveRecheckToDb } from "./db";
+import { forgetStoreCache, loadStore, saveStore, type Chunk, type Store } from "./store";
 
 const UA =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36";
@@ -153,7 +154,11 @@ function hashSections(sections: { heading: string; text: string }[]) {
 
 export async function runRecheck(opts: { log?: (s: string) => void; save?: boolean } = {}) {
   const log = opts.log ?? (() => {});
-  const store: Store = structuredClone(loadStore());
+  const c = db();
+  // In production the previous state comes from Supabase; locally from data/store.json.
+  const store: Store = structuredClone(c ? await loadStoreFromDb(c) : loadStore());
+  const logStart = store.changeLog.length;
+  const rechunked = new Set<string>();
   const today = new Date().toISOString().slice(0, 10);
   const summary = { checked: 0, changed: 0, unchanged: 0, failed: 0 };
 
@@ -198,7 +203,8 @@ export async function runRecheck(opts: { log?: (s: string) => void; save?: boole
       }
       const wasUsable = rec.lastVerified !== null && rec.status !== "removed" && rec.status !== "unavailable";
       if (hash !== rec.contentHash) {
-        store.chunks = store.chunks.filter((c) => c.sourceId !== def.id).concat(chunkSections(sections, def.id, def.destinationId));
+        store.chunks = store.chunks.filter((ch) => ch.sourceId !== def.id).concat(chunkSections(sections, def.id, def.destinationId));
+        rechunked.add(def.id);
         store.changeLog.push({ sourceId: def.id, date: today, kind: rec.contentHash ? "changed" : "initial" });
         rec.contentHash = hash;
         summary.changed++;
@@ -217,7 +223,8 @@ export async function runRecheck(opts: { log?: (s: string) => void; save?: boole
       rec.lastError = fetched.error;
       if (fetched.gone) {
         rec.status = "removed";
-        store.chunks = store.chunks.filter((c) => c.sourceId !== def.id);
+        store.chunks = store.chunks.filter((ch) => ch.sourceId !== def.id);
+        rechunked.add(def.id);
         store.changeLog.push({ sourceId: def.id, date: today, kind: "removed", note: fetched.error });
       } else {
         rec.status = rec.lastVerified ? "check_failed" : "unavailable";
@@ -229,6 +236,13 @@ export async function runRecheck(opts: { log?: (s: string) => void; save?: boole
   }
 
   store.updatedAt = today;
-  if (opts.save !== false) saveStore(store);
+  if (opts.save !== false) {
+    if (c) {
+      await saveRecheckToDb(c, store, rechunked, store.changeLog.slice(logStart));
+      forgetStoreCache();
+    } else {
+      saveStore(store);
+    }
+  }
   return { summary, store };
 }

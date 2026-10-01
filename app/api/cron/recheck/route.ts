@@ -1,6 +1,6 @@
 // Weekly re-check, triggered by Vercel Cron (see vercel.json).
-// Vercel's filesystem is read-only at runtime, so this route reports what changed;
-// persisting results needs the Supabase store (see README). Locally, use `npm run ingest`.
+// Results are saved to Supabase. Without it, Vercel's read-only filesystem means results
+// can't be kept; locally, `npm run ingest` updates data/store.json instead.
 import { NextResponse } from "next/server";
 import { runRecheck } from "@/lib/ingest";
 
@@ -12,7 +12,7 @@ export async function GET(req: Request) {
   if (secret && req.headers.get("authorization") !== `Bearer ${secret}`) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
-  const { summary, store } = await runRecheck({ save: !process.env.VERCEL });
+  const { summary, store } = await runRecheck({ save: !!process.env.SUPABASE_URL || !process.env.VERCEL });
   const failed = Object.values(store.sources)
     .filter((s) => s.status !== "ok")
     .map((s) => ({ id: s.id, status: s.status, error: s.lastError }));

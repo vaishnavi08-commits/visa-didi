@@ -6,7 +6,8 @@ import { DESTINATIONS, displayName, type Destination } from "./destinations";
 import { detectLang, englishTopicTerms, MESSAGES, writingInstruction, type Lang } from "./language";
 import { bestSnippet, retrieve, type Retrieved } from "./retrieve";
 import { route } from "./router";
-import { isStale, isUsable, loadStore, recentlyUpdated, type Store } from "./store";
+import { addSpend, cacheGet, cacheSet, spentThisMonth } from "./persist";
+import { getStore, isStale, isUsable, recentlyUpdated, type Store } from "./store";
 import { webAnswer } from "./websearch";
 
 export type AnswerSource = {
@@ -142,12 +143,9 @@ type ModelOutput = {
 };
 
 let client: Anthropic | null = null;
-const spend = { month: "", usd: 0 };
 
-function budgetLeft() {
-  const month = new Date().toISOString().slice(0, 7);
-  if (spend.month !== month) Object.assign(spend, { month, usd: 0 });
-  return Number(process.env.MONTHLY_BUDGET_USD ?? 20) - spend.usd;
+async function budgetLeft() {
+  return Number(process.env.MONTHLY_BUDGET_USD ?? 20) - (await spentThisMonth());
 }
 
 async function askClaude(question: string, history: Turn[], chunks: Retrieved[], store: Store, dests: Destination[], lang: Lang, deadline: number) {
@@ -187,7 +185,7 @@ async function askClaude(question: string, history: Turn[], chunks: Retrieved[],
     // Stay inside the request's time budget; a silent retry could push past the server's limit.
   }, { timeout: Math.max(3_000, deadline - Date.now() - 2_000), maxRetries: 0 });
 
-  spend.usd += (response.usage.input_tokens * PRICE_IN + response.usage.output_tokens * PRICE_OUT) / 1e6;
+  await addSpend((response.usage.input_tokens * PRICE_IN + response.usage.output_tokens * PRICE_OUT) / 1e6);
   if (response.stop_reason === "refusal") return null;
   const text = response.content.flatMap((b) => (b.type === "text" ? [b.text] : [])).join("");
   try {
@@ -228,8 +226,6 @@ function officialTextAnswer(question: string, chunks: Retrieved[], store: Store,
 
 // ---------- Entry point ----------
 
-const cache = new Map<string, { at: number; answer: Answer }>();
-const DAY = 86_400_000;
 
 export async function answerQuestion(question: string, history: Turn[]): Promise<Answer> {
   // Answer in the language of the question (English, Hindi or Hinglish).
@@ -263,20 +259,23 @@ async function answerIn(question: string, history: Turn[], lang: Lang): Promise<
       return rule("refused", MESSAGES.other_passport[lang]);
   }
 
-  const store = loadStore();
+  const store = await getStore();
   const dests = r.destinations;
   const hasKey = !!(process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN);
   const link = siteLink(dests[0], lang);
 
   const cacheKey = JSON.stringify([dests.map((d) => d.id), question.toLowerCase().replace(/\s+/g, " ").trim(), r.judgment, lang]);
-  const hit = cache.get(cacheKey);
-  if (hit && Date.now() - hit.at < DAY && history.length === 0) return hit.answer;
-  const remember = (answer: Answer) => {
-    if (history.length === 0) cache.set(cacheKey, { at: Date.now(), answer });
+  // Repeated first questions are served from the shared 1-day cache (follow-ups depend on the chat).
+  if (history.length === 0) {
+    const hit = await cacheGet<Answer>(cacheKey);
+    if (hit) return hit;
+  }
+  const remember = async (answer: Answer) => {
+    if (history.length === 0) await cacheSet(cacheKey, answer);
     return answer;
   };
 
-  if (hasKey && budgetLeft() <= 0) {
+  if (hasKey && (await budgetLeft()) <= 0) {
     return rule("limit", MESSAGES.limit[lang], { officialLink: link });
   }
 
@@ -342,7 +341,7 @@ async function tryWeb(question: string, history: Turn[], dests: Destination[], l
       webAnswer(question, history, dests, writingInstruction(lang), deadline),
       new Promise<never>((_, reject) => setTimeout(() => reject(new Error("web search timed out")), timeLeft)),
     ]);
-    spend.usd += (web.usage.input * PRICE_IN + web.usage.output * PRICE_OUT) / 1e6 + web.usage.searches * PRICE_SEARCH;
+    await addSpend((web.usage.input * PRICE_IN + web.usage.output * PRICE_OUT) / 1e6 + web.usage.searches * PRICE_SEARCH);
     if (!web.found) {
       lastWebIssue = web.reason ?? "not found";
       return null;

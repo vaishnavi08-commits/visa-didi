@@ -1,7 +1,8 @@
-// Prototype storage: one JSON file standing in for the Supabase tables
-// (sources, chunks, change_log). Same shape, so it can be swapped for Postgres + pgvector later.
+// Official-page storage: Supabase tables (vd_sources, vd_chunks, vd_change_log) in production,
+// or one local JSON file of the same shape when Supabase isn't configured.
 import fs from "node:fs";
 import path from "node:path";
+import { db, loadStoreFromDb } from "./db";
 
 export const STALE_AFTER_DAYS = 14;
 export const RECENT_CHANGE_DAYS = 14;
@@ -62,6 +63,30 @@ export function loadStore(): Store {
   } catch {
     return { updatedAt: null, sources: {}, chunks: [], changeLog: [] };
   }
+}
+
+// The store the app answers from. Database reads are reused for a few minutes per server instance.
+let dbCache: { at: number; store: Store } | null = null;
+const DB_CACHE_MS = 5 * 60_000;
+
+export async function getStore(): Promise<Store> {
+  const c = db();
+  if (!c) return loadStore();
+  if (dbCache && Date.now() - dbCache.at < DB_CACHE_MS) return dbCache.store;
+  try {
+    const store = await loadStoreFromDb(c);
+    // An empty database (not seeded yet) falls back to the bundled file.
+    if (!store.chunks.length) return loadStore();
+    dbCache = { at: Date.now(), store };
+    return store;
+  } catch (e) {
+    console.error(e);
+    return dbCache?.store ?? loadStore();
+  }
+}
+
+export function forgetStoreCache() {
+  dbCache = null;
 }
 
 export function saveStore(store: Store) {

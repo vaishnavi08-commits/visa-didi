@@ -53,9 +53,16 @@ With `ANTHROPIC_API_KEY` set, questions about these three (and anything the stor
 
 Thin sources worth adding next: the Sri Lanka 40-country ETA list, the Malaysia country list, and a fuller Indonesia visa-on-arrival page.
 
+## Storage (Supabase)
+
+With `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` set, the app uses Supabase tables prefixed `vd_` (schema in `supabase/migrations/`):
+official pages and chunks, the change log, a shared 1-day answer cache, per-device rate limits, the monthly spend counter,
+and a question log (destination, topic, language and outcome only, no question text). RLS is on with no public policies, so only the
+server can access them. Without those variables the app falls back to `data/store.json` and in-memory state.
+
+The weekly re-check (`/api/cron/recheck`) saves its results to Supabase. Trigger it once after connecting to fill the tables.
+
 ## Prototype shortcuts (swap before launch)
 
-- **Storage** is `data/store.json`, shaped like the Supabase tables (sources, chunks, change log). On Vercel the filesystem is read-only, so the cron route reports results but can't persist them until it writes to Supabase.
 - **Retrieval** is keyword BM25 (`lib/retrieve.ts`). The PRD leaves the embedding model open, so pgvector can replace it behind the same `retrieve()` call.
-- **Rate limit and spend counter** are in memory, per server instance.
 - **Eval** covers 16 guardrail and routing cases. The full ~40-question test set with expected answers is still to be written from the official pages.
