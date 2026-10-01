@@ -340,6 +340,25 @@ function AnswerCard({ t, uiLang, answer, speaking, onSpeak }: { t: Strings; uiLa
       )}
 
       {answer.notCovered && <div className="note partial"><strong>{t.notCovered}</strong> {answer.notCovered}</div>}
+      {answer.webExtra && (
+        <section className="web-extra">
+          <p className="web-extra-title">{t.webExtraTitle}</p>
+          <p className="web-extra-short">{answer.webExtra.shortAnswer}</p>
+          {answer.webExtra.details.length > 0 && (
+            <ul className="details">
+              {answer.webExtra.details.map((d, i) => (
+                <li key={i}>
+                  {d.text}
+                  {d.sources.length > 0 && (
+                    <span className="cite">[{d.sources.map((s) => sourceIndex.get(s)).filter(Boolean).join(", ")}]</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          )}
+          <div className="note web">{t.webExtraNote}</div>
+        </section>
+      )}
       {answer.conflict && <div className="note conflict"><strong>{t.conflict}</strong> {answer.conflict}</div>}
       {stale.length > 0 && (
         <div className="note stale">{t.stale(stale.length)}</div>
@@ -383,7 +402,7 @@ function AnswerCard({ t, uiLang, answer, speaking, onSpeak }: { t: Strings; uiLa
 
       {answer.verifyLine && <p className="verify">{t.verify}</p>}
       {hasFacts && (
-        <p className="disclaimer">{answer.mode === "web" ? t.disclaimerWeb : t.disclaimerOfficial}</p>
+        <p className="disclaimer">{answer.mode === "web" || answer.webExtra ? t.disclaimerWeb : t.disclaimerOfficial}</p>
       )}
     </article>
   );

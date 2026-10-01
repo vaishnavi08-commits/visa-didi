@@ -49,6 +49,8 @@ export type Answer = {
   webIssue?: string;
   // Language the answer is written in (drives the read-aloud voice).
   lang: Lang;
+  // When official pages only partly answer: what live web search found for the rest.
+  webExtra?: { shortAnswer: string; details: { text: string; sources: string[] }[] };
 };
 
 export type Turn = { role: "user" | "assistant"; text: string };
@@ -234,7 +236,11 @@ export async function answerQuestion(question: string, history: Turn[]): Promise
   return answer.mode === "official_text" ? answer : { ...answer, lang };
 }
 
+// The API route may run for 60 s; leave room to send the reply.
+const TIME_BUDGET_MS = 52_000;
+
 async function answerIn(question: string, history: Turn[], lang: Lang): Promise<Answer> {
+  const deadline = Date.now() + TIME_BUDGET_MS;
   const r = route(question, history.filter((t) => t.role === "user").map((t) => t.text));
 
   switch (r.kind) {
@@ -272,7 +278,7 @@ async function answerIn(question: string, history: Turn[], lang: Lang): Promise<
   // No stored official pages for this destination: search the web, or say so honestly.
   if (!usableDests.length) {
     if (hasKey) {
-      const web = await tryWeb(question, history, dests, lang);
+      const web = await tryWeb(question, history, dests, lang, deadline);
       if (web) return remember(web);
     }
     return rule("unavailable", MESSAGES.unavailable[lang](displayName(dests[0], lang)), {
@@ -292,17 +298,40 @@ async function answerIn(question: string, history: Turn[], lang: Lang): Promise<
 
   // Stored official pages don't cover it: fill the gap from the web.
   if (!official || official.kind === "not_covered") {
-    const web = await tryWeb(question, history, dests, lang);
+    const web = await tryWeb(question, history, dests, lang, deadline);
     if (web) return remember(web);
+  }
+
+  // They cover part of it: keep the official answer and add what the web says about the rest.
+  if (official?.kind === "partial") {
+    const gap = official.notCovered ? `\n(The official pages already answered part of this. Focus on what they did not cover: ${official.notCovered})` : "";
+    const web = await tryWeb(question + gap, history, dests, lang, deadline);
+    if (web) {
+      const known = new Set(official.sources.map((s) => s.id));
+      return remember({
+        ...official,
+        webExtra: { shortAnswer: web.shortAnswer, details: web.details },
+        sources: [...official.sources, ...web.sources.filter((s) => !known.has(s.id))],
+      });
+    }
   }
   return remember(official ?? officialTextAnswer(question, chunks, store, usableDests, r.judgment));
 }
 
 let lastWebIssue: string | undefined;
 
-async function tryWeb(question: string, history: Turn[], dests: Destination[], lang: Lang): Promise<Answer | null> {
+async function tryWeb(question: string, history: Turn[], dests: Destination[], lang: Lang, deadline: number): Promise<Answer | null> {
+  const timeLeft = deadline - Date.now();
+  // Not enough time for a search: skip it rather than have the whole request time out.
+  if (timeLeft < 12_000) {
+    lastWebIssue = "skipped: not enough time left";
+    return null;
+  }
   try {
-    const web = await webAnswer(question, history, dests, writingInstruction(lang));
+    const web = await Promise.race([
+      webAnswer(question, history, dests, writingInstruction(lang)),
+      new Promise<never>((_, reject) => setTimeout(() => reject(new Error("web search timed out")), timeLeft)),
+    ]);
     spend.usd += (web.usage.input * PRICE_IN + web.usage.output * PRICE_OUT) / 1e6 + web.usage.searches * PRICE_SEARCH;
     if (!web.found) {
       lastWebIssue = web.reason ?? "not found";

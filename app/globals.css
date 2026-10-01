@@ -129,6 +129,11 @@ button { font: inherit; color: inherit; }
 .note.partial { background: var(--info-soft); color: var(--info); }
 .note.conflict, .note.stale { background: var(--warn-soft); color: var(--warn); }
 .note.mode { background: var(--surface-2); color: var(--ink-2); }
+.web-extra { margin: 16px 0 0 42px; padding-top: 12px; border-top: 1px dashed var(--line); }
+.web-extra .details, .web-extra .note { margin-left: 0; }
+.web-extra-title { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); margin: 0 0 6px; font-weight: 600; }
+.web-extra-short { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+@media (max-width: 560px) { .web-extra { margin-left: 0; } }
 .note.web { background: var(--warn-soft); color: var(--warn); }
 
 .sources { margin: 16px 0 0 42px; border-top: 1px dashed var(--line); padding-top: 12px; }
