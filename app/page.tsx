@@ -38,6 +38,14 @@ function pickDidiVoice(text: string): SpeechSynthesisVoice | undefined {
   );
 }
 
+// Voices read emoji out as words ("smiling face"), so drop them before speaking.
+function speakable(text: string) {
+  return text
+    .replace(/[\p{Extended_Pictographic}\p{Emoji_Modifier}\p{Regional_Indicator}\u200d\ufe0f\u20e3]/gu, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
 type Recognition = {
   lang: string;
   interimResults: boolean;
@@ -191,7 +199,7 @@ export default function Home() {
       return;
     }
     synth.cancel();
-    const u = new SpeechSynthesisUtterance(answer.shortAnswer);
+    const u = new SpeechSynthesisUtterance(speakable(answer.shortAnswer));
     const voice = pickDidiVoice(answer.shortAnswer);
     if (voice) u.voice = voice;
     u.lang = voice?.lang ?? (answer.lang === "hi" ? "hi-IN" : "en-IN");
