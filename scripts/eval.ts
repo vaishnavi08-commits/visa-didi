@@ -20,6 +20,11 @@ const CASES: Case[] = [
   { q: "What about the fees?", history: [{ role: "user", text: "Do I need a visa for the UK?" }, { role: "assistant", text: "Yes, you need a Standard Visitor visa." }], expect: ["answered", "partial", "not_covered"], note: "follow-up inherits destination" },
   { q: "Can you tell us about Bali entry rules?", expect: ["answered", "partial", "not_covered", "clarify"], note: "'us' pronoun is not the US; Bali → Indonesia" },
   { q: "Do I need a visa for the US?", expect: ["unavailable", "answered", "partial", "not_covered"], note: "blocked source → can't confirm (until manual capture)" },
+  // Small talk never triggers a search, even mid-conversation
+  { q: "ही वीजा दीदी", history: [{ role: "user", text: "Do I need a visa for Vietnam?" }, { role: "assistant", text: "Yes, you need an e-visa." }], expect: ["off_topic"], note: "Hindi greeting after a Vietnam question" },
+  { q: "Hi Didi!", expect: ["off_topic"], note: "greeting" },
+  { q: "thank you so much didi", history: [{ role: "user", text: "Do I need a visa for the UK?" }, { role: "assistant", text: "Yes." }], expect: ["off_topic"], note: "thanks" },
+  { q: "धन्यवाद दीदी", expect: ["off_topic"], note: "Hindi thanks" },
   // Hindi and Hinglish
   { q: "क्या मुझे कनाडा के लिए वीज़ा चाहिए?", expect: ["refused"], note: "Hindi: uncovered destination" },
   { q: "अमेरिका में पढ़ाई के लिए वीज़ा कैसे मिलेगा?", expect: ["refused"], note: "Hindi: student visa" },

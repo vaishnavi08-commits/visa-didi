@@ -45,6 +45,16 @@ export function englishTopicTerms(text: string) {
 
 // Fixed (non-AI) messages in each language.
 export const MESSAGES = {
+  greeting: {
+    en: "Namaste! I'm Visa Didi 😊 Ask me anything about visas and entry rules for your trip — for example, \"Do I need a visa for Thailand?\"",
+    hi: "नमस्ते! मैं आपकी Visa Didi हूँ 😊 अपनी यात्रा के वीज़ा या एंट्री नियमों के बारे में कुछ भी पूछिए — जैसे, \"क्या मुझे थाईलैंड के लिए वीज़ा चाहिए?\"",
+    hinglish: "Namaste! Main aapki Visa Didi hoon 😊 Apni trip ke visa ya entry rules ke baare mein kuch bhi poochiye — jaise, \"Thailand ke liye visa chahiye kya?\"",
+  },
+  thanks: {
+    en: "Anytime! 😊 Ask me if anything else comes up for your trip.",
+    hi: "कोई बात नहीं! 😊 यात्रा के बारे में और कुछ पूछना हो तो बताइए।",
+    hinglish: "Koi baat nahi! 😊 Trip ke baare mein aur kuch poochna ho toh bataiye.",
+  },
   off_topic: {
     en: "I'm only good at one thing: visa and entry rules for Indian passport holders 🙂 Try asking something like \"Do I need a visa for Vietnam?\"",
     hi: "मैं बस एक ही चीज़ में माहिर हूँ: भारतीय पासपोर्ट वालों के लिए वीज़ा और एंट्री के नियम 🙂 कुछ ऐसा पूछकर देखिए: \"क्या मुझे वियतनाम के लिए वीज़ा चाहिए?\"",

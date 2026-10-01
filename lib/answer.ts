@@ -244,6 +244,10 @@ async function answerIn(question: string, history: Turn[], lang: Lang): Promise<
   const r = route(question, history.filter((t) => t.role === "user").map((t) => t.text));
 
   switch (r.kind) {
+    case "greeting":
+      return rule("off_topic", MESSAGES.greeting[lang]);
+    case "thanks":
+      return rule("off_topic", MESSAGES.thanks[lang]);
     case "off_topic":
       return rule("off_topic", MESSAGES.off_topic[lang]);
     case "ask_destination":

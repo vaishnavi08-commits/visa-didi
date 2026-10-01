@@ -8,7 +8,9 @@ export type Route =
   | { kind: "uncovered_destination"; name: string }
   | { kind: "out_of_scope_visa"; what: string }
   | { kind: "other_passport"; nationality: string }
-  | { kind: "off_topic" };
+  | { kind: "off_topic" }
+  | { kind: "greeting" }
+  | { kind: "thanks" };
 
 const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 // Word boundaries that also work for Devanagari (JS \b only understands ASCII letters).
@@ -46,8 +48,28 @@ const JUDGMENT = /\b(will (i|my|we|he|she|they|mom|mum|dad|parents?|mother|fathe
 const TRAVEL_WORDS_HI = /वीज़ा|वीजा|पासपोर्ट|यात्रा|घूमने|ट्रिप|फीस|शुल्क|दस्तावेज़|दस्तावेज|कागज़|कागज|एंट्री|प्रवेश|बिज़नेस|बिजनेस|मीटिंग|कॉन्फ्रेंस|इमिग्रेशन|आवेदन|अप्लाई|\b(ghoomne|ghumne|jaana|jana|kagaz|kaagaz)\b/i;
 const TRAVEL_WORDS = /\b(visa|visas|evisa|e-visa|eta|entry|enter|passport|travel|trip|visit|visiting|tourist|tourism|holiday|vacation|business|conference|meeting|documents?|fees?|cost|process(ing)?|arrival|stay|days|immigration|border|apply|application|onward|return ticket|insurance|transit|go to|going to|fly|flying)\b/i;
 
+// Small talk: messages made only of these words get a friendly reply, never a search.
+const GREETING_WORDS = new Set([
+  "hi", "hii", "hiii", "hello", "helo", "hey", "heya", "namaste", "namaskar", "namaskaar", "pranam", "good", "morning", "afternoon", "evening",
+  "ही", "हाय", "हेलो", "हैलो", "हलो", "नमस्ते", "नमस्कार", "प्रणाम", "गुड", "मॉर्निंग",
+  "visa", "वीजा", "वीज़ा", "didi", "दीदी", "ji", "जी", "there", "you", "are", "how", "kaise", "ho", "aap", "कैसी", "कैसे", "हो", "आप", "हैं",
+]);
+const THANKS_WORDS = new Set([
+  "thanks", "thank", "you", "thx", "ty", "ok", "okay", "okk", "cool", "great", "nice", "shukriya", "dhanyavad", "dhanyawad", "theek", "thik", "hai",
+  "धन्यवाद", "शुक्रिया", "थैंक्स", "थैंक", "यू", "ओके", "ठीक", "है", "अच्छा", "बढ़िया", "didi", "दीदी", "ji", "जी", "so", "much", "bahut",
+]);
+
+function onlyWords(q: string, words: Set<string>) {
+  const tokens = q.toLowerCase().replace(/[!?.,।🙏😊🙂]+/g, " ").split(/\s+/).filter(Boolean);
+  return tokens.length > 0 && tokens.length <= 6 && tokens.every((t) => words.has(t));
+}
+
 export function route(question: string, history: string[] = []): Route {
   const q = question.trim();
+
+  if (onlyWords(q, THANKS_WORDS) && /thank|thx|\bty\b|shukriya|dhanya|धन्यवाद|शुक्रिया|थैंक/i.test(q)) return { kind: "thanks" };
+  if (onlyWords(q, GREETING_WORDS) && !/^(visa|वीजा|वीज़ा)$/i.test(q)) return { kind: "greeting" };
+  if (onlyWords(q, THANKS_WORDS)) return { kind: "thanks" };
 
   const dests = findDestinations(q);
   const uncovered = findUncovered(q);
