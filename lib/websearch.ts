@@ -48,6 +48,7 @@ export async function webAnswer(
   history: { role: "user" | "assistant"; text: string }[],
   dests: Destination[],
   languageInstruction: string,
+  deadline: number,
 ): Promise<WebResult> {
   client ??= new Anthropic();
   const context = history.slice(-4).map((t) => `${t.role === "user" ? "Traveller" : "Didi"}: ${t.text}`).join("\n");
@@ -62,6 +63,8 @@ export async function webAnswer(
 
   // Server-side search can pause a long turn; resume it a couple of times.
   for (let i = 0; i < 3; i++) {
+    const timeLeft = deadline - Date.now() - 1_000;
+    if (timeLeft < 3_000) break;
     response = await client.beta.messages.create({
       model: MODEL,
       // Kept short on purpose: a brief answer is faster to write.
@@ -72,7 +75,7 @@ export async function webAnswer(
       output_config: { effort: "low" },
       betas: ["server-side-fallback-2026-07-01"],
       fallbacks: "default",
-    });
+    }, { timeout: timeLeft, maxRetries: 0 });
     usage.input += response.usage.input_tokens;
     usage.output += response.usage.output_tokens;
     usage.searches += response.usage.server_tool_use?.web_search_requests ?? 0;

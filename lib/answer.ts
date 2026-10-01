@@ -148,7 +148,7 @@ function budgetLeft() {
   return Number(process.env.MONTHLY_BUDGET_USD ?? 20) - spend.usd;
 }
 
-async function askClaude(question: string, history: Turn[], chunks: Retrieved[], store: Store, dests: Destination[], lang: Lang) {
+async function askClaude(question: string, history: Turn[], chunks: Retrieved[], store: Store, dests: Destination[], lang: Lang, deadline: number) {
   client ??= new Anthropic();
   const labelled = chunks.map((c, i) => ({ label: `S${i + 1}`, chunk: c }));
   const sourcesXml = labelled
@@ -182,7 +182,8 @@ async function askClaude(question: string, history: Turn[], chunks: Retrieved[],
     // Server-side fallback: if a safety classifier declines, the API retries on a fallback model.
     betas: ["server-side-fallback-2026-07-01"],
     fallbacks: "default",
-  });
+    // Stay inside the request's time budget; a silent retry could push past the server's limit.
+  }, { timeout: Math.max(3_000, deadline - Date.now() - 2_000), maxRetries: 0 });
 
   spend.usd += (response.usage.input_tokens * PRICE_IN + response.usage.output_tokens * PRICE_OUT) / 1e6;
   if (response.stop_reason === "refusal") return null;
@@ -297,7 +298,10 @@ async function answerIn(question: string, history: Turn[], lang: Lang): Promise<
 
   if (!hasKey) return officialTextAnswer(question, chunks, store, usableDests, r.judgment);
 
-  const result = await askClaude(question, history, chunks, store, usableDests, lang);
+  const result = await askClaude(question, history, chunks, store, usableDests, lang, deadline).catch((e) => {
+    console.error("official answer failed", e);
+    return null;
+  });
   const official = result ? toAnswer(result.out, result.labelled, store, usableDests, lang) : null;
 
   // Stored official pages don't cover it: fill the gap from the web.
@@ -333,7 +337,7 @@ async function tryWeb(question: string, history: Turn[], dests: Destination[], l
   }
   try {
     const web = await Promise.race([
-      webAnswer(question, history, dests, writingInstruction(lang)),
+      webAnswer(question, history, dests, writingInstruction(lang), deadline),
       new Promise<never>((_, reject) => setTimeout(() => reject(new Error("web search timed out")), timeLeft)),
     ]);
     spend.usd += (web.usage.input * PRICE_IN + web.usage.output * PRICE_OUT) / 1e6 + web.usage.searches * PRICE_SEARCH;
