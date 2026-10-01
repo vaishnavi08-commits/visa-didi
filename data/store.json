@@ -1,0 +1,1275 @@
+{
+ "updatedAt": "2026-10-01",
+ "sources": {
+  "th-embassy-delhi": {
+   "id": "th-embassy-delhi",
+   "url": "https://newdelhi.thaiembassy.org/en/page/visa",
+   "title": "Visa",
+   "authority": "Royal Thai Embassy, New Delhi",
+   "destinationId": "thailand",
+   "status": "ok",
+   "method": "fetched",
+   "contentHash": "118f66620afb495f177aeb117bdb4c2d0d3d5b42d15a3d7bd12e9541e7668516",
+   "lastVerified": "2026-10-01",
+   "lastAttempt": "2026-10-01",
+   "lastError": null
+  },
+  "th-evisa": {
+   "id": "th-evisa",
+   "url": "https://www.thaievisa.go.th/",
+   "title": "Thailand e-Visa portal",
+   "authority": "Ministry of Foreign Affairs, Thailand",
+   "destinationId": "thailand",
+   "status": "unavailable",
+   "method": null,
+   "contentHash": null,
+   "lastVerified": null,
+   "lastAttempt": "2026-10-01",
+   "lastError": "Page content not readable (likely rendered by JavaScript)"
+  },
+  "vn-evisa": {
+   "id": "vn-evisa",
+   "url": "https://evisa.gov.vn/",
+   "title": "Vietnam e-Visa portal",
+   "authority": "Immigration Department, Vietnam",
+   "destinationId": "vietnam",
+   "status": "unavailable",
+   "method": null,
+   "contentHash": null,
+   "lastVerified": null,
+   "lastAttempt": "2026-10-01",
+   "lastError": "fetch failed"
+  },
+  "sg-ica-india": {
+   "id": "sg-ica-india",
+   "url": "https://www.ica.gov.sg/enter-transit-depart/entering-singapore/visa_requirements/visa-detail-page/india",
+   "title": "Visa requirements — India",
+   "authority": "Immigration & Checkpoints Authority, Singapore",
+   "destinationId": "singapore",
+   "status": "ok",
+   "method": "fetched",
+   "contentHash": "e9226c5aa43018b58966fd5a41fd91c56b7f3ed03900a73140fef796aa8c5966",
+   "lastVerified": "2026-10-01",
+   "lastAttempt": "2026-10-01",
+   "lastError": null
+  },
+  "sg-ica-requirements": {
+   "id": "sg-ica-requirements",
+   "url": "https://www.ica.gov.sg/enter-transit-depart/entering-singapore/visa_requirements",
+   "title": "Visa requirements",
+   "authority": "Immigration & Checkpoints Authority, Singapore",
+   "destinationId": "singapore",
+   "status": "ok",
+   "method": "fetched",
+   "contentHash": "2b4c47eb2c945460c629f5ea7ada0ca6a1b375b99fa049d40c2a9194b9945c12",
+   "lastVerified": "2026-10-01",
+   "lastAttempt": "2026-10-01",
+   "lastError": null
+  },
+  "my-imi-by-country": {
+   "id": "my-imi-by-country",
+   "url": "https://www.imi.gov.my/index.php/en/main-services/visa/visa-requirement-by-country/",
+   "title": "Visa requirement by country",
+   "authority": "Immigration Department of Malaysia",
+   "destinationId": "malaysia",
+   "status": "ok",
+   "method": "fetched",
+   "contentHash": "31fd2427fa3a075d3dfb574e0fba26d6768fe841a865953c691dc0dcdbb8771b",
+   "lastVerified": "2026-10-01",
+   "lastAttempt": "2026-10-01",
+   "lastError": null
+  },
+  "my-evisa": {
+   "id": "my-evisa",
+   "url": "https://malaysiavisa.imi.gov.my/evisa/evisa.jsp",
+   "title": "Malaysia eVISA",
+   "authority": "Immigration Department of Malaysia",
+   "destinationId": "malaysia",
+   "status": "unavailable",
+   "method": null,
+   "contentHash": null,
+   "lastVerified": null,
+   "lastAttempt": "2026-10-01",
+   "lastError": "Page content not readable (likely rendered by JavaScript)"
+  },
+  "id-evisa": {
+   "id": "id-evisa",
+   "url": "https://evisa.imigrasi.go.id/",
+   "title": "Indonesia e-Visa portal",
+   "authority": "Directorate General of Immigration, Indonesia",
+   "destinationId": "indonesia",
+   "status": "ok",
+   "method": "fetched",
+   "contentHash": "6d39d0cf306870ad4e404112f41786bdb26b29722d490ddba5491ddedd8009f4",
+   "lastVerified": "2026-10-01",
+   "lastAttempt": "2026-10-01",
+   "lastError": null
+  },
+  "lk-eta": {
+   "id": "lk-eta",
+   "url": "https://www.eta.gov.lk/slvisa/",
+   "title": "Sri Lanka ETA",
+   "authority": "Department of Immigration & Emigration, Sri Lanka",
+   "destinationId": "srilanka",
+   "status": "unavailable",
+   "method": null,
+   "contentHash": null,
+   "lastVerified": null,
+   "lastAttempt": "2026-10-01",
+   "lastError": "Page content not readable (likely rendered by JavaScript)"
+  },
+  "lk-eta-info": {
+   "id": "lk-eta-info",
+   "url": "https://www.eta.gov.lk/slvisa/visainfo/center.jsp?locale=en_US",
+   "title": "ETA information centre",
+   "authority": "Department of Immigration & Emigration, Sri Lanka",
+   "destinationId": "srilanka",
+   "status": "ok",
+   "method": "fetched",
+   "contentHash": "0cbc885c4cddfa08a8a040b1538315f8583f960e6e2c5d352f1d341fd41e6cfc",
+   "lastVerified": "2026-10-01",
+   "lastAttempt": "2026-10-01",
+   "lastError": null
+  },
+  "ae-visit-visa": {
+   "id": "ae-visit-visa",
+   "url": "https://u.ae/en/information-and-services/visa-and-emirates-id/Types-of-visas/Visit-visa",
+   "title": "Visit visa",
+   "authority": "UAE Government portal (u.ae)",
+   "destinationId": "uae",
+   "status": "unavailable",
+   "method": null,
+   "contentHash": null,
+   "lastVerified": null,
+   "lastAttempt": "2026-10-01",
+   "lastError": "Page content not readable (likely rendered by JavaScript)"
+  },
+  "ae-tourist-visa": {
+   "id": "ae-tourist-visa",
+   "url": "https://u.ae/en/information-and-services/visa-and-emirates-id/Types-of-visas/tourist-visa",
+   "title": "Tourist visa",
+   "authority": "UAE Government portal (u.ae)",
+   "destinationId": "uae",
+   "status": "ok",
+   "method": "fetched",
+   "contentHash": "d48d9ad3471e0f9f953ff14d13c51c86d68ca0e0b2dd754cdaabe788e9e19618",
+   "lastVerified": "2026-10-01",
+   "lastAttempt": "2026-10-01",
+   "lastError": null
+  },
+  "jp-embassy-visa": {
+   "id": "jp-embassy-visa",
+   "url": "https://www.in.emb-japan.go.jp/itpr_en/visa.html",
+   "title": "Visa information",
+   "authority": "Embassy of Japan in India",
+   "destinationId": "japan",
+   "status": "ok",
+   "method": "fetched",
+   "contentHash": "519a0efcf7b33d7fb591738f6e4d4955712c2c2cd9d286532b05967bcb04e9c3",
+   "lastVerified": "2026-10-01",
+   "lastAttempt": "2026-10-01",
+   "lastError": null
+  },
+  "jp-mofa-visa": {
+   "id": "jp-mofa-visa",
+   "url": "https://www.mofa.go.jp/j_info/visit/visa/index.html",
+   "title": "Visa",
+   "authority": "Ministry of Foreign Affairs of Japan",
+   "destinationId": "japan",
+   "status": "ok",
+   "method": "fetched",
+   "contentHash": "f675faa3194f3bec522ee176613e6300c619da3d1f0dee394e51d7c755842c93",
+   "lastVerified": "2026-10-01",
+   "lastAttempt": "2026-10-01",
+   "lastError": null
+  },
+  "eu-applying": {
+   "id": "eu-applying",
+   "url": "https://home-affairs.ec.europa.eu/policies/schengen-borders-and-visa/visa-policy/applying-schengen-visa_en",
+   "title": "Applying for a Schengen visa",
+   "authority": "European Commission — Migration and Home Affairs",
+   "destinationId": "schengen",
+   "status": "ok",
+   "method": "fetched",
+   "contentHash": "cf38a760ff49c939b2738b51630d21e731cf6173120e9e9ce0b0230342554a83",
+   "lastVerified": "2026-10-01",
+   "lastAttempt": "2026-10-01",
+   "lastError": null
+  },
+  "eu-visa-policy": {
+   "id": "eu-visa-policy",
+   "url": "https://home-affairs.ec.europa.eu/policies/schengen-borders-and-visa/visa-policy_en",
+   "title": "Visa policy",
+   "authority": "European Commission — Migration and Home Affairs",
+   "destinationId": "schengen",
+   "status": "ok",
+   "method": "fetched",
+   "contentHash": "8e1294abd9481f40a634070d6c202c3d185bee7147d759b33c41ae15c645a96d",
+   "lastVerified": "2026-10-01",
+   "lastAttempt": "2026-10-01",
+   "lastError": null
+  },
+  "uk-standard-visitor": {
+   "id": "uk-standard-visitor",
+   "url": "https://www.gov.uk/standard-visitor",
+   "title": "Visit the UK as a Standard Visitor",
+   "authority": "UK Government (GOV.UK)",
+   "destinationId": "uk",
+   "status": "ok",
+   "method": "fetched",
+   "contentHash": "4edf36cafb8e728710ce2b3deef0dd2d34e4238aad630e850fc4ac049ca684ff",
+   "lastVerified": "2026-10-01",
+   "lastAttempt": "2026-10-01",
+   "lastError": null
+  },
+  "uk-visit-business": {
+   "id": "uk-visit-business",
+   "url": "https://www.gov.uk/standard-visitor/visit-on-business",
+   "title": "Standard Visitor — visit on business",
+   "authority": "UK Government (GOV.UK)",
+   "destinationId": "uk",
+   "status": "ok",
+   "method": "fetched",
+   "contentHash": "fcf6d02d59f77835f1d3f116dce7eeb7fb938fc532a7506d68ed2762880c33e6",
+   "lastVerified": "2026-10-01",
+   "lastAttempt": "2026-10-01",
+   "lastError": null
+  },
+  "uk-apply": {
+   "id": "uk-apply",
+   "url": "https://www.gov.uk/standard-visitor/apply-standard-visitor-visa",
+   "title": "Apply for a Standard Visitor visa",
+   "authority": "UK Government (GOV.UK)",
+   "destinationId": "uk",
+   "status": "ok",
+   "method": "fetched",
+   "contentHash": "9e5c8448b1678001538b835eceb2113831c55c878f1e20a83542e03fef192032",
+   "lastVerified": "2026-10-01",
+   "lastAttempt": "2026-10-01",
+   "lastError": null
+  },
+  "us-state-visitor": {
+   "id": "us-state-visitor",
+   "url": "https://travel.state.gov/content/travel/en/us-visas/tourism-visit/visitor.html",
+   "title": "Visitor visa",
+   "authority": "U.S. Department of State",
+   "destinationId": "us",
+   "status": "unavailable",
+   "method": null,
+   "contentHash": null,
+   "lastVerified": null,
+   "lastAttempt": "2026-10-01",
+   "lastError": "HTTP 403 (blocked or unavailable)"
+  },
+  "us-embassy-india": {
+   "id": "us-embassy-india",
+   "url": "https://in.usembassy.gov/visas/",
+   "title": "Visas",
+   "authority": "U.S. Embassy & Consulates in India",
+   "destinationId": "us",
+   "status": "unavailable",
+   "method": null,
+   "contentHash": null,
+   "lastVerified": null,
+   "lastAttempt": "2026-10-01",
+   "lastError": "fetch failed"
+  },
+  "au-visitor-600": {
+   "id": "au-visitor-600",
+   "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/visitor-600",
+   "title": "Visitor visa (subclass 600)",
+   "authority": "Department of Home Affairs, Australia",
+   "destinationId": "australia",
+   "status": "unavailable",
+   "method": null,
+   "contentHash": null,
+   "lastVerified": null,
+   "lastAttempt": "2026-10-01",
+   "lastError": "Page content not readable (likely rendered by JavaScript)"
+  },
+  "au-tourist-stream": {
+   "id": "au-tourist-stream",
+   "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/visitor-600/tourist-stream-overseas",
+   "title": "Visitor visa — Tourist stream (apply outside Australia)",
+   "authority": "Department of Home Affairs, Australia",
+   "destinationId": "australia",
+   "status": "unavailable",
+   "method": null,
+   "contentHash": null,
+   "lastVerified": null,
+   "lastAttempt": "2026-10-01",
+   "lastError": "Page content not readable (likely rendered by JavaScript)"
+  },
+  "au-business-stream": {
+   "id": "au-business-stream",
+   "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/visitor-600/business-visitor-stream",
+   "title": "Visitor visa — Business Visitor stream",
+   "authority": "Department of Home Affairs, Australia",
+   "destinationId": "australia",
+   "status": "unavailable",
+   "method": null,
+   "contentHash": null,
+   "lastVerified": null,
+   "lastAttempt": "2026-10-01",
+   "lastError": "Page content not readable (likely rendered by JavaScript)"
+  }
+ },
+ "chunks": [
+  {
+   "id": "th-embassy-delhi#0",
+   "sourceId": "th-embassy-delhi",
+   "destinationId": "thailand",
+   "heading": "",
+   "text": "Home\nAbout Embassy\nAmbassador\nMessage from Ambassador\nList of Ambassadors of Thailand to India\nวันที่นำเข้าข้อมูล 25 Oct 2023\nวันที่ปรับปรุงข้อมูล 16 Sep 2026\n| 1,583,827 view\nVISA\n*With the e-Visa system having come into effect on 1 January 2025, all applicants are required to apply for a visa through the website https://www.thaievisa.go.th, where information on visa types and the application process can be found.\n**The 30-day visa exemption for Indian ordinary passport holders for tourism and short-term business engagements purposes remains effective from 15 September 2026 until further announcement. For more details click HERE. (Lists of the Visa Exemption schemes are below the page)\n***All applicants are required to read the FAQs click HERE and the common mistakes HERE to avoid when applying for a Thai e-Visa.\n1. General Information\n- Tourism and leisure activities- Participants of MICE industry supported by TCEP (Letter from TCEP is required)- Recreation learning or training related activities, e.g., diving, boxing, Thai massage, Thai culinary learning- Family visit (less than 60 days)- Football trial\nOrdinary passport/ travel document\nMT\nFor medical treatment (less than 60 days)\nOrdinary passport/ travel document\nTransit\nTS\nTo transit to the country of destination\nOrdinary passport/ travel document\nS\nTo participate in sports activities or competitions"
+  },
+  {
+   "id": "th-embassy-delhi#1",
+   "sourceId": "th-embassy-delhi",
+   "destinationId": "thailand",
+   "heading": "",
+   "text": "Ordinary passport/ travel document\nC\nPerson in charge or crew coming to a port, station or area in Thailand\nOrdinary passport/ travel document\nNon-immigrant\nB (Business/ Employment)\nTo conduct business, to be employed, internship, or attend conference (extracurricular)\nOrdinary passport\nIB (Investment through BOI)\nTo invest or perform other activities relating to investment, subject to the provision of the established laws on investment promotion\nOrdinary passport\nED (Education)\nTo study, to have a study tour or technical visit to government agencies, international organization, to participate in projects, seminars, conference or training course conducted by government agencies or international organization, to participate in Buddhism activities approved by related government agencies\nOrdinary passport\nO\nTo visit family, long-term medical treatment, volunteer, and other activities\nOrdinary passport\nF\n- To perform official duties, - To have a meeting or training at the governmental agencies or international organizations\nOrdinary passport\nRS (Research)\nTo conduct scientific research, training or teaching in a research institute (with an approval from the National Research Council of Thailand)\nOrdinary passport\nR/R-A (Religion)\nTo perform missionary work or other religious activities with the concurrence of the Thai ministries or relevant Government agencies\nOrdinary passport"
+  },
+  {
+   "id": "th-embassy-delhi#2",
+   "sourceId": "th-embassy-delhi",
+   "destinationId": "thailand",
+   "heading": "",
+   "text": "M (Media)\n- To work as media, journalist or reporter, a pripor registration with the Department of Information, Ministry of Foreign Affairs of Thailand is required.- To work as a film production team, a prior registration with the Department of Tourism, Ministry of Tourism and Sports of Thailand is required.\nOrdinary passport\nO-A\nApplicants aged over 50 years who wish to stay in Thailand for a period of not exceeding 1 year without the intention of working\nFor further information, please visit https://longstay.tgia.org/\nOrdinary passport\nDestination Thailand Visa\nDTV\nEligible foreigners:- Digital Nomads/ Remote Workers/ Frelancers- Participants in activities such as Thai Boxing, Thai Cooking class, sports traning, medical treatment, seminars, and music festivals.- Spouse and dependent children of DTV holders\nOrdinary passport\nLong-Term Resident\nLTR\n- Long-term visa which provides a range of tax and non-tax benefits to enhance the country’s attractiveness as a regional hub for living and doing business for ‘high-potential’ individuals. - There are 4 sub-categories: Wealthy Global Citizens, Wealthy Pensioners, Work-From-Thailand Professionals, Healthy Skilled Professionals and Dependents.- Please visit https://ltr.boi.go.th for an application process and further information.\nOrdinary passport\nSMART Visa\nSMART[T / I / E / S / O]"
+  },
+  {
+   "id": "th-embassy-delhi#3",
+   "sourceId": "th-embassy-delhi",
+   "destinationId": "thailand",
+   "heading": "",
+   "text": "- designed to attract highly skilled manpower, investors, executives and startups entrepreneurs wishing to work or invest in the following targeted industries in the Kingdom of Thailand. SMART Visa holders will be granted maximum 4-year permission to stay, exemption from the work permit requirement and entitled to additional privileges.- For further information, https://smart-visa.boi.go.th/smart/\nOrdinary passport\nDiplomatic\nD\nDiplomatic function\nDiplomatic Passport/ UN Laissez Passer\nOfficial\nF\nOfficial function\nOfficial passport/ UN Laissez Passer (blue)\nCourtesy\n-\nDiplomatic/ Official/ Ordinary passport holders who wish to enter Thailand for official duty and/or other purposes.\nDiplomatic passport/ Official passport/ Ordinary passport\nPrivilege Entry Visa\nPE\nMust be a member of Thailand Privilege CardFor further information, please visit https://www.thailandprivilege.co.th\nOrdinary passport\nType of Visa\nCategory of Visa\nNumber of Entries\nValidity of Visa\nPeriod of Stay (each entry)\nFee\nChecklist & required documents\nTourist\nTR/ MT\nSingle\n3 months\n60 days\n3,000 INR\ndownload\nTR\nMultiple\n6 months\n60 days\n13,500 INR\nTransit\nTS / S / C\nSingle\n3 months\n30 days\n2,500 INR\ndownload\nTS\nDouble\n3 months\n30 days\n5,000 INR\nNon-immigrant\nB/ IB / ED / O/ F / RS / R / M\nSingle\n3 months\n90 days\n7,000 INR\ndownload\nB/ R-A/ O/ M/ O-A\nMultiple\n1 year\n90 days\n13,500 INR\nB\nMultiple\n3 years\n90 days"
+  },
+  {
+   "id": "th-embassy-delhi#4",
+   "sourceId": "th-embassy-delhi",
+   "destinationId": "thailand",
+   "heading": "",
+   "text": "30,000 INR\nDestination Thailand Visa\nDTV\nMultiple\n5 years\n180 days\n30,000 INR\ndownload\nLong-Term Resident\nLTR\nMultiple\n10 years\n1 year\n140,000 INR\nBOI website\nSMART\nSMART[T / I / E / S / O]\nMultiple\n1 year\nReport at Immigration Bureau every 1 year\n30,000 INR\nBOI website\n2 years\n60,000 INR\n3 years\n90,000 INR\nInformation\n4 years\n120,000 INR\nDiplomatic\nD/ F\nSingle\n3 months\n90 days\n-\ndownload\nMultiple\n3 months\n-\n6 months\n-\nOfficial\nF\nSingle\n3 months\n90 days\n-\ndownload\nMultiple\n3 months\n-\n6 months\n-\nCourtesy\n-\nSingle\n3 months\n90 days\n-\ndownload\nMultiple\n3 months\n-\n2. List of countries and territories entitled to Visa Exemption for tourism and short-term business engagements for a period not exceeding 30 days (click here) รายชื่อประเทศ/ดินแดนที่ผู้ถือหนังสือเดินทางหรือเอกสารใช้แทนหนังสือเดินทางที่ได้รับการยกเว้นการตรวจลงตราสำหรับวัตถุประสงค์เพื่อการท่องเที่ยวหรือติดต่อธุรกิจระยะสั้น พำนักได้ไม่เกิน 30 วัน (คลิกที่นี่)\n3. List of countries and territories entitled to Visa on Arrival (VOA) to Thailand (click here) รายชื่อประเทศ/ดินแดนที่ผู้ถือหนังสือเดินทางหรือเอกสารใช้แทนหนังสือเดินทางและสามารถขอรับการตรวจลงตรา ณ ช่องทางอนุญาตด่านตรวจคนเข้าเมือง (Visa on Arrival - VOA) (คลิกที่นี่)"
+  },
+  {
+   "id": "th-embassy-delhi#5",
+   "sourceId": "th-embassy-delhi",
+   "destinationId": "thailand",
+   "heading": "",
+   "text": "4. List of countries and territories which have Bilateral Agreement on Visa Exemption for Diplomatic and/or Official Passports with Thailand (click here) รายชื่อประเทศ/ดินแดนที่ผู้ถือหนังสือเดินทางทูต และ/หรือ ราชการ ของประเทศ/ดินแดนที่มีความตกลงยกเว้นการตรวจลงตรากับประเทศไทย (คลิกที่นี่)\n5. List of countries and territories which have Bilateral Agreement on Visa Exemption for Ordinary passports with Thailand (click here) รายชื่อประเทศ/ดินแดนที่ผู้ถือหนังสือเดินทางธรรมดาที่มีความตกลงยกเว้นการตรวจลงตรากับประเทศไทย (คลิกที่นี่)\nTOP\nRoyal Thai Embassy in New Delhi สถานเอกอัครราชทูต ณ กรุงนิวเดลี\nAddress : 56-N Nyaya Marg Chanakyapuri New Delhi 110021\nOffice Hours: Mon-Fri 09:00 - 17:00 hrs. (except Embassy's holidays)\n1. +91 11 2419 7200 2. Consular section: +91 11 2419 7156\n+91 11 2419 7199\n1. [email protected] Consular section 2. [email protected] or [email protected] (Passport, Thai Household Registration and Legalisation) 3. [email protected] (Visa-related issues) “Consular services are available by appointment only!!”\nFollow us:\nCopyright © Royal Thai Embassy in New Delhi"
+  },
+  {
+   "id": "sg-ica-india#0",
+   "sourceId": "sg-ica-india",
+   "destinationId": "singapore",
+   "heading": "India Visa Requirements",
+   "text": "Home >\nEntering, Transiting and Departing > Entering Singapore > Check if You Need an Entry Visa > India Visa Requirements"
+  },
+  {
+   "id": "sg-ica-india#1",
+   "sourceId": "sg-ica-india",
+   "destinationId": "singapore",
+   "heading": "India Visa Requirements",
+   "text": "You will need a visa to enter Singapore if you are holding a travel document issued by this country. However, please note that holders of diplomatic, official and service passports do not need a visa for entry."
+  },
+  {
+   "id": "sg-ica-india#2",
+   "sourceId": "sg-ica-india",
+   "destinationId": "singapore",
+   "heading": "Documents Required",
+   "text": "You will need to provide original documents and official translations (for documents in languages other than English), as well as copies of the documents for ICA to retain.\nICA accepts:\n• Translations provided by the embassy of the country/ place that issued the document\n• Translations produced by a notary public in Singapore or the country/ place that issued the document\n• Privately created translations attested by the embassy of the country/ place that issued the document, or notarised by a notary public in Singapore or the country/ place that issued the document.\nICA does not endorse any private translation companies or entities. Insufficient documentation may result in non-acceptance of your application. You may be required to provide additional documents to support your application.\nTo apply for an entry visa for business or social visits, you will need the following documents:\n• Duly completed Form 14A (PDF, 202KB) signed by you. Your visa application shall be made based on the information declared in this form. ICA may request for the form to be submitted.\n• Your recent passport-sized colour photograph taken within the last three months. Please see Photo Guidelines for information on photo requirements.\n• A photocopy of your passport biodata page (valid for at least six months from the date of your entry into Singapore)"
+  },
+  {
+   "id": "sg-ica-india#3",
+   "sourceId": "sg-ica-india",
+   "destinationId": "singapore",
+   "heading": "Documents Required",
+   "text": "Additional supporting documents (e.g., Form V39A (PDF, 192KB) (Letter of Introduction for Visa Application (LOI)) may be required on a case-by-case basis."
+  },
+  {
+   "id": "sg-ica-india#4",
+   "sourceId": "sg-ica-india",
+   "destinationId": "singapore",
+   "heading": "Procedure",
+   "text": "Applying in SingaporeYour visa application can be submitted online using the e-Service through a strategic partner or a local contact in Singapore.\nYou are advised to apply for an entry visa within 30 days prior to arrival in Singapore.\nApplying at a Singapore Overseas MissionYour visa application can be submitted at the nearest Singapore Overseas Mission or through its authorised visa agent.\nTo learn about the specific visa application procedure, you will need to visit the website of the Singapore Overseas Mission you plan to go to.\nYou are advised to apply for an entry visa within 30 days prior to arrival in Singapore.\n• User manuals (English) for Authorised Visa Agent/Strategic PartnerClick here for manual (PDF, 3.9MB) on submission of application for Individual Visa.Click here for manual (PDF, 4.6MB) on submission of application for Collective Gratis Visa.Click here for manual (PDF, 4.4MB) on submission of application for Family Visa.\n• User manuals (English) for Local ContactClick here for manual (PDF, 5MB) on submission of application for Individual Visa (for submission by individual user).Click here for manual (PDF, 3.8MB) on submission of application for Individual Visa (for submission by corporate/business user).Click here for manual (PDF, 4.3MB) on submission of application for Family Visa."
+  },
+  {
+   "id": "sg-ica-india#5",
+   "sourceId": "sg-ica-india",
+   "destinationId": "singapore",
+   "heading": "Fees",
+   "text": "A S$30 non-refundable processing fee is payable online using a Visa or MasterCard credit/debit card."
+  },
+  {
+   "id": "sg-ica-india#6",
+   "sourceId": "sg-ica-india",
+   "destinationId": "singapore",
+   "heading": "Processing Time",
+   "text": "Your visa application will be processed within three working days (excluding the day of submission). Some applications may take longer to process.\nEach visa application will be considered on its own merits."
+  },
+  {
+   "id": "sg-ica-india#7",
+   "sourceId": "sg-ica-india",
+   "destinationId": "singapore",
+   "heading": "Collection",
+   "text": "If your application is approved, your local contact, strategic partner or authorised visa agent can use the e-Service to print a copy of your e-Visa for you.\nRelated Links\n• Advisory: Applying for Long-Term Immigration Facilities Through Commercial Entities or Consultants\n• Public Advisory on Websites Offering Services Relating to the Submission of SG Arrival Card\n• Document - Form 14A (PDF, 147KB)\n• Document - Form V39A (PDF, 192KB)\n• Document - Visa Agent/Strategic Partner - User Manual for application of Individual Visa (PDF, 3.9MB)\n• Document - Visa Agent/Strategic Partner - User Manual for application of Collective Gratis Visa (PDF, 4.6MB)\n• Document - Visa Agent/Strategic Partner - User Manual for application of Family Visa (PDF, 4.4MB)\n• Document - Local Contact - User Manual for application of Individual Visa (for submission by individual user) (PDF, 5MB)\n• Document - Local Contact - User Manual for application of Individual Visa (for submission by corporate/business user) (PDF, 3.8MB)\n• Document - Local Contact - User Manual for application of Family Visa (PDF, 4.3MB)"
+  },
+  {
+   "id": "sg-ica-requirements#0",
+   "sourceId": "sg-ica-requirements",
+   "destinationId": "singapore",
+   "heading": "Check if You Need an Entry Visa",
+   "text": "• Entering, Transiting and Departing\n• Check if You Need an Entry Visa"
+  },
+  {
+   "id": "sg-ica-requirements#1",
+   "sourceId": "sg-ica-requirements",
+   "destinationId": "singapore",
+   "heading": "Check if You Need an Entry Visa",
+   "text": "If you hold a travel document1 issued by one of the countries or places listed below, you will require a valid Singapore entry visa to travel to, and seek entry, into Singapore.\nPossession of a valid visa does not guarantee entry into Singapore. Please refer to entry requirements for more information.\nPlease note the following:\n• SG Arrival Card is not a visa. Please refer to SG Arrival Card e-Service for more information.\n• Valid visa holders are required to adhere to the latest travel requirements and advisories, where applicable.\n• The period of stay in Singapore is not tied to the validity of your visa. The period of stay is determined by the duration of the Visit Pass issued to you in the form of electronic visit pass (e-Pass) at the checkpoint upon entry.\nTo extend the duration of stay, the applicant will have to apply for a Short-Term Visit Pass (STVP) extension. For more information, please refer to Seeking Extension of Visit Pass.\n1All travellers, regardless of age, must hold a valid individually-issued travel document as collective travel documents are not accepted.\nApply Online Visa Requirements"
+  },
+  {
+   "id": "sg-ica-requirements#2",
+   "sourceId": "sg-ica-requirements",
+   "destinationId": "singapore",
+   "heading": "Check if You Need an Entry Visa",
+   "text": "A Singapore entry visa is not an immigration pass. It is a pre-entry permission for the holder of a valid visa to travel to, and seek entry, into Singapore.The grant of an immigration pass will be determined by the ICA officers at the point of entry. The period of stay granted is not tied to the validity of your visa.ICA does not accept submission of visa application over the immigration counters.If you do not have a Local Contact with a Singpass/Corppass account, you may submit the visa application:\n• Through an authorised visa agent appointed by the Singapore Overseas Missions; or\n• At the nearest Singapore Overseas Mission.\nPlease liaise directly with the nearest Singapore Overseas Mission for detailed visa application procedure if the application is to be submitted through their authorised visa agents or at the Singapore Overseas Mission.\nFrom 11 March 2022, all foreign visitors arriving in Singapore will be notified digitally of their Visit Pass (e-Pass) through email. There will not be any endorsement on your passport. The e-Pass notification will indicate the period of stay granted and last day of stay allowed. Please ensure that you provide a valid email address when submitting the SG Arrival Card.\nTravel Documents by Countries and Places"
+  },
+  {
+   "id": "sg-ica-requirements#3",
+   "sourceId": "sg-ica-requirements",
+   "destinationId": "singapore",
+   "heading": "Check if You Need an Entry Visa",
+   "text": "If your travel document is issued by one of the countries/ places listed below, you will require a valid visa to enter Singapore. Click on individual countries/ places to find out more.\nAfghanistan Algeria Armenia Azerbaijan Bangladesh Belarus Democratic People's Republic of Korea Egypt Georgia India Iran Iraq\nJordan Kazakhstan Kosovo Kyrgyzstan Lebanon Libya Mali Moldova Morocco Nigeria Pakistan Russia\nSomalia South Sudan Sudan Syria Tajikistan Tunisia Turkmenistan Ukraine Uzbekistan Yemen\nYou will also need a visa if you are travelling on:\n• A Refugee travel document. This travel document is subject to assessment of recognition for entry into Singapore\n• An Alien's passport. This travel document is subject to assessment of recognition for entry into Singapore\n• A Palestinian Authority passport\n• A temporary passport issued by the United Arab Emirates\n• A Document of Identity issued by Hong Kong Special Administrative Region\n• A Travel Permit issued by Macao Special Administrative Region\n• A PRC Travel Document\nYou may contact us via the enquiry form with a copy of your travel document biodata page and front cover for further assistance and verification.\nVisa Free Transit Facilities"
+  },
+  {
+   "id": "sg-ica-requirements#4",
+   "sourceId": "sg-ica-requirements",
+   "destinationId": "singapore",
+   "heading": "Check if You Need an Entry Visa",
+   "text": "Nationals of the Commonwealth of Independent States, Georgia, India, Turkmenistan and Ukraine; as well as selected* Nationals of the People’s Republic of China (PRC) who are not holding ordinary, diplomatic, public affairs or service PRC passports may be eligible for the Visa-Free Transit Facility (VFTF). Please refer to Visa-Free Transit Facility for more information.\n*These include the PRC Travel Document, Hong Kong Special Administrative Region (SAR), Document of Identity (DOI) and Macau SAR Travel Permit."
+  },
+  {
+   "id": "my-imi-by-country#0",
+   "sourceId": "my-imi-by-country",
+   "destinationId": "malaysia",
+   "heading": "1. Below are the visa requirements by country",
+   "text": "Countries required to apply for a visa to enter Malaysia (List of involved countries)\nIvory Coast (Cote D’ Ivoire)*"
+  },
+  {
+   "id": "my-imi-by-country#1",
+   "sourceId": "my-imi-by-country",
+   "destinationId": "malaysia",
+   "heading": "NOTE",
+   "text": "• For countries marked as (*) are allowed to enter Malaysia by air only.\n• India** citizen: visa exempts until 31st December 2026.\n• ***Afghanistan nationals who wish to enter Malaysia for social visit purposes must obtain a visa approval letter before applying for a VTR.\n• Visa is not required for a stay of less than one (1) month for ASEAN nationals except Myanmar. Visas required for duration of stay exceeds (1) month except for Brunei and Singapore nationals."
+  },
+  {
+   "id": "my-imi-by-country#2",
+   "sourceId": "my-imi-by-country",
+   "destinationId": "malaysia",
+   "heading": "2. Visa With Reference (VDR)",
+   "text": "This visa facility application is open to all foreign nationals who require a visa to enter Malaysia for the purpose of studying, working, or other purposes, subject to the approval of a Visa With Reference (VDR/eVDR) or Visa Approval Letter (eVAL), EXCEPT for the following countries which do not require a visa for any purpose of entry:\nNO.\nCOUNTRY\n1.\nSOUTH AFRICA\n2.\nANTIGUA & BARBUDA\n3.\nAUSTRALIA\n4.\nBAHAMAS\n5.\nBARBADOS\n6.\nBELIZE\n7.\nBOTSWANA\n8.\nBRUNEI\n9.\nCYPRUS\n10.\nDOMINICA\n11.\nFIJI\n12.\nGAMBIA\n13.\nGRENADA\n14.\nGUYANA\n15.\nIRELAND\n16.\nJAMAICA\n17.\nCANADA\n18.\nKENYA\n19.\nKIRIBATI (GILBERT ISLAND)\n20.\nLIECHTENSTEIN\n21.\nLESOTHO\n22.\nMALAWI\n23.\nMALDIVES\n24.\nMALTA\n25.\nMAURITIUS\n26.\nNAMIBIA\n27.\nNAURU\n28.\nNETHERLANDS\n29.\nNEW ZEALAND\n30.\nPAPUA NEW GUINEA\n31.\nSAMOA /WESTERN SAMOA\n32.\nSAN MARINO\n33.\nSEYCHELLES\n34.\nSIERRA LEONE\n35.\nSINGAPORE\n36.\nSOLOMON ISLAND\n37.\nST LUCIA\n38.\nST. VINCENT AND THE GRENADINES\n39.\nST. KITTS AND NEVIS\n40.\nSWAZILAND / ESWATINI\n41.\nSWITZERLAND\n42.\nTANZANIA\n43.\nTONGA\n44.\nTRINIDAD AND TOBAGO\n45.\nTUVALU\n46.\nUGANDA\n47.\nUNITED KINGDOM\n48.\nVANUATU\n49.\nZAIRE\n50.\nZAMBIA\n51.\nZIMBABWE"
+  },
+  {
+   "id": "my-imi-by-country#3",
+   "sourceId": "my-imi-by-country",
+   "destinationId": "malaysia",
+   "heading": "3. Travel documents that require a visa to enter Malaysia are as follows:",
+   "text": "• Administrative and technical staff who are assigned to the Office of the Delegation of the European Union in Malaysia\n• Short-term officials or staff at the Office of the Delegation of the European Union to Malaysia who will be staying for more thank 30 days but less than one year\n• US Re-entry Permit For Naturalization\n• Surat Perjalanan Laksana Pasport (SPLP)"
+  },
+  {
+   "id": "my-imi-by-country#4",
+   "sourceId": "my-imi-by-country",
+   "destinationId": "malaysia",
+   "heading": "4. Yellow Fever Vaccination Certificate",
+   "text": "A Yellow Fever Vaccination Certificate must be presented upon arrival in Malaysia for travelers from countries at risk of yellow fever infection.\nThe list of countries can be checked through the official website of the Ministry of Health Malaysia (MOH). Please visit the following link for more information:\nMOH Website"
+  },
+  {
+   "id": "my-imi-by-country#5",
+   "sourceId": "my-imi-by-country",
+   "destinationId": "malaysia",
+   "heading": "5. eVISA Frequently Asked Questions",
+   "text": "Where can I get other information about eVISA?\nFor more information, please visit https://malaysiavisa.imi.gov.my.\nHow can I address problems that arise during the eVISA application?\nYou can address issues related to your eVISA application through the Live Chat Support button on the eVISA portal https://malaysiavisa.imi.gov.my which operates 24 hours a day, 7 days a week."
+  },
+  {
+   "id": "id-evisa#0",
+   "sourceId": "id-evisa",
+   "destinationId": "indonesia",
+   "heading": "The Official e-Visa Website for Indonesia",
+   "text": "Visa Application Guideline :\n1\nExplore and apply for a suitable visa. The requirement documents should be prepared.\n2\nMake Visa fee payment by SIMPONI or Mastercard, Visa or JCB credit/debit card.\n3\nOnce approved, a link to download the visa will be sent to your email.\nGolden Visa is AvailableVisa Exemption for ASEAN Foreigner is AvailableBridging Stay Permit is Available\nTrack Your Application Track Your Application\nYou can track your visa application status online.\nElectronic Visa on Arrival (e-VOA) application can be done simultaneously for 5 people\nArrival Card Submission is Required\nAll travellers are required to submit an arrival card within 3 (three) days prior arrival in Indonesia"
+  },
+  {
+   "id": "lk-eta-info#0",
+   "sourceId": "lk-eta-info",
+   "destinationId": "srilanka",
+   "heading": "",
+   "text": "Welcome to the Electronic Travel Authorization (ETA) official website of the Department of Immigration & Emigration (DI&E) of the Democratic Socialist Republic of Sri Lanka.\nWith effect from 25.05.2026, nationals of the 40 countries (for more info...) are eligible to obtain tourist visa (ETA) free-of-charge for a period of 30 days.\nAll foreign nationals (except…..), including nationals of the 40 countries as well as nationals of Maldives, Seychelles and Singapore, are required to obtain an Electronic Travel Authorization (ETA) prior to their arrival in Sri Lanka. As per the bilateral reciprocal agreement between Sri Lanka and Maldives, all Maldivian nationals will receive 90 day tourist visa through the ETA system.\nThe issuing authority of the ETA is the Department of Immigration & Emigration, Baththaramulla, Sri Lanka.\nPersons intending to visit Sri Lanka must apply for ETA online. In addition to this option, an applicant may also go for one of the alternative options. (for more info...)"
+  },
+  {
+   "id": "lk-eta-info#1",
+   "sourceId": "lk-eta-info",
+   "destinationId": "srilanka",
+   "heading": "",
+   "text": "As per the reciprocal and bilateral arrangements with the Government of Sri Lanka, holders of Diplomatic, Official Service and Service Passports in specified countries (for more info...), who are visiting Sri Lanka for official purposes and holders of Diplomatic and Official Passports issued by the United Nations (UN) and United Nations Organizations (UNO) shall be permitted to obtain visa without obtaining ETA prior to arrival.\nUnder this scheme, tourists of above 40 countries are entitled to a Tourist visa (ETA) free of charge valid for 30 days, with double-entry permitted from the date of first arrival in Sri Lanka during the second entry only the balance period of the 30 days will be granted.\nExcept for the above-mentioned countries, ETA charges are applicable for other countries.\nFor more information , visit http://www.immigration.gov.lk\nThe Official Website of Sri Lanka Tourism\nTerms and Conditions | Privacy Statement."
+  },
+  {
+   "id": "ae-tourist-visa#0",
+   "sourceId": "ae-tourist-visa",
+   "destinationId": "uae",
+   "heading": "Related eServices",
+   "text": "• Multiple entry long-term tourism (5 Years) for all nationalities – Federal Authority for Identity, Citizenship, Customs & Port Security (ICP)\n• Issue family group multiple entry long-term tourist visa - 5 years (all nationalities) – ICP\n• Issuing a multi-entry tourist visa (5 years) – General Directorate for Identity and Foreginers Affairs Dubai\n• Tourist visa from Etihad Airways - Etihad Airways\n• Tourist visa from Emirates Airline - Emirates Airline\n• Tourist visa from Fly Dubai - Fly Dubai"
+  },
+  {
+   "id": "ae-tourist-visa#1",
+   "sourceId": "ae-tourist-visa",
+   "destinationId": "uae",
+   "heading": "Multiple entry 5-year tourist visa",
+   "text": "The multiple entry 5-year tourist visa enables tourists to enter the UAE multiple times on self-sponsorship and remain in the country for 90 days on each visit, and can be extended for further 90 days. This type of tourist visa can be issued for all nationalities.\nTo obtain this visa, the applicant must have:\n• a bank balance of 4,000 USD or its equivalent in foreign currencies during the last six months\n• a valid health insurance policy applicable in the UAE, valid for 180 days\n• a ticket showing continuing or return journey from the UAE.\nRead related news coverage on WAM.\nSource: Family/group multiple entry long-term tourist visa - ICP"
+  },
+  {
+   "id": "ae-tourist-visa#2",
+   "sourceId": "ae-tourist-visa",
+   "destinationId": "uae",
+   "heading": "How can you apply for a tourist visa?",
+   "text": "You can apply for a tourist visa online through the Federal Authority for Identity, Citizenship, Customs and Port Security or the General Directorate of Identity and Foreigners Affairs – Dubai. You can also apply through airlines, licensed travel agents, or hotels.\nTourist visas through airlines\nEach airline has some conditions, which must be met in order for your visa to be arranged by them. One of the conditions is flying with them. For more updated and specific information, check the following UAE-based airlines for visa types, facilities, terms and conditions:\n• Visa services from Etihad Airways - Etihad Airways\n• Visa services offered by Emirates Airline - Emirates Airline\n• Visa services from Fly Dubai - Fly Dubai.\nTourist visas through agencies and hotels\nLicensed travel agents and hotels in the UAE can arrange a tourist visa for you provided you purchase the ticket through them and maintain hotel reservation with the specific hotel.\nYou can also contact travel agencies in your country for any tourist packages available to the UAE in collaboration with a local tour operator.\nIt is important to check the authenticity of travel agents you are dealing with and refrain from paying or sending copies of your official documents until after you are 100 per cent sure the tour operator is genuine. You can seek the help of the UAE embassy in your country for verification."
+  },
+  {
+   "id": "ae-tourist-visa#3",
+   "sourceId": "ae-tourist-visa",
+   "destinationId": "uae",
+   "heading": "How can you apply for a tourist visa?",
+   "text": "Note: The UAE's embassies do not issue tourist visas. In order to get a tourist visa to the UAE, you need to get in touch with one of the UAE-based airlines, a tour agency or a hotel (where you intend to stay) in the UAE who will apply for visa on your behalf to the official visa-issuing authorities in the UAE."
+  },
+  {
+   "id": "ae-tourist-visa#4",
+   "sourceId": "ae-tourist-visa",
+   "destinationId": "uae",
+   "heading": "eVisa for GCC residents",
+   "text": "eVisa application\nGCC residents and their companions need to apply online for a visa and must obtain the same before arriving in the UAE.\n• Entry permit for residents in the GCC countries - GDRFA, Dubai\n• Issue entry permit for GCC resident - Federal Authority for Identity, Citizenship, Customs and Port Security (ICP)\nNotes and conditions\nRead notes and conditions relating to eVisa for GCC residents.\n• GCC residents’ entry permit is valid for 30 days from the date of issue and they are allowed to stay for 30 days from the date of entry. The visa is extendable once for 30 days.\n• GCC residency must be valid for at least 1 year from the arrival date.\n• The passport of GCC residents must be valid at least 6 months from the arrival date.\n• The profession of the applicant must be on the list of professions approved for issuing the visa (subject to evaluation by the concerned authority).\n10 Aug 2026"
+  },
+  {
+   "id": "ae-tourist-visa#5",
+   "sourceId": "ae-tourist-visa",
+   "destinationId": "uae",
+   "heading": "Did you find this content useful?",
+   "text": "You can help us improve by providing your feedback about your experience.\nYes NO\nThank you for your feedback.\nHave you used our services at our service center or digitally recently?\nGive us your feedback\nThank you for your feedback.\nPrev topic\nInvestor visa\nView all Services\nNext topic\nTransit visa"
+  },
+  {
+   "id": "jp-embassy-visa#0",
+   "sourceId": "jp-embassy-visa",
+   "destinationId": "japan",
+   "heading": "Visa",
+   "text": "・ Call +91-(0)1171816614 (JAPAN VISA INFORMATION HOTLINE) * Open 24 x 7 * English only ・Contact VFS VFS Call Centre: +91-(0)22-6786-6016 Web site: https://visa.vfsglobal.com/ind/en/jpn/ Due to increase volume of applications, processing times of Japanese visa can vary significantly. Visa process cannot be expedited or prioritized according to the schedule of applicants. ※The Embassy does not take any enquiry regarding the application status, documentation, reason of refusal, etc. The JAPAN eVISA System ・eVISA starts in India from 1 April 2024. Click HERE for the detail. For submission ・Submit your application through VFS. (No prior appointment is needed.) ※All the applicants are required to plan the trip well in advance. Applications can be accepted from 3 months prior to the travel date. ※The Embassy will accept applications for diplomatic and official visa, and other cases which require special attention on humanitarian grounds. VISA fee (from 1 July 2026) For Indian Nationals Single or Multiple visa: 500 INR *Transit visa is abolished. *VFS Service Fee will be also charged. For other nationals Single visa: 8,650 INR Multiple or Double visa: 17,350 INR *Transit visa is abolished. *VFS Service Fee will be also charged. Visa Relaxation Measures for Indian Nationals ・ To enhance people to people exchanges, specifically for the young visitors, relaxation in visa requirements for Indian students (January 16, 2017) ・ Application Procedures for Multiple Visa for Nationals of India (includes for business purpose, and cultural or intellectual figures (January 1, 2019) Diplomatic and Official Visa Submit the application directly at the Embassy with a passport, an application form with a photo and a Note Verbal."
+  },
+  {
+   "id": "jp-embassy-visa#1",
+   "sourceId": "jp-embassy-visa",
+   "destinationId": "japan",
+   "heading": "Visa",
+   "text": "※Beware of Fraud! All you have to pay for visa is the visa fee and the service charge mentioned on this page. Embassy will never ask for a payment over a telephone call or an e-mail to verify documents, expedite visa process, etc. In case of receiving such contact, do not respond to the request. Reporting to the police is suggested and informing to our Embassy (jpemb-visa@nd.mofa.go.jp) is appreciated."
+  },
+  {
+   "id": "jp-embassy-visa#2",
+   "sourceId": "jp-embassy-visa",
+   "destinationId": "japan",
+   "heading": "Useful links and information",
+   "text": "​・Visit Japan Web ・VISA Information (Ministry of Foreign Affairs of Japan) ・JNTO (Japan National Tourism Organization) ・Japan Rail Pass ・Do not bring any meat products, vegetables or fruits into Japan. ・Prepare overseas travel insurance before going to Japan ・Be aware of traffic rules in Japan (YouTube Video) ・Be aware of fraudulent website, social media, emails in an attempt to extract payments from visa applicants"
+  },
+  {
+   "id": "jp-embassy-visa#3",
+   "sourceId": "jp-embassy-visa",
+   "destinationId": "japan",
+   "heading": "Information and Notices from Immigration Services Agency of Japan",
+   "text": "・Roadmap for the Realization of a Society of Harmonious Coexistence with Foreign Nationals ・Comprehensive Measures for Acceptance and Coexistence of Foreign Nationals ・A Daily Life Support Portal for Foreign Nationals ・Guidebook on Living and Working ・New to Japan? Useful pages for foreign nationals ・Videos for the Daily Life Orientation"
+  },
+  {
+   "id": "jp-mofa-visa#0",
+   "sourceId": "jp-mofa-visa",
+   "destinationId": "japan",
+   "heading": "VISA",
+   "text": "June 24, 2026\nJapanese\nThe information about the visa(*Note) required for foreigners visiting Japan is as follows. For details, please check the website of the Embassy, Consulate-General, Consular Office (the Diplomatic Missions abroad) of Japan that have jurisdiction over the country/region where the foreigner visiting Japan resides.\nFor visa inquiries, please contact “Foreign Residents Support Center (FRESC) MOFA Visa Information” or “Japan Visa Information Hotline” listed on the website of the Embassy/Consulate-General/Consular Office of Japan. You can find detailed information about visa on the website of the Diplomatic Mission of Japan with jurisdiction over your place of residence.\n• 1. Visa Application Procedures\n• 2. About Visa\n• 3. Visa Application Documents\n• 4. Frequently Asked Questions\n• 5. Announcements\n• 6. Inquiries about Visas"
+  },
+  {
+   "id": "jp-mofa-visa#1",
+   "sourceId": "jp-mofa-visa",
+   "destinationId": "japan",
+   "heading": "VISA",
+   "text": "(*Note) A visa is one of the requirements for entering Japan as defined by the \"Immigration Control and Refugee Recognition Act\", and it does not guarantee to enter Japan. Visas are issued at the Embassy, Consulate-General, Consular Office of Japan abroad. They cannot be obtained when you arrive in Japan or while you are staying in Japan. The “landing permission\" is granted by an immigration officer at the port of entry when a foreigner meets the requirement for entry into Japan. The “status of residence” is mentioned on your “landing permission”, that indicates the activities you are permitted to perform in Japan. Please note that sometimes people say \"visa\", it may refer to the \"status of residence”. For example, people often mention as \"changing visa\" when they mean “renewal/change of the status of residence.\" For inquiries about \"status of residence,\" please visit the website of the Immigration Services Agency of Japan.\n• Be aware of fraudulent website, social media, and emails in an attempt to extract payments from visa applicants (July 5, 2017)"
+  },
+  {
+   "id": "jp-mofa-visa#2",
+   "sourceId": "jp-mofa-visa",
+   "destinationId": "japan",
+   "heading": "1. Visa Application Procedures",
+   "text": "• Prepare all the required documents.\n• Inviting organization/guarantor must send the required documents to the visa applicant (NOT to the Ministry of Foreign Affairs or the Diplomatic Mission of Japan). We encourage an inviting organization/guarantor to make a copy of them.\n• Requirements for visa application may vary depending on the local situation/the purpose of your visit. You can find detailed information on the website of the Diplomatic Mission of Japan (Embassy, Consulate-General, or Consular Office) where you will submit your application.\n• Once all the documents are ready, you may apply for a visa at the consular section of the Diplomatic Mission of Japan with jurisdiction over your place of residence, at an accredited agency, the Japan Visa Application Centre, or online, by the method specified by the Diplomatic Mission of Japan where you will submit your application (visa application cannot be made inside Japan.).\n• It takes approximately one week to process the application, provided that all necessary requirements are met. Additional documents may be required on a case-by-case basis. It may take longer than usual to receive the result of the visa examination in case the Diplomatic Mission of Japan deems necessary to consult with the Ministry of Foreign Affairs in Tokyo."
+  },
+  {
+   "id": "jp-mofa-visa#3",
+   "sourceId": "jp-mofa-visa",
+   "destinationId": "japan",
+   "heading": "1. Visa Application Procedures",
+   "text": "• The Diplomatic Mission of Japan or the accredited agency will notify the visa applicant of the result."
+  },
+  {
+   "id": "jp-mofa-visa#4",
+   "sourceId": "jp-mofa-visa",
+   "destinationId": "japan",
+   "heading": "Short-Term Stay",
+   "text": "(A stay of up to 90 days for tourism, business, visiting friends or relatives, etc. that does not include remunerative activities)\nAll nationals of the countries and regions listed below require a visa to enter Japan.\nClick on the nationality of the visa applicant traveling to Japan.\n• CIS countries, Ukraine, Georgia\nProcedure chart for short-term stay (tourism, business, visiting relatives, etc)\n【Online application for the visit to Japan with tourism purpose (single-entry)】\nAll foreign nationals/people who need to obtain a short-term visa to Japan AND currently reside in the following countries/region, are eligible to apply for a visa online: Australia, Brazil, Cambodia, Canada, Saudi Arabia, South Africa, Taiwan, United Kingdom, U.S.A.\nPlease check below for information on visa exempt countries.\n• The JAPAN eVISA system (electronic visa)\nCountries and regions that do not require a visa to enter Japan\n• Visa Exempt Countries and Regions\nIt is highly recommended to purchase international travel medical insurance for your trip to Japan. Overseas travel medical insurance helps you in case of emergency."
+  },
+  {
+   "id": "jp-mofa-visa#5",
+   "sourceId": "jp-mofa-visa",
+   "destinationId": "japan",
+   "heading": "Work or Long-Term Stay",
+   "text": "(If you do not meet the requirements for short-term stay, such as in cases where you intend to work in Japan for remuneration or stay in Japan for more than 90 days, you should, in principle, obtain a Certificate of Eligibility from the Immigration Services Agency of Japan before applying for a visa at the Diplomatic Mission of Japan with jurisdiction over your place of residence.)\n• Procedure chart for long-term stays\n• The Working Holiday Programmes in Japan\n• Japan’s Pre-Entry Tuberculosis Screening Note: Pre-Entry Tuberculosis (TB) Screening will apply to nationals of the Philippines, Viet Nam, Indonesia, Nepal, Myanmar, and China"
+  },
+  {
+   "id": "jp-mofa-visa#6",
+   "sourceId": "jp-mofa-visa",
+   "destinationId": "japan",
+   "heading": "2. About Visa",
+   "text": "• Points to Note and Application Procedures\n• Validity of a Visa\n• Visas and Landing Permission"
+  },
+  {
+   "id": "jp-mofa-visa#7",
+   "sourceId": "jp-mofa-visa",
+   "destinationId": "japan",
+   "heading": "3. Visa Application Documents (download)",
+   "text": "• (Note1) Use Adobe Acrobat Reader to fill in and print out the Visa application form\n• (Note2) Company/personal seal on Letter of Guarantee and Letter of Invitation is no longer required.\n• English (PDF), Chinese (simplified) (PDF), Chinese (traditional) (PDF), Korean (PDF), Portuguese (PDF), Spanish (PDF)\n• Letter of Guarantee (PDF)\n• Invitation Letter (Single-Entry) (PDF)\n• Invitation Letter (Multiple-Entry) (PDF)\n• List of Visa Applicants (PDF)\n• Overview of Company / Organization (PDF)\n• Itinerary in Japan (PDF)"
+  },
+  {
+   "id": "jp-mofa-visa#8",
+   "sourceId": "jp-mofa-visa",
+   "destinationId": "japan",
+   "heading": "4. Frequently Asked Questions",
+   "text": "• Tell me why you rejected my visa application.\n• I want to go to Japan. Do I need a visa?\n• I want to invite a foreign national to Japan. What procedures are necessary?\n• What should I do to get a Certificate of Eligibility?\n• The Certificate of Eligibility will not arrive by the time I apply for a visa. Can I still apply for a visa with its copy?\n• As a “guarantor”, to what extent do I need to be responsible?"
+  },
+  {
+   "id": "jp-mofa-visa#9",
+   "sourceId": "jp-mofa-visa",
+   "destinationId": "japan",
+   "heading": "Newly introduced visas",
+   "text": "• Special Highly Skilled Professional (J-Skip)\n• Designated activities (Future Creation Individual, Spouse or Child of Future Creation Individual) (J-Find)\n• Designated activities (Digital Nomad, Spouse or Child of Digital Nomad)"
+  },
+  {
+   "id": "jp-mofa-visa#10",
+   "sourceId": "jp-mofa-visa",
+   "destinationId": "japan",
+   "heading": "Statistics for the Number of Visas",
+   "text": "• Number of Visas Issued in 2025 (June 23, 2026)"
+  },
+  {
+   "id": "jp-mofa-visa#11",
+   "sourceId": "jp-mofa-visa",
+   "destinationId": "japan",
+   "heading": "Relaxation of Visa Requirements",
+   "text": "• Relaxation of Visa requirements for Nationals of the United Arab Emirates in Possession of Ordinary Passports (Extension of period of stay) (June 2, 2025)\n• Visa Waiver Measure for Nationals of the Republic of Paraguay (May 29, 2025)\n• Relaxation of Visa requirements for Nationals of Brunei Darussalam（Extension of period of stay）(December 2, 2024)"
+  },
+  {
+   "id": "jp-mofa-visa#12",
+   "sourceId": "jp-mofa-visa",
+   "destinationId": "japan",
+   "heading": "Others",
+   "text": "• Japan’s Pre-Entry Tuberculosis Screening (April 3, 2020)\n• Japan's Visa Policy in Accordance with Measures to Combat Trafficking in Persons (August 2007 (Updated in 2016))"
+  },
+  {
+   "id": "jp-mofa-visa#13",
+   "sourceId": "jp-mofa-visa",
+   "destinationId": "japan",
+   "heading": "6. Inquiries about Visas Application",
+   "text": "Foreign Residents Support Center (FRESC) MOFA Visa Information\nAddress: Yotsuya Tower 13F, 1-6-1 Yotsuya, Shinjuku-ku, Tokyo, 160-0004 Phone: Navi-Dial: 0570-011000 (For some IP phones and calls from overseas, please call +81-3-5369-6577) Opening hours: Monday to Friday, 09:00-17:00 (except holidays)"
+  },
+  {
+   "id": "jp-mofa-visa#14",
+   "sourceId": "jp-mofa-visa",
+   "destinationId": "japan",
+   "heading": "Related Links",
+   "text": "• The Immigration Bureau, the Ministry of Justice\n• Websites of Japanese Embassies, Consulates and Permanent Missions"
+  },
+  {
+   "id": "jp-mofa-visa#15",
+   "sourceId": "jp-mofa-visa",
+   "destinationId": "japan",
+   "heading": "Recommend",
+   "text": "JAPAN eVISA website (Website for online visa application to visit Japan)"
+  },
+  {
+   "id": "eu-applying#0",
+   "sourceId": "eu-applying",
+   "destinationId": "schengen",
+   "heading": "Applying for a Schengen visa",
+   "text": "This is a general overview - for more details contact the embassy or consulate of your main destination country."
+  },
+  {
+   "id": "eu-applying#1",
+   "sourceId": "eu-applying",
+   "destinationId": "schengen",
+   "heading": "What is a Schengen visa?",
+   "text": "A Schengen visa is an entry permit for non-EU nationals to make a short, temporary visit of up to 90 days in any 180-day period to a country in the Schengen area.\nSchengen visas come in 3 forms:\n• single-entry visa - allowing you to enter the Schengen area once;\n• multiple-entry visa - allowing several visits to the Schengen area for as long as the visa is valid;\n• airport transit visa - allows you to connect through the international transit area of an airport in the Schengen area during a stopover or a change of flights. It does not allow you to leave the international transit area."
+  },
+  {
+   "id": "eu-applying#2",
+   "sourceId": "eu-applying",
+   "destinationId": "schengen",
+   "heading": "How long can you stay?",
+   "text": "The short-stay calculator can help you calculate the remaining period you are allowed to stay in a Schengen country."
+  },
+  {
+   "id": "eu-applying#3",
+   "sourceId": "eu-applying",
+   "destinationId": "schengen",
+   "heading": "Who needs to apply for a Schengen visa?",
+   "text": "Citizens of certain non-EU countries must hold a short-stay visa when travelling to the Schengen area.\nConsult the EU list of countries whose citizens are required to hold a visa when crossing its external borders. There are exceptions to the visa requirements for certain types of traveller to certain countries (e.g. diplomats, armed forces, refugees, pupils on school excursions).\nAirport transit visas\n• Some non-EU nationals must also hold an airport transit visa when connecting through the international transit areas of airports located in any of the Schengen States.\n• For citizens of certain additional countries, an airport transit visa is required when connecting through the international transit areas of airports located in some of the Schengen countries.\n• There are some categories of people who are exempt from the requirement to hold an airport transit visa (see Article 3(5) of the Visa Code)."
+  },
+  {
+   "id": "eu-applying#4",
+   "sourceId": "eu-applying",
+   "destinationId": "schengen",
+   "heading": "Where to apply",
+   "text": "You must lodge your application for a Schengen visa at the consulate of the country you intend to visit.\n• Visiting more than 1 Schengen countries: apply at the consulate of the country where you will spend the longest time.\n• Visiting several Schengen countries (for stays of equal length): apply at the consulate of the first country you will visit.\nAs a general rule, you must apply for a Schengen visa at the consulate with territorial responsibility for the country where you are legally resident."
+  },
+  {
+   "id": "eu-applying#5",
+   "sourceId": "eu-applying",
+   "destinationId": "schengen",
+   "heading": "When to apply",
+   "text": "You must submit your application to the consulate at least 15 days before your intended journey and no earlier than 6 months beforehand.\nYou may have to book an appointment before lodging the application."
+  },
+  {
+   "id": "eu-applying#6",
+   "sourceId": "eu-applying",
+   "destinationId": "schengen",
+   "heading": "What documents are needed to apply?",
+   "text": "• A valid passport. The passport’s expiry date should be at least 3 months after the date of your departure from the Schengen area. For multiple-entry visas, the expiry date should be at least 3 months after your departure from the last country visited.\n• A visa application form.\n• A photo in compliance with ICAO standards.\n• Medical insurance covering emergency medical care, hospitalisation and repatriation (including in the event of death).\n• Supporting documents relating to the purpose of your stay, evidence of financial means and accommodation during your stay, and evidence of your intention to return to your home country after your stay.\n• Your fingerprints will be collected when you submit your application (exemptions exist for specific categories of applicants).\nAdditional documents may also be requested by the consulates."
+  },
+  {
+   "id": "eu-applying#7",
+   "sourceId": "eu-applying",
+   "destinationId": "schengen",
+   "heading": "How much does a visa cost?",
+   "text": "• €90 for adults\n• €45 for children aged 6-12\n• €35 for applicants from Armenia, Azerbaijan, and Belarus\n• €67,50 for applicants from Cabo Verde.\nAn additional fee may apply if you go through visa service centres, which collect applications on behalf of consulates in some cases.\nThe visa fee can be waived for specific categories of applicants."
+  },
+  {
+   "id": "eu-applying#8",
+   "sourceId": "eu-applying",
+   "destinationId": "schengen",
+   "heading": "How long does the application take to process?",
+   "text": "The normal processing time for a visa application is 15 days.\nThis period may be extended to up to 45 days if a more detailed examination of the application and/or additional documents are required.\nUnder certain conditions, family members of EU or EEA citizens falling under the Free Movement Directive are eligible for a free and accelerated visa procedure."
+  },
+  {
+   "id": "eu-applying#9",
+   "sourceId": "eu-applying",
+   "destinationId": "schengen",
+   "heading": "Refusal of a visa application",
+   "text": "If your application is rejected, you will be told:\n• why it was rejected\n• how to submit an appeal."
+  },
+  {
+   "id": "eu-visa-policy#0",
+   "sourceId": "eu-visa-policy",
+   "destinationId": "schengen",
+   "heading": "What is EU visa policy?",
+   "text": "Under this key policy, all 29 countries in the Schengen area apply the same visa rules.\nNon-EU nationals need a visa to enter the Schengen area for a visit of up to 90 days in any 180-day period.\nWhen someone enters a country in the Schengen area, the 180-day period starts. They can enter Schengen area countries as many times as they want, but only stay for a total of 90 days, every 180 days.\nA Schengen visa is generally valid for every country in the Schengen area.\nVisas for stays exceeding 90 days are subject to national procedures.\nEU visa policy is monitored and implemented by the European Commission.\nIn January 2026, the European Commission adopted its first-ever EU Visa Strategy. It sets out a framework for a visa policy that is more strategic and that advances the EU's long-term interests, allowing it to be better equipped for growing mobility as well as the consequences of regional instability and geopolitical competition."
+  },
+  {
+   "id": "eu-visa-policy#1",
+   "sourceId": "eu-visa-policy",
+   "destinationId": "schengen",
+   "heading": "What are the main elements of EU visa policy?",
+   "text": "For a list of these countries, see Annex I of Regulation (EU) 2018/1806.\nIndividual Schengen countries can grant visa-free access to certain categories of people - for example diplomatic staff, armed forces, refugees and school pupils on an excursion.\nNationals of certain countries must have a visa - called an airport transit visa - even to simply transit through the international (non-Schengen) part of an EU airport.\nSchengen countries can also impose individual airport transit requirements on certain other countries.\nFor a list of these countries, see Annex II of the Regulation (EU) 2018/1806.\n27 of these countries have visa waiver agreements with the EU.\nThe decision of whether to grant visa-free status to a non-EU country is based on a variety of criteria (migration, security, considerations of human rights, reciprocity, and economic benefit - in particular in terms of tourism and foreign trade).\nVisa-exempt travellers will need to fill out an online ETIAS form and pay a small fee before being able to travel to the Schengen Area, six months after the full implementation of Entry/Exit system (EES).\nThis form is designed to facilitate border control and security.\nIt is not a visa, but is comparable to similar systems in the USA (ESTA), Canada (eTA), and Australia (eVisitor).\nThe EU visa code sets out the procedures and conditions for issuing short-stay visas."
+  },
+  {
+   "id": "eu-visa-policy#2",
+   "sourceId": "eu-visa-policy",
+   "destinationId": "schengen",
+   "heading": "What are the main elements of EU visa policy?",
+   "text": "Operational instructions for applying the code are set out in:\n• Handbook for processing visa applications\n• Handbook for managing visa processing\nThe visa code also helps improve cooperation with non-EU countries on readmissions of irregular migrants, through the 'visa leverage mechanism'. Under this mechanism, if a country does not cooperate sufficiently on readmissions, restrictive measures can be imposed as regards processing visas and visa fees.\nSuch measures have been adopted for nationals of The Gambia:\n• Decision suspending visa-free access certain provisions of the Visa Code for Gambian nationals\n• Decision suspending certain provisions of the Visa Code for Ethiopian nationals\nThe EU has visa facilitation agreements in place with certain non-EU countries. Under the simplified visa regime, non-EU citizens enjoy facilitated procedures (such as lower visa fees) to obtain a visa for the Schengen area.\nCountry\nVisa facilitation agreement\nEntry into force\nAlbania\nAgreement between the European Community and the Republic of Albania on the facilitation of the issuance of visas\n01/01/2008\nArmenia\nAgreement between the European Union and the Republic of Armenia on the facilitation of the issuance of visas\n01/01/2014\nAzerbaijan\nAgreement between the European Union and the Republic of Azerbaijan on the facilitation of the issuance of visas\n01/09/2014\nBelarus"
+  },
+  {
+   "id": "eu-visa-policy#3",
+   "sourceId": "eu-visa-policy",
+   "destinationId": "schengen",
+   "heading": "What are the main elements of EU visa policy?",
+   "text": "Agreement between the European Community and Belarus on the facilitation of the issuance of visasCouncil Decision on the partial suspension of the application of the Agreement between the European Union and the Republic of Belarus on the facilitation of the issuance of visas\n01/07/202012/11/2021\nBosnia and Herzegovina\nAgreement between the European Community and Bosnia and Herzegovina on the facilitation of the issuance of visas\n01/01/2008\nCape Verde\nAgreement between the European Union and the Republic of Cape Verde on facilitating the issue of short-stay visas to citizens of the Republic of Cape Verde and of the European UnionCouncil Decision (EU) 2021/1831 of 7 October 2021 on the conclusion on behalf of the Union of the Agreement between the European Union and the Republic of Cape Verde amending the Agreement on facilitating the issue of short-stay visas to citizens of the Republic of Cape Verde and of the European Union\n01/12/201407/10/2021\nGeorgia\nAgreement between the European Union and Georgia on the facilitation of the issuance of visas\n01/03/2011\nMoldova\nAgreement between the European Union and the Republic of Moldova (amending the Agreement between the European Community and the Republic of Moldova on the facilitation of the issuance of visas)\n01/07/201301/01/2008\nMontenegro"
+  },
+  {
+   "id": "eu-visa-policy#4",
+   "sourceId": "eu-visa-policy",
+   "destinationId": "schengen",
+   "heading": "What are the main elements of EU visa policy?",
+   "text": "Agreement between the European Community and the Republic of Montenegro on the facilitation of the issuance of visas\n01/01/2008\nNorth Macedonia\nAgreement between the European Community and the Republic of North Macedonia on the facilitation of the issuance of visas\n01/01/2008\nRussian Federation\nAgreement between the European Community and the Russian Federation on the facilitation of the issuance of visasCouncil Decision (EU) 2022/1500 on the suspension in whole of the application of the Agreement between the European Community and the Russian Federation on the facilitation of the issuance of visas to the citizens of the European Union and the Russian Federation\n01/06/200709/09/2022\nSerbia\nAgreement between the European Community and the Republic of Serbia on the facilitation of the issuance of visas\n01/01/2008\nUkraine\nAgreement between the European Union and Ukraine(amending the Agreement between the European Community and Ukraine on the facilitation of the issuance of visas)\n01/07/201301/07/2013\nHowever, visa facilitation agreements can be suspended if a countryno longer satisfies the conditions of the agreement. What then applies are the general rules of the EU visa code.\nSuspensions can be triggered by an EU country or by the European Commission. Currently, 2 agreements are suspended, those with:\n• Russia (full suspension of facilitation agreement)"
+  },
+  {
+   "id": "eu-visa-policy#5",
+   "sourceId": "eu-visa-policy",
+   "destinationId": "schengen",
+   "heading": "What are the main elements of EU visa policy?",
+   "text": "• Belarus (partial suspension of facilitation agreement).\nVisa facilitation agreements are linked to readmission agreements. Readmission agreements establish procedures for returning irregular migrants to the EU or non-EU country they came from (EU, non-EU nationals or stateless persons).\nEU countries may also individually negotiate agreements on local bordertraffic with neighbouring non-EU countries. These agreements enable border residents of specific areas to cross the EU's external borders, under certain conditions, without having to obtain a visa.\nArticle 8 of Regulation (EU) 2018/1806, as amended by Regulation (EU) 2025/2441, sets out the EU’s visa suspension mechanism. It allows the temporary suspension of visa-free travel to the Schengen area for nationals of a third country when visa-free travel is abused or works against EU interests.\nThe mechanism may be triggered by a Member State notification or by the Commission. Grounds include substantial increases in irregular migration, refused entries, unfounded asylum applications, lack of alignment with EU visa policy, operation of an investor citizenship scheme, or a deterioration in the Union's external relations with a third country listed in Annex II, including due to human rights violations."
+  },
+  {
+   "id": "eu-visa-policy#6",
+   "sourceId": "eu-visa-policy",
+   "destinationId": "schengen",
+   "heading": "What are the main elements of EU visa policy?",
+   "text": "Suspension can initially last up to 12 months and may be extended for a further 24 months. During this period, the EU engages with the third country to address the issues and may apply the suspension in a targeted way, for example to government officials or diplomats.\nCurrently the visa waiver agreement with Vanuatu has been suspended under the suspension mechanism.\nThe European Commission has suspended visa-free travel for Georgian holders of diplomatic, service, and official passports, effective from March 6, 2026, until March 6, 2027.\nSince 2017, the Commission has been issuing annual reports on its usage of the mechanism.\nThis is when nationals of Schengen area countries do not need a visa to visit countries whose nationals also do not need a visa to visit the Schengen area.\nThe EU aims at achieving full visa reciprocity with non-EU countries whose nationals are exempt from the visa requirement. For that purpose, a visa reciprocity mechanism is set out in Regulation No 1806/2018 (article 7).\nTo date, the EU has achieved visa reciprocity with all visa-free third countries, except the United States.\nCitizens of Bulgaria, Cyprus, and Romania still need a visa to visit the United States.\nThe Pact on Migration and Asylum set the objective of making the visa procedure fully digitalised by 2025.\nThis involves:"
+  },
+  {
+   "id": "eu-visa-policy#7",
+   "sourceId": "eu-visa-policy",
+   "destinationId": "schengen",
+   "heading": "What are the main elements of EU visa policy?",
+   "text": "• replacing the visa sticker with the option to apply through a European online visa platform\n• simplifying the visa application process\n• reducing the costs for governments and applicants.\nThe requirements are set out in Regulation 2023/2685 and Regulation 2023/2667.\nAfter a transition period of 7 years, Schengen countries will all have to use the EU's standard online platform for visa applications:\n• applicants will carry out all steps in the process on the platform, except for providing biometrics (when required)\n• a digital visa will replace the visa sticker."
+  },
+  {
+   "id": "eu-visa-policy#8",
+   "sourceId": "eu-visa-policy",
+   "destinationId": "schengen",
+   "heading": "Which countries' nationals need a visa to enter the Schengen area?",
+   "text": "Applying for a Schengen visa\nLegal documents related to visa policy\nStatistics on short-stay visas"
+  },
+  {
+   "id": "eu-visa-policy#9",
+   "sourceId": "eu-visa-policy",
+   "destinationId": "schengen",
+   "heading": "News corner",
+   "text": "• 28 May 2026\nSchengen short-stay Visa applications rise in 2025 but remain below pre-pandemic levels\n1 min read\n• 5 November 2025\nCommission presents Action Plan on Visa Liberalisation with Armenia\n1 min read\n• 15 May 2024\nVisa applications reach 10.3 million in EU- and Schengen Associated Countries\n2 min read\nSee more news"
+  },
+  {
+   "id": "uk-standard-visitor#0",
+   "sourceId": "uk-standard-visitor",
+   "destinationId": "uk",
+   "heading": "Overview",
+   "text": "You can visit the UK as a Standard Visitor for tourism, business, study (courses up to 6 months) and other permitted activities.\nYou can usually stay in the UK for up to 6 months. You might be able to apply to stay for longer in certain circumstances, for example to get medical treatment.\nDepending on your nationality, you may not need a visa to visit the UK. You should check if you need a visa before you apply."
+  },
+  {
+   "id": "uk-standard-visitor#1",
+   "sourceId": "uk-standard-visitor",
+   "destinationId": "uk",
+   "heading": "What you need to do",
+   "text": "Check if what you plan to do in the UK is allowed as a Standard Visitor.\nCheck you meet the eligibility requirements.\nCheck if you need to apply for a visa to visit the UK.\nApply for a Standard Visitor visa online - if you need one."
+  },
+  {
+   "id": "uk-standard-visitor#2",
+   "sourceId": "uk-standard-visitor",
+   "destinationId": "uk",
+   "heading": "What you can and cannot do (‘permitted activities’)",
+   "text": "You can visit the UK as a Standard Visitor:\n• for tourism, for example on a holiday or vacation\n• to see your family or friends\n• to volunteer for up to 30 days with a registered charity\n• to pass through the UK to another country (‘in transit’)\n• for certain business activities, for example attending a meeting or interview\n• for certain paid engagements or events (a ‘permitted paid engagement’) as an expert in your profession, for example to give lectures or perform\n• to take part in a school exchange programme\n• to do a recreational course of up to 30 days, for example a dance course\n• to study, do a placement or take an exam\n• as an academic, senior doctor or dentist\nYou cannot:\n• do paid or unpaid work for a UK company or as a self-employed person, unless you’re doing a permitted paid engagement or event\n• claim public funds (benefits)\n• live in the UK for long periods of time through frequent or successive visits\n• marry or register a civil partnership, or give notice of marriage or civil partnership - you’ll need to apply for a Marriage Visitor visa"
+  },
+  {
+   "id": "uk-standard-visitor#3",
+   "sourceId": "uk-standard-visitor",
+   "destinationId": "uk",
+   "heading": "Check you meet the eligibility requirements",
+   "text": "You must have a passport or travel document to enter the UK. It should be valid for the whole of your stay.\nYou must be able to show that:\n• you’ll leave the UK at the end of your visit\n• you’re able to support yourself and your dependants during your trip (or have funding from someone else to support you)\n• you’re able to pay for your return or onward journey (or have funding from someone else to pay for the journey)\n• you’ll not live in the UK for extended periods through frequent or successive visits, or make the UK your main home\nYou may need to meet extra eligibility requirements if you’re visiting the UK:\n• to study, do a placement or take an exam\n• as an academic, senior doctor or dentist\n• for a permitted paid engagement\nThe rules on what you’ll need to enter the UK may be different if you’re travelling from Ireland, Jersey, Guernsey or the Isle of Man."
+  },
+  {
+   "id": "uk-standard-visitor#4",
+   "sourceId": "uk-standard-visitor",
+   "destinationId": "uk",
+   "heading": "Check if you need a visa to visit the UK",
+   "text": "Depending on your nationality, you’ll either:\n• have to apply for a Standard Visitor visa before you travel to the UK\n• have to apply for an electronic travel authorisation (ETA), which allows you to visit the UK for up to 6 months without needing a visa\n• be able to visit the UK for up to 6 months without needing a visa or an ETA\nYou can check if you need a visa before you apply.\nIf you do not need a visa, you must still meet the Standard Visitor eligibility requirements to visit the UK. You may be asked questions at the UK border about your eligibility and the activities you plan to do.\nIf you’ve previously been refused entry to the UK or have a criminal record, you may want to apply for a Standard Visitor visa (even if you do not need one)."
+  },
+  {
+   "id": "uk-standard-visitor#5",
+   "sourceId": "uk-standard-visitor",
+   "destinationId": "uk",
+   "heading": "If you have to apply for a Standard Visitor visa",
+   "text": "You must apply for a Standard Visitor visa online before you travel to the UK.\nA Standard Visitor visa costs £135 for up to 6 months. The earliest you can apply is 3 months before you travel.\nIf you visit the UK regularly, you can choose to apply for a long-term Standard Visitor visa instead.\nYou can pass through the UK to another country on a Standard Visitor visa. If transiting is your only reason for coming to the UK, you can apply for a Visitor in Transit visa instead for £74.50.\nView a printable version of the whole guide"
+  },
+  {
+   "id": "uk-visit-business#0",
+   "sourceId": "uk-visit-business",
+   "destinationId": "uk",
+   "heading": "Visit on business",
+   "text": "You can visit the UK as a Standard Visitor for up to 6 months:\n• to do certain business activities, if you are not paid by a UK-based organisation or client to do them\n• if you are visiting as an expert in your profession to do a permitted paid engagement\nYou’ll need to apply for a work visa if you want to do any other paid or unpaid work in the UK."
+  },
+  {
+   "id": "uk-visit-business#1",
+   "sourceId": "uk-visit-business",
+   "destinationId": "uk",
+   "heading": "Visiting on business if you’re not paid by a UK-based organisation or client",
+   "text": "You can visit the UK as a Standard Visitor to do the following business activities if you’re not paid by a UK-based organisation or client:\n• attend interviews, meetings, conferences and seminars\n• negotiate and sign deals and contracts\n• attend trade fairs to promote your business (you cannot sell things)\n• get work-related training if you’re employed overseas and the training is not available in your home country\n• give a one-off or short series of talks as long as they’re not for profit or a commercial event - you can only be paid for speaking at certain engagements or events (a ‘permitted paid engagement’)\n• carry out site visits and inspections\n• oversee the delivery of goods and services provided by a UK company to your overseas company or organisation\n• deliver training or share knowledge on internal projects with UK employees of the company you work for overseas\n• carry out specific activities if the overseas company you work for has an eligible contract of purchase, supply or lease with a UK company or organisation - check the rules for ‘Manufacture and supply of goods to the UK’\nYou should:\n• check you meet the basic eligibility requirements for a Standard Visitor\n• check if you need a visa to visit the UK\n• apply for a Standard Visitor visa online - if you need one"
+  },
+  {
+   "id": "uk-visit-business#2",
+   "sourceId": "uk-visit-business",
+   "destinationId": "uk",
+   "heading": "Doing activities as part of an overseas job role",
+   "text": "You can do certain additional activities in the UK as a Standard Visitor, if you’re employed overseas as:\n• an artist, entertainer or musician\n• a journalist or correspondent\n• a lawyer or expert witness\n• a market researcher or analyst\n• a pilot or cabin crew member coming to work in the UK between 1 March and 31 October, as part of a Civil Aviation Authority approved ‘Wet Lease Agreement’\n• a professor from an overseas academic institution\n• a scientist or researcher\n• a seafarer (someone whose normal place of work is on board a ship)\n• a sports person or sports official\n• a tour group courier\n• a translator or interpreter\n• a member of a film crew, including actors, producers, directors or technicians\n• a member of the production team supporting an artist, entertainer or musician\n• a member of technical staff supporting an artist, entertainer, musician or sports person\nCheck the Visitor Rules for details of what you can do as a Standard Visitor in these job roles.\nView a printable version of the whole guide"
+  },
+  {
+   "id": "uk-apply#0",
+   "sourceId": "uk-apply",
+   "destinationId": "uk",
+   "heading": "Apply for a Standard Visitor visa",
+   "text": "If you need a Standard Visitor visa, you must apply online before you travel to the UK and attend an appointment at a visa application centre.\nThe earliest you can apply is 3 months before you travel.\nYou must meet the eligibility requirements and only do permitted activities.\nDepending on your nationality, you may not need a visa to visit the UK. If you do not need a visa, you’ll either:\n• have to apply for an electronic travel authorisation (ETA), which allows you to visit the UK for up to 6 months\n• be able to visit the UK for up to 6 months without needing a visa or an ETA\nYou can check if you need a visa before you apply."
+  },
+  {
+   "id": "uk-apply#1",
+   "sourceId": "uk-apply",
+   "destinationId": "uk",
+   "heading": "Visa fees",
+   "text": "You can apply for a Standard Visitor visa, or if you visit the UK regularly you can choose to apply for a long-term Standard Visitor visa instead.\nFee\nMaximum length of stay\nStandard Visitor visa\n£135\n6 months\nStandard Visitor visa for medical reasons\n£234\n11 months\nStandard Visitor visa for academics\n£234\n12 months\n2 year long-term Standard Visitor visa\n£506\n6 months per visit\n5 year long-term Standard Visitor visa\n£903\n6 months per visit\n10 year long-term Standard Visitor visa\n£1,128\n6 months per visit"
+  },
+  {
+   "id": "uk-apply#2",
+   "sourceId": "uk-apply",
+   "destinationId": "uk",
+   "heading": "Apply online",
+   "text": "Once you’ve started your application you can save your form and complete it later.\nIf you’re applying with family members, each person must have their own application and pay the fee. They need to attend their own appointment at a visa application centre.\nYou can apply on behalf of your partner and child, if they cannot apply for themselves.\nApply now\nYour application will not be accepted and you will not get a refund if you have the right of abode in the UK (for example you’re a British citizen). You need to apply for a certificate of entitlement instead."
+  },
+  {
+   "id": "uk-apply#3",
+   "sourceId": "uk-apply",
+   "destinationId": "uk",
+   "heading": "Continue your application",
+   "text": "You can sign back into your application if you’ve saved it.\nFind out how to sign in to your account."
+  },
+  {
+   "id": "uk-apply#4",
+   "sourceId": "uk-apply",
+   "destinationId": "uk",
+   "heading": "Long-term Standard Visitor visas",
+   "text": "You can choose to apply for a long-term Standard Visitor visa if you visit the UK regularly. This visa lasts 2, 5 or 10 years. You can stay for a maximum of 6 months on each visit.\nIf you’re under 18 years old when you apply, your long-term Standard Visitor visa will only be valid for up to 6 months after you turn 18. You cannot get a refund on the fee.\nYou may be given a shorter visa than requested if UK Visas and Immigration (UKVI) believe you cannot meet the eligibility requirements for the duration of the visa you applied for.\nYou will not get a refund of the application fee if you get a shorter visa or if your application is refused.\nYour visa may be cancelled if your travel history shows you are repeatedly living in the UK for extended periods."
+  },
+  {
+   "id": "uk-apply#5",
+   "sourceId": "uk-apply",
+   "destinationId": "uk",
+   "heading": "Documents and information you’ll need to apply",
+   "text": "You must have a passport or travel document that is valid for the whole of your stay in the UK.\nYou’ll need to provide the following information in your online application:\n• the dates you’re planning to travel to the UK\n• where you’ll be staying during your visit\n• how much you think your trip will cost\n• your current home address and how long you’ve lived there\n• your parents’ names and dates of birth (if known)\n• how much you earn in a year (if you have an income)\n• details of any criminal, civil or immigration offences you may have committed\nDepending on your circumstances, you might also need to provide:\n• details of your travel history for the past 10 years\n• your employer’s address and telephone number\n• your partner’s name, date of birth and passport number\n• the name and address of anyone paying for your trip\n• the name, address and passport number of any family members you have in the UK\n• a certificate proving that you’ve had a tuberculosis (TB) test if you’re visiting for more than 6 months\nYou need to provide additional documents if you’re visiting the UK:\n• for certain paid engagements or events (a ‘permitted paid engagement’\nYou must provide certified translations of any documents that are not in English or Welsh."
+  },
+  {
+   "id": "uk-apply#6",
+   "sourceId": "uk-apply",
+   "destinationId": "uk",
+   "heading": "Proving your identity and providing your documents",
+   "text": "As part of your online application, you need to book an appointment at a visa application centre. Allow time to attend your appointment, as the visa application centre could be in another country.\nAt your appointment, you’ll need to:\n• prove your identity with your passport or travel document\n• have your fingerprints and a photo (biometric information) taken\n• provide the required documents that show you’re eligible for a Standard Visitor visa\nYou’ll get your passport or travel document back on the same day. The visa application centre may keep some of your other documents while processing your application. You’ll be told what they’ll need when you apply."
+  },
+  {
+   "id": "uk-apply#7",
+   "sourceId": "uk-apply",
+   "destinationId": "uk",
+   "heading": "How long it takes to get a decision",
+   "text": "Once you’ve applied online, proved your identity and provided your documents, you’ll usually get a decision on your visa within 3 weeks.\nYou can check to see if you can get your visa decision faster.\nYou’ll get an email when the Home Office has made a decision on your application. This will explain what you need to do next."
+  },
+  {
+   "id": "uk-apply#8",
+   "sourceId": "uk-apply",
+   "destinationId": "uk",
+   "heading": "If you need to change or cancel your application",
+   "text": "If you need to change something in your application after you’ve sent it, contact UKVI.\nYou can ask to cancel your application. You’ll only get your fee refunded if the application has not been processed yet.\nView a printable version of the whole guide"
+  }
+ ],
+ "changeLog": [
+  {
+   "sourceId": "th-embassy-delhi",
+   "date": "2026-10-01",
+   "kind": "initial"
+  },
+  {
+   "sourceId": "th-evisa",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "vn-evisa",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "fetch failed"
+  },
+  {
+   "sourceId": "sg-ica-india",
+   "date": "2026-10-01",
+   "kind": "initial"
+  },
+  {
+   "sourceId": "sg-ica-requirements",
+   "date": "2026-10-01",
+   "kind": "initial"
+  },
+  {
+   "sourceId": "my-imi-by-country",
+   "date": "2026-10-01",
+   "kind": "initial"
+  },
+  {
+   "sourceId": "my-evisa",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "id-evisa",
+   "date": "2026-10-01",
+   "kind": "initial"
+  },
+  {
+   "sourceId": "lk-eta",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "lk-eta-info",
+   "date": "2026-10-01",
+   "kind": "initial"
+  },
+  {
+   "sourceId": "ae-visit-visa",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "ae-tourist-visa",
+   "date": "2026-10-01",
+   "kind": "initial"
+  },
+  {
+   "sourceId": "jp-embassy-visa",
+   "date": "2026-10-01",
+   "kind": "initial"
+  },
+  {
+   "sourceId": "jp-mofa-visa",
+   "date": "2026-10-01",
+   "kind": "initial"
+  },
+  {
+   "sourceId": "eu-applying",
+   "date": "2026-10-01",
+   "kind": "initial"
+  },
+  {
+   "sourceId": "eu-visa-policy",
+   "date": "2026-10-01",
+   "kind": "initial"
+  },
+  {
+   "sourceId": "uk-standard-visitor",
+   "date": "2026-10-01",
+   "kind": "initial"
+  },
+  {
+   "sourceId": "uk-visit-business",
+   "date": "2026-10-01",
+   "kind": "initial"
+  },
+  {
+   "sourceId": "uk-apply",
+   "date": "2026-10-01",
+   "kind": "initial"
+  },
+  {
+   "sourceId": "us-state-visitor",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "HTTP 403 (blocked or unavailable)"
+  },
+  {
+   "sourceId": "us-embassy-india",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "fetch failed"
+  },
+  {
+   "sourceId": "au-visitor-600",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "au-tourist-stream",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "au-business-stream",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "th-evisa",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "vn-evisa",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "fetch failed"
+  },
+  {
+   "sourceId": "my-evisa",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "lk-eta",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "ae-visit-visa",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "us-state-visitor",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "HTTP 403 (blocked or unavailable)"
+  },
+  {
+   "sourceId": "us-embassy-india",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "fetch failed"
+  },
+  {
+   "sourceId": "au-visitor-600",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "au-tourist-stream",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "au-business-stream",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "th-evisa",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "vn-evisa",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "fetch failed"
+  },
+  {
+   "sourceId": "my-evisa",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "lk-eta",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "ae-visit-visa",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "us-state-visitor",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "HTTP 403 (blocked or unavailable)"
+  },
+  {
+   "sourceId": "us-embassy-india",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "fetch failed"
+  },
+  {
+   "sourceId": "au-visitor-600",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "au-tourist-stream",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "au-business-stream",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "th-evisa",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "vn-evisa",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "fetch failed"
+  },
+  {
+   "sourceId": "my-evisa",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "lk-eta",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "ae-visit-visa",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "us-state-visitor",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "HTTP 403 (blocked or unavailable)"
+  },
+  {
+   "sourceId": "us-embassy-india",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "fetch failed"
+  },
+  {
+   "sourceId": "au-visitor-600",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "au-tourist-stream",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "au-business-stream",
+   "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  }
+ ]
+}
