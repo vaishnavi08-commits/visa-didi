@@ -132,13 +132,14 @@ export function parseWebContent(content: Anthropic.Beta.BetaContentBlock[]) {
 
   // Written source markers (used when the search mode returns no inline citations).
   for (const l of lines) {
-    l.text = l.text.replace(/\[\s*sources?\s*:\s*([^\]]*)\]/gi, (_, list: string) => {
+    // [source: url] as asked, or (source: url) which the model sometimes writes instead.
+    l.text = l.text.replace(/[[(]\s*sources?\s*:\s*([^\])]*)[\])]/gi, (_, list: string) => {
       for (const raw of list.split(/[\s,]+/)) {
         const url = found.get(normalizeUrl(raw.replace(/[).;]+$/, "")));
         if (url) l.urls.add(url);
       }
       return "";
-    });
+    }).replace(/\(\s*\)|\[\s*\]/g, "").replace(/\s+([.,;])/g, "$1");
   }
 
   // Tolerate markdown the model may add: **SHORT:**, headings, numbered lists.
