@@ -34,10 +34,10 @@ Search the web to answer. Prefer, in order: the destination's government immigra
 
 Assume an ordinary Indian passport. Never invent anything; every fact must come from a page you found. If you cannot find a reliable answer, say so plainly. Never predict whether a visa will be approved.
 
-Reply in exactly this format and nothing else:
-SHORT: <one or two sentences, direct answer first>
-- <key detail, only what the question needs: visa type, documents, fees, processing time, stay length, passport validity>
-- <more details as needed, at most 5>
+Reply in exactly this format and nothing else. End the SHORT line and every bullet with the exact URL of the search result it came from, in square brackets:
+SHORT: <one or two sentences, direct answer first> [source: <url>]
+- <key detail, only what the question needs: visa type, documents, fees, processing time, stay length, passport validity> [source: <url>]
+- <more details as needed, at most 5> [source: <url>]
 If you could not find a reliable answer, reply with a single line:
 SHORT: NOT_FOUND`;
 
@@ -90,10 +90,23 @@ export async function webAnswer(question: string, history: { role: "user" | "ass
 
 // Turns Claude's cited reply into a short answer, details and their sources.
 export function parseWebContent(content: Anthropic.Beta.BetaContentBlock[]) {
+  // Pages the search actually returned. A [source: url] the model writes only counts if it's one of these.
+  const titles = new Map<string, string>();
+  const found = new Map<string, string>(); // normalized url -> url
+  for (const block of content) {
+    if (block.type === "web_search_tool_result" && Array.isArray(block.content)) {
+      for (const r of block.content) {
+        if (r.type === "web_search_result") {
+          found.set(normalizeUrl(r.url), r.url);
+          titles.set(r.url, r.title);
+        }
+      }
+    }
+  }
+
   // Walk the text blocks, keeping each line's citations so details stay tied to their pages.
   type Line = { text: string; urls: Set<string> };
   const lines: Line[] = [{ text: "", urls: new Set() }];
-  const titles = new Map<string, string>();
   for (const block of content) {
     if (block.type !== "text") continue;
     const urls: string[] = [];
@@ -109,6 +122,17 @@ export function parseWebContent(content: Anthropic.Beta.BetaContentBlock[]) {
       const cur = lines[lines.length - 1];
       cur.text += part;
       urls.forEach((u) => cur.urls.add(u));
+    });
+  }
+
+  // Written source markers (used when the search mode returns no inline citations).
+  for (const l of lines) {
+    l.text = l.text.replace(/\[\s*sources?\s*:\s*([^\]]*)\]/gi, (_, list: string) => {
+      for (const raw of list.split(/[\s,]+/)) {
+        const url = found.get(normalizeUrl(raw.replace(/[).;]+$/, "")));
+        if (url) l.urls.add(url);
+      }
+      return "";
     });
   }
 
@@ -136,4 +160,13 @@ export function parseWebContent(content: Anthropic.Beta.BetaContentBlock[]) {
   // Official pages first.
   sources.sort((a, b) => Number(b.official) - Number(a.official));
   return { shortAnswer, details: details.filter((d) => d.sources.length), sources };
+}
+
+function normalizeUrl(url: string) {
+  try {
+    const u = new URL(url.trim());
+    return (u.hostname.replace(/^www\./, "") + u.pathname.replace(/\/+$/, "") + u.search).toLowerCase();
+  } catch {
+    return url.trim().toLowerCase();
+  }
 }
