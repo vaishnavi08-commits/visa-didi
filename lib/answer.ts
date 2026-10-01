@@ -1,10 +1,12 @@
-// Per-question flow: guardrails → retrieve official chunks → Claude writes a cited answer
-// (or, without an API key, the official text is shown directly).
+// Per-question flow: guardrails → retrieve official chunks → Claude writes a cited answer.
+// When the stored official pages can't answer, Claude searches the web live (labelled as such).
+// Without an API key, the official text is shown directly.
 import Anthropic from "@anthropic-ai/sdk";
 import { DESTINATIONS, type Destination } from "./destinations";
 import { bestSnippet, retrieve, type Retrieved } from "./retrieve";
 import { route } from "./router";
 import { isStale, isUsable, loadStore, recentlyUpdated, type Store } from "./store";
+import { webAnswer } from "./websearch";
 
 export type AnswerSource = {
   id: string;
@@ -15,6 +17,9 @@ export type AnswerSource = {
   stale: boolean;
   recentlyUpdated: boolean;
   manual: boolean;
+  // "stored": a page from the weekly-checked official list. "web": found by live search.
+  origin: "stored" | "web";
+  official: boolean;
 };
 
 export type AnswerKind =
@@ -36,7 +41,7 @@ export type Answer = {
   conflict?: string;
   sources: AnswerSource[];
   officialLink?: { label: string; url: string };
-  mode: "ai" | "official_text" | "rule";
+  mode: "ai" | "web" | "official_text" | "rule";
   // Whether to show the "confirm on the official site before booking" line.
   verifyLine: boolean;
 };
@@ -44,8 +49,8 @@ export type Answer = {
 export type Turn = { role: "user" | "assistant"; text: string };
 
 const MODEL = "claude-opus-5-5";
-// USD per million tokens, for the spending cap.
-const PRICE_IN = 4, PRICE_OUT = 20;
+// USD per million tokens, and per web search, for the spending cap.
+const PRICE_IN = 4, PRICE_OUT = 20, PRICE_SEARCH = 0.01;
 
 const coveredList = () => DESTINATIONS.map((d) => d.name).join(", ");
 
@@ -65,6 +70,8 @@ function toAnswerSource(store: Store, sourceId: string): AnswerSource | null {
     stale: isStale(s),
     recentlyUpdated: recentlyUpdated(store, s.id),
     manual: s.method === "manual",
+    origin: "stored",
+    official: true,
   };
 }
 
@@ -230,38 +237,88 @@ export async function answerQuestion(question: string, history: Turn[]): Promise
 
   const store = loadStore();
   const dests = r.destinations;
+  const hasKey = !!(process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN);
+  const link = { label: `${dests[0].name} official site`, url: dests[0].officialLink };
 
-  // Destinations whose official pages we can't currently confirm get an honest "can't confirm".
+  const cacheKey = JSON.stringify([dests.map((d) => d.id), question.toLowerCase().replace(/\s+/g, " ").trim(), r.judgment]);
+  const hit = cache.get(cacheKey);
+  if (hit && Date.now() - hit.at < DAY && history.length === 0) return hit.answer;
+  const remember = (answer: Answer) => {
+    if (history.length === 0) cache.set(cacheKey, { at: Date.now(), answer });
+    return answer;
+  };
+
+  if (hasKey && budgetLeft() <= 0) {
+    return rule("limit", "Didi needs a little break — I've hit my monthly limit. Please try again later, or check the official site meanwhile.", { officialLink: link });
+  }
+
   const usableDests = dests.filter((d) => d.sources.some((s) => store.sources[s.id] && isUsable(store.sources[s.id])));
+
+  // No stored official pages for this destination: search the web, or say so honestly.
   if (!usableDests.length) {
-    const d = dests[0];
-    return rule("unavailable", `I can't confirm this right now. I couldn't check the official ${d.name} pages recently, so please look at the official site directly.`, {
-      officialLink: { label: `${d.name} official site`, url: d.officialLink },
+    if (hasKey) {
+      const web = await tryWeb(question, history, dests);
+      if (web) return remember(web);
+    }
+    return rule("unavailable", `I don't have ${dests[0].name}'s official pages yet, so I can't confirm this. Please check the official site directly.`, {
+      officialLink: link,
     });
   }
 
   const priorUser = history.filter((t) => t.role === "user").slice(-1).map((t) => t.text).join(" ");
   const chunks = retrieve(store, usableDests.map((d) => d.id), `${question} ${findsPurpose(priorUser)}`);
 
-  const cacheKey = JSON.stringify([usableDests.map((d) => d.id), question.toLowerCase().replace(/\s+/g, " ").trim(), r.judgment]);
-  const hit = cache.get(cacheKey);
-  if (hit && Date.now() - hit.at < DAY && history.length === 0) return hit.answer;
-
-  const hasKey = !!(process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN);
   if (!hasKey) return officialTextAnswer(question, chunks, store, usableDests, r.judgment);
 
-  if (budgetLeft() <= 0) {
-    return rule("limit", "Didi needs a little break — I've hit my monthly limit. Please try again later, or check the official site meanwhile.", {
-      officialLink: { label: `${usableDests[0].name} official site`, url: usableDests[0].officialLink },
-    });
-  }
-
   const result = await askClaude(question, history, chunks, store, usableDests);
-  if (!result) return officialTextAnswer(question, chunks, store, usableDests, r.judgment);
+  const official = result ? toAnswer(result.out, result.labelled, store, usableDests) : null;
 
-  const answer = toAnswer(result.out, result.labelled, store, usableDests);
-  if (history.length === 0) cache.set(cacheKey, { at: Date.now(), answer });
-  return answer;
+  // Stored official pages don't cover it: fill the gap from the web.
+  if (!official || official.kind === "not_covered") {
+    const web = await tryWeb(question, history, dests);
+    if (web) return remember(web);
+  }
+  return remember(official ?? officialTextAnswer(question, chunks, store, usableDests, r.judgment));
+}
+
+async function tryWeb(question: string, history: Turn[], dests: Destination[]): Promise<Answer | null> {
+  try {
+    const web = await webAnswer(question, history, dests);
+    spend.usd += (web.usage.input * PRICE_IN + web.usage.output * PRICE_OUT) / 1e6 + web.usage.searches * PRICE_SEARCH;
+    if (!web.found) return null;
+    const today = new Date().toISOString().slice(0, 10);
+    return {
+      kind: "answered",
+      shortAnswer: web.shortAnswer,
+      details: web.details,
+      sources: web.sources.map((s) => ({
+        id: s.url,
+        title: s.title,
+        authority: hostname(s.url),
+        url: s.url,
+        lastVerified: today,
+        stale: false,
+        recentlyUpdated: false,
+        manual: false,
+        origin: "web",
+        official: s.official,
+      })),
+      officialLink: { label: `${dests[0].name} official site`, url: dests[0].officialLink },
+      mode: "web",
+      verifyLine: true,
+    };
+  } catch (e) {
+    console.error("web search failed", e);
+    return null;
+  }
+}
+
+function hostname(url: string) {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
 }
 
 function toAnswer(out: ModelOutput, labelled: { label: string; chunk: Retrieved }[], store: Store, dests: Destination[]): Answer {

@@ -123,6 +123,7 @@ button { font: inherit; color: inherit; }
 .note.partial { background: var(--info-soft); color: var(--info); }
 .note.conflict, .note.stale { background: var(--warn-soft); color: var(--warn); }
 .note.mode { background: var(--surface-2); color: var(--ink-2); }
+.note.web { background: var(--warn-soft); color: var(--warn); }
 
 .sources { margin: 16px 0 0 42px; border-top: 1px dashed var(--line); padding-top: 12px; }
 .sources-title { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); margin: 0 0 8px; font-weight: 600; }
@@ -134,6 +135,7 @@ button { font: inherit; color: inherit; }
 .badge.ok { background: var(--good-soft); color: var(--good); }
 .badge.stale { background: var(--warn-soft); color: var(--warn); }
 .badge.new { background: var(--info-soft); color: var(--info); }
+.badge.muted { background: var(--surface-2); color: var(--ink-3); }
 
 .official-link { margin: 12px 0 0 42px; font-size: 14px; }
 .official-link a { color: var(--accent); font-weight: 600; }

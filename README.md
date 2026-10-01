@@ -36,6 +36,7 @@ Copy `.env.example` to `.env.local` and set `ANTHROPIC_API_KEY` to get AI-writte
 | Guardrails: uncovered destination, student/work/residency, other passports, approval predictions, off-topic, missing destination | `lib/router.ts` (deterministic, runs before any model call) |
 | Answer format: short answer → details → sources with dates → verify line + fixed disclaimer | `lib/answer.ts`, `app/page.tsx` |
 | Never uncited: citations must point at retrieved excerpts, otherwise "not covered" | `toAnswer()` in `lib/answer.ts` |
+| **Change from PRD:** when the stored official pages can't answer (e.g. Vietnam, US, Australia), Claude searches the web live. Answers are labelled, each source is tagged "Official site" or "Travel site", and only cited claims are kept | `lib/websearch.ts` |
 | One follow-up when destination/purpose is missing | router (destination) + model `clarify` status (purpose) |
 | Voice in (mic) and read-aloud in a female voice, only on tap | browser Web Speech API in `app/page.tsx` |
 | Rate limit per device, 1-day answer cache, monthly spend cap | `lib/ratelimit.ts`, `lib/answer.ts` (`MONTHLY_BUDGET_USD`) |
@@ -46,6 +47,8 @@ Copy `.env.example` to `.env.local` and set `ANTHROPIC_API_KEY` to get AI-writte
 
 Verified official text is stored for **9 of 12** destinations: Thailand, Singapore, Malaysia, Indonesia, Sri Lanka, UAE, Japan, Schengen, UK.
 **US, Australia and Vietnam** block automated fetching or render with JavaScript. The app answers those with "I can't confirm this right now" and a link to the official site. To fill them, add a manual capture in `data/manual/`.
+
+With `ANTHROPIC_API_KEY` set, questions about these three (and anything the stored pages don't cover) are answered by live web search instead.
 
 Thin sources worth adding next: the Sri Lanka 40-country ETA list, the Malaysia country list, and a fuller Indonesia visa-on-arrival page.
 

@@ -3,6 +3,8 @@ import { answerQuestion, type Turn } from "@/lib/answer";
 import { allow } from "@/lib/ratelimit";
 
 export const runtime = "nodejs";
+// Live web search can take 10–20 seconds.
+export const maxDuration = 60;
 
 export async function POST(req: Request) {
   const body = (await req.json().catch(() => null)) as { question?: unknown; history?: unknown; deviceId?: unknown } | null;

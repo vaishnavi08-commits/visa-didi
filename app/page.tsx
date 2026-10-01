@@ -190,7 +190,7 @@ export default function Home() {
             <span className="brand-mark" aria-hidden>D</span>
             <span className="brand-name">Visa Didi</span>
           </a>
-          <span className="tag">Official sources only · Indian passports</span>
+          <span className="tag">Official sources first · Indian passports</span>
           {items.length > 0 && (
             <button className="new-chat" onClick={reset}>New chat</button>
           )}
@@ -202,8 +202,8 @@ export default function Home() {
           <section className="hero">
             <h1>Namaste! Ask Didi about <em>visas</em>.</h1>
             <p>
-              Straight answers for Indian passport holders on tourist and short business trips, drawn only from official
-              government pages, with the source and the date it was last checked.
+              Straight answers for Indian passport holders on tourist and short business trips. Official government pages
+              come first; when they don&apos;t cover something, Didi searches the web and tells you so. Every answer shows its sources.
             </p>
             <div className="examples">
               {EXAMPLES.map((e) => (
@@ -270,7 +270,7 @@ export default function Home() {
             <SendIcon />
           </button>
         </form>
-        <p className="composer-foot">Information from official sources, not legal or immigration advice.</p>
+        <p className="composer-foot">Not legal or immigration advice. Always confirm on the official site before you book.</p>
       </div>
     </div>
   );
@@ -311,6 +311,12 @@ function AnswerCard({ answer, speaking, onSpeak }: { answer: Answer; speaking: b
           I couldn&apos;t re-check {stale.length === 1 ? "this source" : "some of these sources"} in the last 14 days. Please verify on the official site.
         </div>
       )}
+      {answer.mode === "web" && (
+        <div className="note web">
+          I didn&apos;t have this in my stored official pages, so I searched the web. Sources marked &ldquo;Travel site&rdquo;
+          aren&apos;t official — please confirm on the official site.
+        </div>
+      )}
       {answer.mode === "official_text" && (
         <div className="note mode">Demo mode: AI summaries are off, so I&apos;m showing the official text directly.</div>
       )}
@@ -323,9 +329,16 @@ function AnswerCard({ answer, speaking, onSpeak }: { answer: Answer; speaking: b
               <span className="cite">{i + 1}.</span>
               <a href={s.url} target="_blank" rel="noopener noreferrer">{s.title}</a>
               <span className="auth">{s.authority}</span>
-              <span className={`badge ${s.stale ? "stale" : "ok"}`}>
-                {s.manual ? "Captured" : "Last verified"} {formatDate(s.lastVerified)}
-              </span>
+              {s.origin === "web" ? (
+                <>
+                  <span className={`badge ${s.official ? "ok" : "stale"}`}>{s.official ? "Official site" : "Travel site"}</span>
+                  <span className="badge muted">Found {formatDate(s.lastVerified)}</span>
+                </>
+              ) : (
+                <span className={`badge ${s.stale ? "stale" : "ok"}`}>
+                  {s.manual ? "Captured" : "Last verified"} {formatDate(s.lastVerified)}
+                </span>
+              )}
               {s.recentlyUpdated && <span className="badge new">Updated recently</span>}
             </div>
           ))}
@@ -339,7 +352,11 @@ function AnswerCard({ answer, speaking, onSpeak }: { answer: Answer; speaking: b
       )}
 
       {answer.verifyLine && <p className="verify">Rules can change — please confirm on the official site before you book or apply.</p>}
-      {hasFacts && <p className="disclaimer">Information from official sources, not legal or immigration advice. Rules can change.</p>}
+      {hasFacts && (
+        <p className="disclaimer">
+          {answer.mode === "web" ? "Information found on the web" : "Information from official sources"}, not legal or immigration advice. Rules can change.
+        </p>
+      )}
     </article>
   );
 }
