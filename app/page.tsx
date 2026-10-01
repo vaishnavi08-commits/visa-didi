@@ -18,16 +18,24 @@ type Item =
 
 // ---------- Browser speech (free, built in) ----------
 
-const FEMALE_HINTS = ["veena", "heera", "neerja", "kalpana", "female", "samantha", "karen", "moira", "tessa", "serena", "victoria", "zira", "fiona", "susan", "aria", "jenny", "libby", "sonia"];
+// Didi should sound like an Indian woman. Voice names differ by device:
+// Apple: Tara, Veena, Isha, Lekha (Hindi) · Windows/Edge: Neerja, Heera, Kalpana, Swara · Chrome: "Google हिन्दी".
+const INDIAN_FEMALE = ["tara", "veena", "isha", "neerja", "heera", "kavya", "aarohi", "ananya", "lekha", "kalpana", "swara", "google हिन्दी"];
+const INDIAN_MALE = ["aman", "rishi", "prabhat", "ravi", "hemant", "madhur", "arjun", "kunal"];
+const OTHER_FEMALE = ["female", "samantha", "karen", "moira", "tessa", "serena", "victoria", "zira", "fiona", "susan", "aria", "jenny", "libby", "sonia"];
 
-function pickFemaleVoice(): SpeechSynthesisVoice | undefined {
-  const voices = window.speechSynthesis.getVoices().filter((v) => v.lang.toLowerCase().startsWith("en"));
-  const isFemale = (v: SpeechSynthesisVoice) => FEMALE_HINTS.some((h) => v.name.toLowerCase().includes(h));
+function pickDidiVoice(): SpeechSynthesisVoice | undefined {
+  const all = window.speechSynthesis.getVoices();
+  const lang = (v: SpeechSynthesisVoice) => v.lang.toLowerCase().replace("_", "-");
+  const named = (v: SpeechSynthesisVoice, names: string[]) => names.some((n) => v.name.toLowerCase().includes(n));
+  const isMale = (v: SpeechSynthesisVoice) => named(v, INDIAN_MALE) || /\bmale\b/i.test(v.name);
   return (
-    voices.find((v) => v.lang.toLowerCase() === "en-in" && isFemale(v)) ??
-    voices.find(isFemale) ??
-    voices.find((v) => v.lang.toLowerCase() === "en-in") ??
-    voices[0]
+    all.find((v) => lang(v) === "en-in" && named(v, INDIAN_FEMALE)) ??
+    // A Hindi female voice reads English with an Indian accent.
+    all.find((v) => lang(v) === "hi-in" && named(v, INDIAN_FEMALE)) ??
+    all.find((v) => lang(v) === "en-in" && !isMale(v)) ??
+    all.find((v) => lang(v).startsWith("en") && named(v, OTHER_FEMALE)) ??
+    all.find((v) => lang(v).startsWith("en"))
   );
 }
 
@@ -166,10 +174,10 @@ export default function Home() {
     }
     synth.cancel();
     const u = new SpeechSynthesisUtterance(answer.shortAnswer);
-    const voice = pickFemaleVoice();
+    const voice = pickDidiVoice();
     if (voice) u.voice = voice;
     u.lang = voice?.lang ?? "en-IN";
-    u.rate = 1;
+    u.rate = 0.95;
     u.onend = () => setSpeakingIdx((cur) => (cur === idx ? null : cur));
     setSpeakingIdx(idx);
     synth.speak(u);
