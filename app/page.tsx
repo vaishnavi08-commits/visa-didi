@@ -461,20 +461,16 @@ function AnswerCard({
         <div className="sources">
           <p className="sources-title">{t.sources}</p>
           {answer.sources.map((s, i) => (
+            // One compact line per source: number, linked site, official/travel tag, date.
             <div className="source" key={s.id}>
               <span className="cite">{i + 1}.</span>
-              <a href={s.url} target="_blank" rel="noopener noreferrer">{s.title}</a>
-              <span className="auth">{s.authority}</span>
-              {s.origin === "web" ? (
-                <>
-                  <span className={`badge ${s.official ? "ok" : "stale"}`}>{s.official ? t.officialSite : t.travelSite}</span>
-                  <span className="badge muted">{t.found} {formatDate(s.lastVerified, uiLang)}</span>
-                </>
-              ) : (
-                <span className={`badge ${s.stale ? "stale" : "ok"}`}>
-                  {s.manual ? t.captured : t.lastVerified} {formatDate(s.lastVerified, uiLang)}
-                </span>
+              <a href={s.url} target="_blank" rel="noopener noreferrer" title={`${s.title} — ${s.authority}`}>{siteName(s.url)}</a>
+              {s.origin === "web" && (
+                <span className={`badge ${s.official ? "ok" : "stale"}`}>{s.official ? t.officialSite : t.travelSite}</span>
               )}
+              <span className={`date ${s.stale ? "stale" : ""}`}>
+                {s.origin === "web" ? t.found : s.manual ? t.captured : t.lastVerified} {formatDate(s.lastVerified, uiLang)}
+              </span>
               {s.recentlyUpdated && <span className="badge new">{t.updatedRecently}</span>}
             </div>
           ))}
@@ -487,12 +483,17 @@ function AnswerCard({
         </p>
       )}
 
-      {answer.verifyLine && <p className="verify">{t.verify}</p>}
-      {hasFacts && (
-        <p className="disclaimer">{answer.mode === "web" || answer.webExtra ? t.disclaimerWeb : t.disclaimerOfficial}</p>
-      )}
+      {(answer.verifyLine || hasFacts) && <p className="disclaimer">{t.footnote}</p>}
     </article>
   );
+}
+
+function siteName(url: string) {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
 }
 
 function formatDate(iso: string, uiLang: UiLang) {

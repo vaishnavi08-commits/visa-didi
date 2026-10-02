@@ -36,9 +36,9 @@ Search the web to answer. Be quick: one well-chosen search is usually enough; se
 Assume an ordinary Indian passport. Never invent anything; every fact must come from a page you found. If you cannot find a reliable answer, say so plainly. Never predict whether a visa will be approved.
 
 Reply in exactly this format and nothing else. End the SHORT line and every bullet with the exact URL of the search result it came from, in square brackets:
-SHORT: <one or two sentences, direct answer first> [source: <url>]
-- <key detail, only what the question needs: visa type, documents, fees, processing time, stay length, passport validity> [source: <url>]
-- <more details as needed, at most 4 bullets in total, one short sentence each> [source: <url>]
+SHORT: <at most two short sentences in plain words, direct answer first> [source: <url>]
+- <a key detail only if the question needs it: visa type, documents, fees, processing time, stay length, passport validity> [source: <url>]
+- <at most 3 bullets in total, one short sentence each, no repeating the SHORT line> [source: <url>]
 If you could not find a reliable answer, reply with a single line:
 SHORT: NOT_FOUND`;
 
@@ -162,7 +162,9 @@ export function parseWebContent(content: Anthropic.Beta.BetaContentBlock[]) {
     .slice(shortIdx + 1)
     // Bullets, or any later line that carries a citation.
     .filter((l) => /^[-•*]\s/.test(l.text) || l.urls.length > 0)
-    .map((l) => ({ text: l.text.replace(/^[-•*]\s*/, ""), sources: l.urls }));
+    .map((l) => ({ text: l.text.replace(/^[-•*]\s*/, ""), sources: l.urls }))
+    .filter((d) => d.sources.length)
+    .slice(0, 3);
   const cited = new Set([...clean[shortIdx].urls, ...details.flatMap((d) => d.sources)]);
   // No citations means nothing to back the answer: treat it as not found.
   if (!cited.size) return null;
@@ -170,7 +172,7 @@ export function parseWebContent(content: Anthropic.Beta.BetaContentBlock[]) {
   const sources = [...cited].map((url) => ({ url, title: titles.get(url) ?? url, official: isOfficialUrl(url) }));
   // Official pages first.
   sources.sort((a, b) => Number(b.official) - Number(a.official));
-  return { shortAnswer, details: details.filter((d) => d.sources.length), sources };
+  return { shortAnswer, details, sources };
 }
 
 function normalizeUrl(url: string) {

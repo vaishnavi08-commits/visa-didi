@@ -106,9 +106,11 @@ How to choose a status:
 - "clarify": the destination or trip purpose (tourism vs business) is missing AND the excerpts show it changes the answer. Ask ONE short question in clarify_question. Don't ask if the answer is the same either way.
 - "judgment": the person asks whether they will be approved or their chances. Don't predict; short_answer explains that only the issuing authority decides, and details list what the official requirements are (from the excerpts).
 
-Writing rules:
-- short_answer: one or two sentences, the direct answer first (e.g. "Yes, you need an e-visa.").
-- details: only what the question calls for (documents, fees, processing time, length of stay, passport validity, purpose rules). Short bullet-style sentences. Each detail cites the source labels it comes from, e.g. ["S2"].
+Writing rules — keep it simple and short; most people read this on a phone:
+- short_answer: at most two short sentences (about 30 words), plain everyday words, the direct answer first (e.g. "Yes, you need an e-visa. Apply online before you travel.").
+- details: only facts the question asked for or truly needs (documents, fees, processing time, length of stay, passport validity, purpose rules). At most 3 items, each one short sentence (about 15 words). Don't repeat the short answer. Leave details empty if the short answer already says it all. Each detail cites the source labels it comes from, e.g. ["S2"].
+- not_covered: one short sentence, and only about something the person actually asked. Otherwise an empty string.
+- Never explain how you work, what "the excerpts" are, or which pages you were given.
 - source_ids: every label the short answer relies on.
 - If two sources disagree, describe both in conflict and don't pick one.
 - Quote amounts, durations and dates exactly as the excerpts give them.
@@ -409,7 +411,8 @@ function toAnswer(out: ModelOutput, labelled: { label: string; chunk: Retrieved 
 
   const details = out.details
     .map((d) => ({ text: d.text, sources: resolve(d.source_ids) }))
-    .filter((d) => d.sources.length > 0);
+    .filter((d) => d.sources.length > 0)
+    .slice(0, 3);
   const usedIds = [...new Set([...resolve(out.source_ids), ...details.flatMap((d) => d.sources)])];
   const sources = usedIds.map((id) => toAnswerSource(store, id)).filter((s): s is AnswerSource => !!s);
   const link = siteLink(dests[0], lang);
