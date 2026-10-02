@@ -162,6 +162,8 @@ button { font: inherit; color: inherit; }
 .sources { margin: 16px 0 0 42px; border-top: 1px dashed var(--line); padding-top: 12px; }
 .sources-title { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); margin: 0 0 8px; font-weight: 600; }
 .source { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; padding: 3px 0; font-size: 13px; }
+.source .site { color: var(--ink-3); }
+.source .site::before { content: "· "; }
 .source .date { color: var(--ink-3); }
 .source .date.stale { color: var(--warn); }
 .source a { font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }

@@ -464,7 +464,8 @@ function AnswerCard({
             // One compact line per source: number, linked site, official/travel tag, date.
             <div className="source" key={s.id}>
               <span className="cite">{i + 1}.</span>
-              <a href={s.url} target="_blank" rel="noopener noreferrer" title={`${s.title} — ${s.authority}`}>{siteName(s.url)}</a>
+              <a href={s.url} target="_blank" rel="noopener noreferrer" title={`${s.title} — ${s.authority}`}>{shortTitle(s.title)}</a>
+              <span className="site">{siteName(s.url)}</span>
               {s.origin === "web" && (
                 <span className={`badge ${s.official ? "ok" : "stale"}`}>{s.official ? t.officialSite : t.travelSite}</span>
               )}
@@ -486,6 +487,12 @@ function AnswerCard({
       {(answer.verifyLine || hasFacts) && <p className="disclaimer">{t.footnote}</p>}
     </article>
   );
+}
+
+// Page titles tell two pages on the same site apart; long ones are shortened to keep each source on one line.
+function shortTitle(title: string) {
+  const t = title.replace(/\s+/g, " ").trim();
+  return t.length > 48 ? t.slice(0, 46).replace(/\s\S*$/, "") + "…" : t;
 }
 
 function siteName(url: string) {
