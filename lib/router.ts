@@ -29,7 +29,7 @@ export function findDestinations(text: string): Destination[] {
   return found;
 }
 
-function findUncovered(text: string) {
+export function findUncovered(text: string) {
   return UNCOVERED_DESTINATIONS.find((c) => wordRe(c).test(text));
 }
 

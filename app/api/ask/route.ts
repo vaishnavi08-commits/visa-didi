@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { answerQuestion, type Turn } from "@/lib/answer";
-import { findDestinations } from "@/lib/router";
+import { findDestinations, findUncovered } from "@/lib/router";
 import { detectLang, topicOf } from "@/lib/language";
 import { logQuestion } from "@/lib/persist";
 import { allow } from "@/lib/ratelimit";
@@ -40,7 +40,8 @@ export async function POST(req: Request) {
     // What was asked about and how it ended (no question text), to see what to add next.
     await logQuestion({
       lang: detectLang(question),
-      destinations: findDestinations(question).map((d) => d.id),
+      // Covered destinations by id; otherwise an uncovered country people asked about (what to add next).
+      destinations: findDestinations(question).map((d) => d.id).concat(findDestinations(question).length ? [] : [findUncovered(question) ?? []].flat().map((c) => `uncovered:${c}`)),
       topic: topicOf(question),
       kind: answer.kind,
       mode: answer.mode,
