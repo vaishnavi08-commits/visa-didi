@@ -211,9 +211,10 @@ async function askClaude(question: string, history: Turn[], chunks: Retrieved[],
 function officialTextAnswer(question: string, chunks: Retrieved[], store: Store, dests: Destination[], judgment: boolean): Answer {
   const picked: Retrieved[] = [];
   for (const c of chunks) {
-    if (picked.length >= 3) break;
+    // Keep the no-AI fallback short too: just the single most relevant passage, about two lines.
+    if (picked.length >= 1) break;
     if (c.score <= 0) continue;
-    if (picked.filter((p) => p.sourceId === c.sourceId).length < 2) picked.push(c);
+    if (!picked.some((p) => p.sourceId === c.sourceId)) picked.push(c);
   }
   if (!picked.length) {
     return rule("not_covered", `I couldn't find this in the official ${dests.map((d) => d.name).join(" / ")} sources I have.`, {
@@ -227,7 +228,7 @@ function officialTextAnswer(question: string, chunks: Retrieved[], store: Store,
     shortAnswer: judgment
       ? "I can't predict whether a visa will be approved — only the issuing authority decides. Here's what the official pages say about the requirements:"
       : `Here's what the official ${dests.map((d) => d.name).join(" / ")} pages say:`,
-    details: picked.map((p) => ({ text: (p.heading ? `${p.heading} — ` : "") + bestSnippet(p, question), sources: [p.sourceId] })),
+    details: picked.map((p) => ({ text: (p.heading ? `${p.heading} — ` : "") + bestSnippet(p, question, 220), sources: [p.sourceId] })),
     sources: sourceIds.map((id) => toAnswerSource(store, id)).filter((s): s is AnswerSource => !!s),
     mode: "official_text",
     verifyLine: true,
