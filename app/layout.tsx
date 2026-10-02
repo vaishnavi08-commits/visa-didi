@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Noto_Sans_Devanagari, Plus_Jakarta_Sans } from "next/font/google";
+import { Baloo_2, Noto_Sans_Devanagari, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const display = Fraunces({ subsets: ["latin"], variable: "--font-display", weight: ["600", "700"] });
+// Baloo 2: rounded, playful, and it has Devanagari, so Hindi headings look just as fun.
+const display = Baloo_2({ subsets: ["latin", "devanagari"], variable: "--font-display", weight: ["600", "700", "800"] });
 const body = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-body" });
 // Hindi text: Plus Jakarta Sans has no Devanagari letters.
 const hindi = Noto_Sans_Devanagari({ subsets: ["devanagari"], variable: "--font-hindi", weight: ["400", "600", "700"] });
@@ -16,8 +17,8 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fbf6ee" },
-    { media: "(prefers-color-scheme: dark)", color: "#16130f" },
+    { media: "(prefers-color-scheme: light)", color: "#fff8ef" },
+    { media: "(prefers-color-scheme: dark)", color: "#160f2e" },
   ],
 };
 

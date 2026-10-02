@@ -90,6 +90,7 @@ export default function Home() {
   const [micSupported, setMicSupported] = useState(false);
   const [speakingIdx, setSpeakingIdx] = useState<number | null>(null);
   const [voiceLoadingIdx, setVoiceLoadingIdx] = useState<number | null>(null);
+  const [thinkingStep, setThinkingStep] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const recRef = useRef<Recognition | null>(null);
   const endRef = useRef<HTMLDivElement>(null);
@@ -112,6 +113,14 @@ export default function Home() {
       endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
     }
   }, [items, loading]);
+
+  // While Didi thinks, rotate through playful status messages.
+  useEffect(() => {
+    if (!loading) return;
+    setThinkingStep(0);
+    const id = setInterval(() => setThinkingStep((n) => n + 1), 2200);
+    return () => clearInterval(id);
+  }, [loading]);
 
   useEffect(() => {
     document.documentElement.lang = uiLang;
@@ -274,11 +283,17 @@ export default function Home() {
 
   return (
     <div className="app">
+      <div className="bg-blobs" aria-hidden>
+        <span className="blob b1" />
+        <span className="blob b2" />
+        <span className="blob b3" />
+      </div>
       <header className="topbar">
         <div className="topbar-inner">
           <a className="brand" href="/" onClick={(e) => { e.preventDefault(); reset(); }}>
             <span className="brand-mark" aria-hidden>D</span>
             <span className="brand-name">Visa Didi</span>
+            <span className="brand-plane" aria-hidden>✈️</span>
           </a>
           <span className="tag">{t.tag}</span>
           <div className="top-actions">
@@ -301,18 +316,28 @@ export default function Home() {
       <main className="thread">
         {items.length === 0 && (
           <section className="hero">
+            <p className="kicker">{t.kicker}</p>
             <h1>{t.heroTitle[0]}<em>{t.heroTitle[1]}</em>{t.heroTitle[2]}</h1>
-            <p>{t.heroBody}</p>
+            <p className="hero-body">{t.heroBody}</p>
+            <p className="section-label">{t.examplesLabel}</p>
             <div className="examples">
-              {t.examples.map((e) => (
-                <button key={e} className="example" onClick={() => ask(e)}>{e}</button>
+              {t.examples.map((e, i) => (
+                // Styled like boarding passes: a flag stub, a perforation, and the question.
+                <button key={e} className={`example pass-${i % 4}`} onClick={() => ask(e)}>
+                  <span className="pass-stub" aria-hidden>{["🇻🇳", "🇬🇧", "🇯🇵", "🇪🇺"][i % 4]}</span>
+                  <span className="pass-body">
+                    <span className="pass-label">Q{i + 1} · DEL ✈︎</span>
+                    <span className="pass-q">{e}</span>
+                  </span>
+                </button>
               ))}
             </div>
-            <p className="coverage-title">{t.coverage}</p>
+            <p className="section-label">{t.coverage}</p>
             <div className="pills">
-              {DESTINATIONS.map((d) => (
-                <button key={d.id} className="pill" onClick={() => ask(t.pillQuestion(uiLang === "hi" ? d.nameHi : d.name))}>
-                  {uiLang === "hi" ? d.nameHi : d.name}
+              {DESTINATIONS.map((d, i) => (
+                // Passport stamps: tilted, colourful, with the country's flag.
+                <button key={d.id} className={`pill stamp-${i % 4}`} onClick={() => ask(t.pillQuestion(uiLang === "hi" ? d.nameHi : d.name))}>
+                  <span aria-hidden>{d.flag}</span> {uiLang === "hi" ? d.nameHi : d.name}
                 </button>
               ))}
             </div>
@@ -342,8 +367,8 @@ export default function Home() {
         {loading && (
           <div className="thinking" aria-live="polite">
             <span className="avatar" aria-hidden>D</span>
-            <span className="dots" aria-hidden><span /><span /><span /></span>
-            <span className="sr-only">{t.checking}</span>
+            <span className="flight" aria-hidden><span className="plane">✈️</span></span>
+            <span className="thinking-text">{t.thinking[thinkingStep % t.thinking.length]}</span>
           </div>
         )}
         <div ref={endRef} />

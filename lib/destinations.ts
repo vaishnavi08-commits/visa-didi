@@ -12,6 +12,7 @@ export type Destination = {
   id: string;
   name: string;
   nameHi: string;
+  flag: string;
   region: string;
   aliases: string[];
   // Where to send people when we can't answer from stored sources.
@@ -24,6 +25,7 @@ export const DESTINATIONS: Destination[] = [
     id: "thailand",
     name: "Thailand",
     nameHi: "थाईलैंड",
+    flag: "🇹🇭",
     region: "Southeast Asia",
     aliases: ["thailand", "thai", "bangkok", "phuket", "pattaya", "krabi", "chiang mai", "थाईलैंड", "थाइलैंड", "बैंकॉक", "फुकेत", "पटाया", "थाई"],
     officialLink: "https://www.thaievisa.go.th/",
@@ -46,6 +48,7 @@ export const DESTINATIONS: Destination[] = [
     id: "vietnam",
     name: "Vietnam",
     nameHi: "वियतनाम",
+    flag: "🇻🇳",
     region: "Southeast Asia",
     aliases: ["vietnam", "viet nam", "hanoi", "ho chi minh", "saigon", "da nang", "danang", "hoi an", "phu quoc", "वियतनाम", "वियेतनाम", "हनोई", "viyatnam"],
     officialLink: "https://evisa.gov.vn/",
@@ -62,6 +65,7 @@ export const DESTINATIONS: Destination[] = [
     id: "singapore",
     name: "Singapore",
     nameHi: "सिंगापुर",
+    flag: "🇸🇬",
     region: "Southeast Asia",
     aliases: ["singapore", "सिंगापुर", "singapur"],
     officialLink: "https://www.ica.gov.sg/enter-transit-depart/entering-singapore/visa_requirements",
@@ -84,6 +88,7 @@ export const DESTINATIONS: Destination[] = [
     id: "malaysia",
     name: "Malaysia",
     nameHi: "मलेशिया",
+    flag: "🇲🇾",
     region: "Southeast Asia",
     aliases: ["malaysia", "kuala lumpur", "langkawi", "penang", "मलेशिया", "कुआलालंपुर", "malesia"],
     officialLink: "https://www.imi.gov.my/index.php/en/main-services/visa/visa-requirement-by-country/",
@@ -106,6 +111,7 @@ export const DESTINATIONS: Destination[] = [
     id: "indonesia",
     name: "Indonesia (Bali)",
     nameHi: "इंडोनेशिया (बाली)",
+    flag: "🇮🇩",
     region: "Southeast Asia",
     aliases: ["indonesia", "bali", "jakarta", "lombok", "denpasar", "इंडोनेशिया", "बाली", "जकार्ता"],
     officialLink: "https://evisa.imigrasi.go.id/",
@@ -122,6 +128,7 @@ export const DESTINATIONS: Destination[] = [
     id: "srilanka",
     name: "Sri Lanka",
     nameHi: "श्रीलंका",
+    flag: "🇱🇰",
     region: "South Asia",
     aliases: ["sri lanka", "srilanka", "colombo", "kandy", "galle", "श्रीलंका", "श्री लंका", "कोलंबो"],
     officialLink: "https://www.eta.gov.lk/slvisa/",
@@ -144,6 +151,7 @@ export const DESTINATIONS: Destination[] = [
     id: "uae",
     name: "UAE",
     nameHi: "यूएई",
+    flag: "🇦🇪",
     region: "Middle East",
     aliases: ["uae", "u.a.e", "united arab emirates", "emirates", "dubai", "abu dhabi", "sharjah", "यूएई", "दुबई", "अबू धाबी", "शारजाह", "संयुक्त अरब अमीरात"],
     officialLink: "https://u.ae/en/information-and-services/visa-and-emirates-id/Types-of-visas/Visit-visa",
@@ -166,6 +174,7 @@ export const DESTINATIONS: Destination[] = [
     id: "japan",
     name: "Japan",
     nameHi: "जापान",
+    flag: "🇯🇵",
     region: "East Asia",
     aliases: ["japan", "japanese", "tokyo", "osaka", "kyoto", "जापान", "टोक्यो", "ओसाका", "क्योटो"],
     officialLink: "https://www.in.emb-japan.go.jp/itpr_en/visa.html",
@@ -200,6 +209,7 @@ export const DESTINATIONS: Destination[] = [
     id: "schengen",
     name: "Schengen area",
     nameHi: "शेंगेन क्षेत्र",
+    flag: "🇪🇺",
     region: "Europe",
     aliases: [
       "schengen", "europe", "european", "france", "paris", "germany", "berlin", "munich", "italy", "rome",
@@ -229,6 +239,7 @@ export const DESTINATIONS: Destination[] = [
     id: "uk",
     name: "UK",
     nameHi: "यूके",
+    flag: "🇬🇧",
     region: "Europe",
     aliases: ["uk", "u.k", "united kingdom", "britain", "great britain", "england", "london", "scotland", "edinburgh", "wales", "manchester", "यूके", "ब्रिटेन", "इंग्लैंड", "लंदन", "landan", "briten"],
     officialLink: "https://www.gov.uk/standard-visitor",
@@ -257,6 +268,7 @@ export const DESTINATIONS: Destination[] = [
     id: "us",
     name: "US",
     nameHi: "अमेरिका",
+    flag: "🇺🇸",
     region: "Americas and Oceania",
     aliases: ["us", "u.s", "usa", "u.s.a", "united states", "america", "american", "new york", "nyc", "san francisco", "los angeles", "las vegas", "chicago", "b1", "b2", "b1/b2", "अमेरिका", "अमरीका", "यूएसए", "यूएस", "न्यूयॉर्क", "amerika", "amrika", "amreeka"],
     officialLink: "https://travel.state.gov/content/travel/en/us-visas/tourism-visit/visitor.html",
@@ -279,6 +291,7 @@ export const DESTINATIONS: Destination[] = [
     id: "australia",
     name: "Australia",
     nameHi: "ऑस्ट्रेलिया",
+    flag: "🇦🇺",
     region: "Americas and Oceania",
     aliases: ["australia", "aussie", "sydney", "melbourne", "brisbane", "perth", "adelaide", "gold coast", "ऑस्ट्रेलिया", "आस्ट्रेलिया", "सिडनी", "मेलबर्न", "austrelia"],
     officialLink: "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/visitor-600",
