@@ -1,8 +1,9 @@
 // Which Claude model Didi uses, and the request options that depend on it.
-// Default: Claude Haiku 4.5 (cheapest). Set CLAUDE_MODEL=claude-opus-5-5 or claude-sonnet-5-5 to trade cost for quality.
+// Default: Claude Sonnet 5.5 — careful enough for nuanced rule-reading at half Opus's price.
+// Haiku 4.5 (cheapest) misread rules in testing; set CLAUDE_MODEL to override.
 import type Anthropic from "@anthropic-ai/sdk";
 
-export const MODEL = process.env.CLAUDE_MODEL || "claude-haiku-4-5";
+export const MODEL = process.env.CLAUDE_MODEL || "claude-sonnet-5-5";
 const isHaiku = MODEL.startsWith("claude-haiku-4-5");
 
 // USD per million input / output tokens, and per web search, for the spending caps.

@@ -42,7 +42,7 @@ Copy `.env.example` to `.env.local` and set `ANTHROPIC_API_KEY` to get AI-writte
 | Voice in (mic) and read-aloud in a female voice, only on tap | browser Web Speech API in `app/page.tsx` |
 | Rate limit per device, 1-day answer cache, monthly spend cap | `lib/ratelimit.ts`, `lib/answer.ts` (`MONTHLY_BUDGET_USD`) |
 
-**Model and cost:** `claude-haiku-4-5` by default (set `CLAUDE_MODEL` to use Sonnet or Opus), with JSON-schema structured output.
+**Model and cost:** `claude-sonnet-5-5` by default (set `CLAUDE_MODEL` to use Haiku or Opus; Haiku misread nuanced rules in testing), with JSON-schema structured output.
 Costs are kept low by design: refusals and small talk never call the API; answers are cached for 7 days (cleared when the weekly
 re-check finds a changed page); Claude gets the 5 most relevant official passages; web search only runs when the person taps
 "Search the web for more"; and hard caps stop API use at `DAILY_BUDGET_USD` ($0.50) and `MONTHLY_BUDGET_USD` ($5).
