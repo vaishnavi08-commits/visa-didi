@@ -11,7 +11,7 @@ export const runtime = "nodejs";
 export const maxDuration = 60;
 
 export async function POST(req: Request) {
-  const body = (await req.json().catch(() => null)) as { question?: unknown; history?: unknown; deviceId?: unknown } | null;
+  const body = (await req.json().catch(() => null)) as { question?: unknown; history?: unknown; deviceId?: unknown; web?: unknown } | null;
   const question = typeof body?.question === "string" ? body.question.trim().slice(0, 500) : "";
   if (!question) return NextResponse.json({ error: "Please type a question." }, { status: 400 });
 
@@ -33,7 +33,8 @@ export async function POST(req: Request) {
 
   try {
     const started = Date.now();
-    const answer = await answerQuestion(question, history);
+    // web: true when the person tapped "Search the web for more" on a previous answer.
+    const answer = await answerQuestion(question, history, { web: body?.web === true });
     // Lets /api/speak read this exact answer in Didi's own voice (and nothing else).
     const speakToken = voiceConfigured() ? signSpeech(answer.shortAnswer) : undefined;
     const ms = Date.now() - started;

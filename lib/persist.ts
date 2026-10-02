@@ -5,10 +5,13 @@ import crypto from "node:crypto";
 import { db } from "./db";
 
 const DAY_MS = 86_400_000;
+// Answers are kept for a week (official pages are re-checked weekly; the cache is cleared when they change).
+const CACHE_MS = 7 * DAY_MS;
 const month = () => new Date().toISOString().slice(0, 7);
+const day = () => new Date().toISOString().slice(0, 10);
 const hashKey = (key: string) => crypto.createHash("sha256").update(key).digest("hex");
 
-// ---------- Answer cache (1 day) ----------
+// ---------- Answer cache (7 days) ----------
 
 const memCache = new Map<string, { at: number; value: unknown }>();
 
@@ -17,13 +20,13 @@ export async function cacheGet<T>(key: string): Promise<T | null> {
   const c = db();
   if (!c) {
     const hit = memCache.get(k);
-    return hit && Date.now() - hit.at < DAY_MS ? (hit.value as T) : null;
+    return hit && Date.now() - hit.at < CACHE_MS ? (hit.value as T) : null;
   }
   const { data, error } = await c
     .from("vd_answer_cache")
     .select("answer")
     .eq("key", k)
-    .gt("created_at", new Date(Date.now() - DAY_MS).toISOString())
+    .gt("created_at", new Date(Date.now() - CACHE_MS).toISOString())
     .maybeSingle();
   if (error) console.error("cache read", error.message);
   return (data?.answer as T) ?? null;
@@ -40,28 +43,37 @@ export async function cacheSet(key: string, value: unknown) {
   if (error) console.error("cache write", error.message);
 }
 
-// ---------- Monthly spend (USD) ----------
+// ---------- Spend (USD), per day and per month ----------
+// vd_spend rows are keyed by period: "2026-10" for the month, "2026-10-02" for the day.
 
-const memSpend = { month: "", usd: 0 };
+const memSpend = new Map<string, number>();
 
-export async function spentThisMonth(): Promise<number> {
+export async function spent(): Promise<{ today: number; month: number }> {
   const c = db();
-  if (!c) return memSpend.month === month() ? memSpend.usd : 0;
-  const { data, error } = await c.from("vd_spend").select("usd").eq("month", month()).maybeSingle();
+  if (!c) return { today: memSpend.get(day()) ?? 0, month: memSpend.get(month()) ?? 0 };
+  const { data, error } = await c.from("vd_spend").select("month, usd").in("month", [day(), month()]);
   if (error) console.error("spend read", error.message);
-  return Number(data?.usd ?? 0);
+  const get = (k: string) => Number(data?.find((r) => r.month === k)?.usd ?? 0);
+  return { today: get(day()), month: get(month()) };
 }
 
 export async function addSpend(usd: number) {
   if (!usd) return;
   const c = db();
   if (!c) {
-    if (memSpend.month !== month()) Object.assign(memSpend, { month: month(), usd: 0 });
-    memSpend.usd += usd;
+    for (const k of [day(), month()]) memSpend.set(k, (memSpend.get(k) ?? 0) + usd);
     return;
   }
-  const { error } = await c.rpc("vd_add_spend", { p_month: month(), p_usd: usd });
-  if (error) console.error("spend write", error.message);
+  const results = await Promise.all([day(), month()].map((k) => c.rpc("vd_add_spend", { p_month: k, p_usd: usd })));
+  for (const { error } of results) if (error) console.error("spend write", error.message);
+}
+
+export async function clearAnswerCache() {
+  memCache.clear();
+  const c = db();
+  if (!c) return;
+  const { error } = await c.from("vd_answer_cache").delete().neq("key", "");
+  if (error) console.error("cache clear", error.message);
 }
 
 // ---------- Rate limit ----------

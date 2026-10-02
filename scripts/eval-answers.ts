@@ -25,20 +25,31 @@ const CONCURRENCY = 3;
 const { cases } = JSON.parse(fs.readFileSync(path.join(process.cwd(), "evals", "testset.json"), "utf8")) as { cases: Case[] };
 const store = loadStore();
 
-async function ask(c: Case, i: number): Promise<{ answer: Answer | null; ms: number; error?: string }> {
+async function post(c: Case, i: number, web: boolean) {
+  const res = await fetch(`${BASE}/api/ask`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    // Spread across a few device ids so one eval run stays under the per-device rate limit.
+    body: JSON.stringify({ question: c.question, history: c.history ?? [], deviceId: `eval-${i % 4}`, web }),
+    signal: AbortSignal.timeout(75_000),
+  });
+  return (await res.json()) as { answer?: Answer; error?: string };
+}
+
+// Asks like a user would, tapping "Search the web for more" whenever the answer offers it.
+// ms = time to the first answer (what the person waits for before deciding to search).
+async function ask(c: Case, i: number): Promise<{ answer: Answer | null; ms: number; webTapped: boolean; error?: string }> {
   const started = Date.now();
   try {
-    const res = await fetch(`${BASE}/api/ask`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      // Spread across a few device ids so one eval run stays under the per-device rate limit.
-      body: JSON.stringify({ question: c.question, history: c.history ?? [], deviceId: `eval-${i % 4}` }),
-      signal: AbortSignal.timeout(75_000),
-    });
-    const data = (await res.json()) as { answer?: Answer; error?: string };
-    return { answer: data.answer ?? null, ms: Date.now() - started, error: data.error };
+    const first = await post(c, i, false);
+    const ms = Date.now() - started;
+    if (first.answer?.canSearchWeb) {
+      const second = await post(c, i, true);
+      return { answer: second.answer ?? first.answer, ms, webTapped: true, error: second.error };
+    }
+    return { answer: first.answer ?? null, ms, webTapped: false, error: first.error };
   } catch (e) {
-    return { answer: null, ms: Date.now() - started, error: e instanceof Error ? e.message : String(e) };
+    return { answer: null, ms: Date.now() - started, webTapped: false, error: e instanceof Error ? e.message : String(e) };
   }
 }
 
@@ -69,7 +80,7 @@ function score(c: Case, a: Answer | null) {
   return { outcome, facts, lang, citation, mustNot };
 }
 
-const results: { c: Case; answer: Answer | null; ms: number; error?: string; s: ReturnType<typeof score>; numbers: ReturnType<typeof unsupportedNumbers> }[] = [];
+const results: { c: Case; answer: Answer | null; ms: number; webTapped: boolean; error?: string; s: ReturnType<typeof score>; numbers: ReturnType<typeof unsupportedNumbers> }[] = [];
 let next = 0;
 async function worker() {
   while (next < cases.length) {
@@ -80,7 +91,7 @@ async function worker() {
     const numbers = r.answer ? unsupportedNumbers(r.answer) : { checked: false, missing: [] };
     results[i] = { c, ...r, s, numbers };
     const ok = s.outcome && s.facts && s.lang && s.mustNot && s.citation !== false;
-    console.log(`${ok ? "PASS" : "FAIL"} ${c.id.padEnd(4)} ${(r.answer?.kind ?? "error").padEnd(11)} ${(r.answer?.mode ?? "").padEnd(13)} ${String(r.ms).padStart(6)}ms  ${c.question}`);
+    console.log(`${ok ? "PASS" : "FAIL"} ${c.id.padEnd(4)} ${(r.answer?.kind ?? "error").padEnd(11)} ${((r.answer?.mode ?? "") + (r.webTapped ? "+web" : "")).padEnd(13)} ${String(r.ms).padStart(6)}ms  ${c.question}`);
     if (!ok) {
       const why = [!s.outcome && `outcome (want ${c.kinds.join("|")})`, !s.facts && "facts", !s.lang && "language", !s.mustNot && "said something forbidden", s.citation === false && "citation", r.error].filter(Boolean);
       console.log(`       ✗ ${why.join(", ")} — got: ${(r.answer?.shortAnswer ?? "").slice(0, 160)}`);

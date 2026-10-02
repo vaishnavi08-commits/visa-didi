@@ -2,6 +2,7 @@
 // Answers built this way are labelled as web-sourced and only keep sources Claude actually cited.
 import Anthropic from "@anthropic-ai/sdk";
 import type { Destination } from "./destinations";
+import { MODEL, modelOptions, webSearchTool } from "./model";
 
 export type WebSource = { url: string; title: string; official: boolean };
 
@@ -15,7 +16,7 @@ export type WebResult = {
   reason?: string;
 };
 
-const MODEL = "claude-opus-5-5";
+
 
 // Government, embassy and EU domains count as official even when found through search.
 const OFFICIAL_HOST = /(\.gov(\.[a-z]{2})?$|\.gov\.[a-z]{2}$|\.go\.[a-z]{2}$|\.gouv\.[a-z]{2}$|\.gob\.[a-z]{2}$|europa\.eu$|^u\.ae$|\.u\.ae$|\.mofa\.|embassy|mfa\.|immi\.homeaffairs\.gov\.au$|^gov\.uk$|\.gov\.uk$|mea\.gov\.in$|state\.gov$)/i;
@@ -62,6 +63,8 @@ export async function webAnswer(
   let response: Anthropic.Beta.BetaMessage | null = null;
 
   // Server-side search can pause a long turn; resume it a couple of times.
+  const { effort, ...rest } = modelOptions();
+  const webOptions = { ...rest, ...(effort ? { output_config: { effort } } : {}) };
   for (let i = 0; i < 3; i++) {
     const timeLeft = deadline - Date.now() - 1_000;
     if (timeLeft < 3_000) break;
@@ -71,10 +74,8 @@ export async function webAnswer(
       max_tokens: 1500,
       system: SYSTEM,
       messages,
-      tools: [{ type: "web_search_20260209", name: "web_search", max_uses: 2, user_location: { type: "approximate", country: "IN" } }],
-      output_config: { effort: "low" },
-      betas: ["server-side-fallback-2026-07-01"],
-      fallbacks: "default",
+      tools: [webSearchTool()],
+      ...webOptions,
     }, { timeout: timeLeft, maxRetries: 0 });
     usage.input += response.usage.input_tokens;
     usage.output += response.usage.output_tokens;

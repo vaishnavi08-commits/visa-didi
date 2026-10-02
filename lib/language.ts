@@ -112,9 +112,9 @@ export const MESSAGES = {
     hinglish: (names: string) => `Mujhe yeh ${names} ke mere official sources mein nahi mila.`,
   },
   limit: {
-    en: "Didi needs a little break — I've hit my monthly limit. Please try again later, or check the official site meanwhile.",
-    hi: "दीदी को थोड़ा आराम चाहिए — इस महीने की लिमिट पूरी हो गई है। कृपया बाद में कोशिश कीजिए, तब तक आधिकारिक वेबसाइट देख लीजिए।",
-    hinglish: "Didi ko thoda break chahiye — is mahine ki limit poori ho gayi hai. Please baad mein try kijiye, tab tak official website dekh lijiye.",
+    en: "Didi needs a little break — I've answered as many questions as I can for now. Please try again tomorrow, or check the official site meanwhile.",
+    hi: "दीदी को थोड़ा आराम चाहिए — अभी के लिए जितने सवालों के जवाब दे सकती थी, दे दिए। कृपया कल फिर पूछिए, तब तक आधिकारिक वेबसाइट देख लीजिए।",
+    hinglish: "Didi ko thoda break chahiye — abhi ke liye jitne jawab de sakti thi, de diye. Please kal phir poochiye, tab tak official website dekh lijiye.",
   },
   official_site: {
     en: (name: string) => `${name} official site`,

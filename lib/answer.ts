@@ -6,8 +6,9 @@ import { DESTINATIONS, displayName, type Destination } from "./destinations";
 import { detectLang, englishTopicTerms, MESSAGES, writingInstruction, type Lang } from "./language";
 import { bestSnippet, retrieve, type Retrieved } from "./retrieve";
 import { route } from "./router";
-import { addSpend, cacheGet, cacheSet, spentThisMonth } from "./persist";
+import { addSpend, cacheGet, cacheSet, spent } from "./persist";
 import { getStore, isStale, isUsable, recentlyUpdated, type Store } from "./store";
+import { costUsd, MODEL, modelOptions } from "./model";
 import { webAnswer } from "./websearch";
 
 export type AnswerSource = {
@@ -50,6 +51,10 @@ export type Answer = {
   webIssue?: string;
   // Language the answer is written in (drives the read-aloud voice).
   lang: Lang;
+  // The official pages don't fully answer this; the card offers "Search the web for more".
+  canSearchWeb?: boolean;
+  // A web search was run on request but found nothing reliable.
+  webSearched?: boolean;
   // True when AI answers failed (e.g. API credits ran out) and the official text is shown instead.
   fallback?: boolean;
   // Signature that lets /api/speak voice this answer in Didi's own voice (set by the API route).
@@ -60,9 +65,7 @@ export type Answer = {
 
 export type Turn = { role: "user" | "assistant"; text: string };
 
-const MODEL = "claude-opus-5-5";
-// USD per million tokens, and per web search, for the spending cap.
-const PRICE_IN = 4, PRICE_OUT = 20, PRICE_SEARCH = 0.01;
+
 
 const coveredList = (lang: Lang) => DESTINATIONS.map((d) => displayName(d, lang)).join(", ");
 const siteLink = (d: Destination, lang: Lang) => ({ label: MESSAGES.official_site[lang](displayName(d, lang)), url: d.officialLink });
@@ -146,8 +149,13 @@ type ModelOutput = {
 
 let client: Anthropic | null = null;
 
+// Hard caps on API spend: whichever runs out first (defaults $0.50 a day, $5 a month).
 async function budgetLeft() {
-  return Number(process.env.MONTHLY_BUDGET_USD ?? 20) - (await spentThisMonth());
+  const s = await spent();
+  return Math.min(
+    Number(process.env.DAILY_BUDGET_USD ?? 0.5) - s.today,
+    Number(process.env.MONTHLY_BUDGET_USD ?? 5) - s.month,
+  );
 }
 
 async function askClaude(question: string, history: Turn[], chunks: Retrieved[], store: Store, dests: Destination[], lang: Lang, deadline: number) {
@@ -175,19 +183,18 @@ async function askClaude(question: string, history: Turn[], chunks: Retrieved[],
     content: `Destination(s) detected: ${dests.map((d) => d.name).join(", ")}\n\n<sources>\n${sourcesXml}\n</sources>\n\nQuestion: ${question}\n\nLanguage: ${writingInstruction(lang)}`,
   });
 
+  const { effort, ...options } = modelOptions();
   const response = await client.beta.messages.create({
     model: MODEL,
-    max_tokens: 4000,
+    max_tokens: 2000,
     system: SYSTEM,
     messages,
-    output_config: { effort: "low", format: { type: "json_schema", schema: SCHEMA } },
-    // Server-side fallback: if a safety classifier declines, the API retries on a fallback model.
-    betas: ["server-side-fallback-2026-07-01"],
-    fallbacks: "default",
+    output_config: { ...(effort ? { effort } : {}), format: { type: "json_schema", schema: SCHEMA } },
+    ...options,
     // Stay inside the request's time budget; a silent retry could push past the server's limit.
   }, { timeout: Math.max(3_000, deadline - Date.now() - 2_000), maxRetries: 0 });
 
-  await addSpend((response.usage.input_tokens * PRICE_IN + response.usage.output_tokens * PRICE_OUT) / 1e6);
+  await addSpend(costUsd(response.usage.input_tokens, response.usage.output_tokens));
   if (response.stop_reason === "refusal") return null;
   const text = response.content.flatMap((b) => (b.type === "text" ? [b.text] : [])).join("");
   try {
@@ -229,10 +236,10 @@ function officialTextAnswer(question: string, chunks: Retrieved[], store: Store,
 // ---------- Entry point ----------
 
 
-export async function answerQuestion(question: string, history: Turn[]): Promise<Answer> {
+export async function answerQuestion(question: string, history: Turn[], opts: { web?: boolean } = {}): Promise<Answer> {
   // Answer in the language of the question (English, Hindi or Hinglish).
   const lang = detectLang(question);
-  const answer = await answerIn(question, history, lang);
+  const answer = await answerIn(question, history, lang, !!opts.web);
   // Official-text mode quotes English pages as they are.
   return answer.mode === "official_text" ? answer : { ...answer, lang };
 }
@@ -240,7 +247,7 @@ export async function answerQuestion(question: string, history: Turn[]): Promise
 // The API route may run for 60 s; leave room to send the reply.
 const TIME_BUDGET_MS = 52_000;
 
-async function answerIn(question: string, history: Turn[], lang: Lang): Promise<Answer> {
+async function answerIn(question: string, history: Turn[], lang: Lang, wantWeb: boolean): Promise<Answer> {
   const deadline = Date.now() + TIME_BUDGET_MS;
   const r = route(question, history.filter((t) => t.role === "user").map((t) => t.text));
 
@@ -266,14 +273,15 @@ async function answerIn(question: string, history: Turn[], lang: Lang): Promise<
   const hasKey = !!(process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN);
   const link = siteLink(dests[0], lang);
 
-  const cacheKey = JSON.stringify([dests.map((d) => d.id), question.toLowerCase().replace(/\s+/g, " ").trim(), r.judgment, lang]);
-  // Repeated first questions are served from the shared 1-day cache (follow-ups depend on the chat).
+  const baseKey = JSON.stringify([dests.map((d) => d.id), question.toLowerCase().replace(/\s+/g, " ").trim(), r.judgment, lang]);
+  const cacheKey = wantWeb ? `${baseKey}:web` : baseKey;
+  // Repeated first questions are served from the shared cache (follow-ups depend on the chat).
   if (history.length === 0) {
     const hit = await cacheGet<Answer>(cacheKey);
     if (hit) return hit;
   }
-  const remember = async (answer: Answer) => {
-    if (history.length === 0) await cacheSet(cacheKey, answer);
+  const remember = async (key: string, answer: Answer) => {
+    if (history.length === 0) await cacheSet(key, answer);
     return answer;
   };
 
@@ -283,54 +291,59 @@ async function answerIn(question: string, history: Turn[], lang: Lang): Promise<
 
   const usableDests = dests.filter((d) => d.sources.some((s) => store.sources[s.id] && isUsable(store.sources[s.id])));
 
-  // No stored official pages for this destination: search the web, or say so honestly.
-  if (!usableDests.length) {
-    if (hasKey) {
-      const web = await tryWeb(question, history, dests, lang, deadline);
-      if (web) return remember(web);
+  // Step 1: the answer from stored official pages (reused from the cache when the person asks for a web search).
+  let official: Answer | null = null;
+  if (usableDests.length) {
+    const priorUser = history.filter((t) => t.role === "user").slice(-1).map((t) => t.text).join(" ");
+    // Hindi / Hinglish questions also search with English topic words, since the official pages are in English.
+    const chunks = retrieve(store, usableDests.map((d) => d.id), `${question} ${englishTopicTerms(`${question} ${priorUser}`)} ${findsPurpose(priorUser)}`, 5);
+    if (!hasKey) return officialTextAnswer(question, chunks, store, usableDests, r.judgment);
+
+    if (wantWeb && history.length === 0) official = await cacheGet<Answer>(baseKey);
+    if (!official) {
+      let aiIssue: string | undefined;
+      const result = await askClaude(question, history, chunks, store, usableDests, lang, deadline).catch((e) => {
+        console.error("official answer failed", e);
+        aiIssue = (e instanceof Error ? e.message : String(e)).slice(0, 300);
+        return null;
+      });
+      if (!result) {
+        // Not cached: once the AI call works again, the question should get a real answer.
+        return { ...officialTextAnswer(question, chunks, store, usableDests, r.judgment), fallback: true, webIssue: aiIssue };
+      }
+      official = toAnswer(result.out, result.labelled, store, usableDests, lang);
+      const gap = official.kind === "not_covered" || official.kind === "partial";
+      official = await remember(baseKey, { ...official, canSearchWeb: hasKey && gap });
     }
-    return rule("unavailable", MESSAGES.unavailable[lang](displayName(dests[0], lang)), {
-      officialLink: link,
-      webIssue: hasKey ? lastWebIssue : undefined,
-    });
   }
 
-  const priorUser = history.filter((t) => t.role === "user").slice(-1).map((t) => t.text).join(" ");
-  // Hindi / Hinglish questions also search with English topic words, since the official pages are in English.
-  const chunks = retrieve(store, usableDests.map((d) => d.id), `${question} ${englishTopicTerms(`${question} ${priorUser}`)} ${findsPurpose(priorUser)}`);
+  const covered = official && official.kind !== "not_covered" && official.kind !== "partial";
+  if (covered) return official!;
+  const nothing = rule("unavailable", MESSAGES.unavailable[lang](displayName(dests[0], lang)), { officialLink: link });
 
-  if (!hasKey) return officialTextAnswer(question, chunks, store, usableDests, r.judgment);
+  // Step 2 (only when asked): search the web for what the official pages don't cover.
+  // Web search is the costly part, so it runs only when the person taps "Search the web for more".
+  if (!wantWeb || !hasKey) {
+    return official ?? remember(baseKey, { ...nothing, canSearchWeb: hasKey });
+  }
 
-  let aiIssue: string | undefined;
-  const result = await askClaude(question, history, chunks, store, usableDests, lang, deadline).catch((e) => {
-    console.error("official answer failed", e);
-    aiIssue = (e instanceof Error ? e.message : String(e)).slice(0, 300);
-    return null;
-  });
-  const official = result ? toAnswer(result.out, result.labelled, store, usableDests, lang) : null;
-
-  // Stored official pages don't cover it: fill the gap from the web.
   if (!official || official.kind === "not_covered") {
     const web = await tryWeb(question, history, dests, lang, deadline);
-    if (web) return remember(web);
+    if (web) return remember(cacheKey, web);
+    return { ...(official ?? nothing), canSearchWeb: false, webSearched: true, webIssue: lastWebIssue };
   }
 
-  // They cover part of it: keep the official answer and add what the web says about the rest.
-  if (official?.kind === "partial") {
-    const gap = official.notCovered ? `\n(The official pages already answered part of this. Focus on what they did not cover: ${official.notCovered})` : "";
-    const web = await tryWeb(question + gap, history, dests, lang, deadline);
-    if (web) {
-      const known = new Set(official.sources.map((s) => s.id));
-      return remember({
-        ...official,
-        webExtra: { shortAnswer: web.shortAnswer, details: web.details },
-        sources: [...official.sources, ...web.sources.filter((s) => !known.has(s.id))],
-      });
-    }
-  }
-  // Don't cache a fallback: once the AI call works again, the question should get a real answer.
-  if (!official) return { ...officialTextAnswer(question, chunks, store, usableDests, r.judgment), fallback: true, webIssue: aiIssue ?? lastWebIssue };
-  return remember(official);
+  // Partly covered: keep the official answer and add what the web says about the rest.
+  const gap = official.notCovered ? `\n(The official pages already answered part of this. Focus on what they did not cover: ${official.notCovered})` : "";
+  const web = await tryWeb(question + gap, history, dests, lang, deadline);
+  if (!web) return { ...official, canSearchWeb: false, webSearched: true, webIssue: lastWebIssue };
+  const known = new Set(official.sources.map((s) => s.id));
+  return remember(cacheKey, {
+    ...official,
+    canSearchWeb: false,
+    webExtra: { shortAnswer: web.shortAnswer, details: web.details },
+    sources: [...official.sources, ...web.sources.filter((s) => !known.has(s.id))],
+  });
 }
 
 let lastWebIssue: string | undefined;
@@ -347,7 +360,7 @@ async function tryWeb(question: string, history: Turn[], dests: Destination[], l
       webAnswer(question, history, dests, writingInstruction(lang), deadline),
       new Promise<never>((_, reject) => setTimeout(() => reject(new Error("web search timed out")), timeLeft)),
     ]);
-    await addSpend((web.usage.input * PRICE_IN + web.usage.output * PRICE_OUT) / 1e6 + web.usage.searches * PRICE_SEARCH);
+    await addSpend(costUsd(web.usage.input, web.usage.output, web.usage.searches));
     if (!web.found) {
       lastWebIssue = web.reason ?? "not found";
       return null;

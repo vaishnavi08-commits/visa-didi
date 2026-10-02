@@ -6,6 +6,7 @@ import path from "node:path";
 import * as cheerio from "cheerio";
 import { allSources } from "./destinations";
 import { db, loadStoreFromDb, saveRecheckToDb } from "./db";
+import { clearAnswerCache } from "./persist";
 import { forgetStoreCache, loadStore, saveStore, type Chunk, type Store } from "./store";
 
 const UA =
@@ -243,6 +244,8 @@ export async function runRecheck(opts: { log?: (s: string) => void; save?: boole
     if (c) {
       await saveRecheckToDb(c, store, rechunked, store.changeLog.slice(logStart));
       forgetStoreCache();
+      // Official text changed: cached answers may be out of date.
+      if (rechunked.size) await clearAnswerCache();
     } else {
       saveStore(store);
     }

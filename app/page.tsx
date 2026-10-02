@@ -8,7 +8,8 @@ import { STRINGS, type Strings, type UiLang } from "./strings";
 
 type Item =
   | { role: "user"; text: string }
-  | { role: "assistant"; answer: Answer }
+  // question/history are kept so "Search the web for more" can re-ask with a web search.
+  | { role: "assistant"; answer: Answer; question: string; history: Turn[]; searching?: boolean }
   | { role: "error"; text: string };
 
 // ---------- Browser speech (free, built in) ----------
@@ -143,13 +144,36 @@ export default function Home() {
         body: JSON.stringify({ question: q, history, deviceId: deviceId() }),
       });
       const data = (await res.json()) as { answer?: Answer; error?: string };
-      if (data.answer) setItems((prev) => [...prev, { role: "assistant", answer: data.answer! }]);
+      if (data.answer) setItems((prev) => [...prev, { role: "assistant", answer: data.answer!, question: q, history }]);
       else setItems((prev) => [...prev, { role: "error", text: data.error ?? t.genericError }]);
     } catch {
       setItems((prev) => [...prev, { role: "error", text: t.offline }]);
     } finally {
       setLoading(false);
     }
+  }
+
+  // Re-asks the same question with a web search and updates that answer card in place.
+  async function searchWeb(idx: number) {
+    const item = items[idx];
+    if (item?.role !== "assistant" || item.searching) return;
+    setItems((prev) => prev.map((it, i) => (i === idx && it.role === "assistant" ? { ...it, searching: true } : it)));
+    let answer: Answer | null = null;
+    try {
+      const res = await fetch("/api/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question: item.question, history: item.history, deviceId: deviceId(), web: true }),
+      });
+      answer = ((await res.json()) as { answer?: Answer }).answer ?? null;
+    } catch {}
+    setItems((prev) =>
+      prev.map((it, i) =>
+        i === idx && it.role === "assistant"
+          ? { ...it, searching: false, answer: answer ?? { ...it.answer, canSearchWeb: false, webSearched: true } }
+          : it,
+      ),
+    );
   }
 
   function toggleMic() {
@@ -297,7 +321,17 @@ export default function Home() {
           ) : it.role === "error" ? (
             <div key={i} className="error" role="alert">{it.text}</div>
           ) : (
-            <AnswerCard key={i} t={t} uiLang={uiLang} answer={it.answer} speaking={speakingIdx === i} voiceLoading={voiceLoadingIdx === i} onSpeak={() => speak(i, it.answer)} />
+            <AnswerCard
+              key={i}
+              t={t}
+              uiLang={uiLang}
+              answer={it.answer}
+              speaking={speakingIdx === i}
+              voiceLoading={voiceLoadingIdx === i}
+              onSpeak={() => speak(i, it.answer)}
+              searching={!!it.searching}
+              onSearchWeb={() => searchWeb(i)}
+            />
           ),
         )}
 
@@ -351,7 +385,11 @@ export default function Home() {
   );
 }
 
-function AnswerCard({ t, uiLang, answer, speaking, voiceLoading, onSpeak }: { t: Strings; uiLang: UiLang; answer: Answer; speaking: boolean; voiceLoading: boolean; onSpeak: () => void }) {
+function AnswerCard({
+  t, uiLang, answer, speaking, voiceLoading, onSpeak, searching, onSearchWeb,
+}: {
+  t: Strings; uiLang: UiLang; answer: Answer; speaking: boolean; voiceLoading: boolean; onSpeak: () => void; searching: boolean; onSearchWeb: () => void;
+}) {
   const sourceIndex = new Map(answer.sources.map((s, i) => [s.id, i + 1]));
   const stale = answer.sources.filter((s) => s.stale);
   const hasFacts = answer.sources.length > 0;
@@ -406,6 +444,15 @@ function AnswerCard({ t, uiLang, answer, speaking, voiceLoading, onSpeak }: { t:
       {answer.mode === "web" && (
         <div className="note web">{t.webNote}</div>
       )}
+      {(answer.canSearchWeb || searching) && (
+        <div className="web-offer">
+          <button className="web-button" onClick={onSearchWeb} disabled={searching} aria-busy={searching}>
+            {searching ? t.searchingWeb : t.searchWeb}
+          </button>
+          {!searching && <span className="web-offer-hint">{t.searchWebHint}</span>}
+        </div>
+      )}
+      {answer.webSearched && <div className="note mode">{t.webNothing}</div>}
       {answer.mode === "official_text" && (
         <div className="note mode">{answer.fallback ? t.pausedNote : t.demoNote}</div>
       )}
