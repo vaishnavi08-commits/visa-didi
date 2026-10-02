@@ -316,6 +316,10 @@ async function answerIn(asked: string, history: Turn[], lang: Lang, wantWeb: boo
 
   const usableDests = dests.filter((d) => d.sources.some((s) => store.sources[s.id] && isUsable(store.sources[s.id])));
 
+  // No official pages at all for this destination: search the web straight away rather than
+  // offering a button (the answer has to come from the web either way).
+  if (!usableDests.length && hasKey && !wantWeb) return answerIn(asked, history, lang, true);
+
   // Step 1: the answer from stored official pages (reused from the cache when the person asks for a web search).
   let official: Answer | null = null;
   if (usableDests.length) {
