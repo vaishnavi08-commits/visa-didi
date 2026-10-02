@@ -22,8 +22,9 @@ why, and what the live product does today at [visa-didi.vercel.app](https://visa
 
 ## Sources and freshness
 
-- 26 official sources across 12 destinations: 17 with stored text, covering 10 destinations (none yet for Vietnam and Australia) (e.g. GOV.UK, European Commission,
-  ICA Singapore, Royal Thai Embassy New Delhi, US Embassy India, Japan MOFA including *Validity of a Visa* and the exemption list).
+- 26 official sources across 12 destinations: 17 with stored text, covering 10 destinations (none yet for Vietnam and Australia).
+  Examples: GOV.UK, European Commission, ICA Singapore, Royal Thai Embassy New Delhi, US Embassy India, and Japan MOFA
+  including *Validity of a Visa* and the exemption list.
 - Weekly re-check (Vercel Cron, Mondays 03:00 UTC) saves to Supabase, logs changes, and clears cached answers when text changes.
 - Japan's sites block Vercel's servers: their pages were fetched locally and stored with their real dates. If the weekly
   check keeps failing, answers show the PRD's "couldn't re-check in 14 days" warning.
