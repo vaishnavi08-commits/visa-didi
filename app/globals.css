@@ -96,7 +96,11 @@ button { font: inherit; color: inherit; }
 .example:hover { transform: translateY(-1px); border-color: var(--accent); }
 .coverage-title { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); margin: 0 0 10px; font-weight: 600; }
 .pills { display: flex; flex-wrap: wrap; gap: 8px; }
-.pill { font-size: 14px; background: var(--surface-2); border-radius: 999px; padding: 4px 12px; color: var(--ink-2); }
+.pill {
+  font-size: 14px; background: var(--surface-2); border: 1px solid transparent; border-radius: 999px; padding: 4px 12px;
+  color: var(--ink-2); cursor: pointer; transition: border-color .12s ease, color .12s ease;
+}
+.pill:hover, .pill:focus-visible { border-color: var(--accent); color: var(--accent); outline: none; }
 
 .msg-user { display: flex; justify-content: flex-end; margin: 22px 0 10px; }
 .msg-user .bubble {

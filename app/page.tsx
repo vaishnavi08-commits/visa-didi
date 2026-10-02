@@ -282,7 +282,11 @@ export default function Home() {
             </div>
             <p className="coverage-title">{t.coverage}</p>
             <div className="pills">
-              {DESTINATIONS.map((d) => <span key={d.id} className="pill">{uiLang === "hi" ? d.nameHi : d.name}</span>)}
+              {DESTINATIONS.map((d) => (
+                <button key={d.id} className="pill" onClick={() => ask(t.pillQuestion(uiLang === "hi" ? d.nameHi : d.name))}>
+                  {uiLang === "hi" ? d.nameHi : d.name}
+                </button>
+              ))}
             </div>
           </section>
         )}
