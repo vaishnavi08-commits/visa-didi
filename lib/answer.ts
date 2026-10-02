@@ -299,8 +299,10 @@ async function answerIn(question: string, history: Turn[], lang: Lang): Promise<
 
   if (!hasKey) return officialTextAnswer(question, chunks, store, usableDests, r.judgment);
 
+  let aiIssue: string | undefined;
   const result = await askClaude(question, history, chunks, store, usableDests, lang, deadline).catch((e) => {
     console.error("official answer failed", e);
+    aiIssue = (e instanceof Error ? e.message : String(e)).slice(0, 300);
     return null;
   });
   const official = result ? toAnswer(result.out, result.labelled, store, usableDests, lang) : null;
@@ -324,7 +326,9 @@ async function answerIn(question: string, history: Turn[], lang: Lang): Promise<
       });
     }
   }
-  return remember(official ?? officialTextAnswer(question, chunks, store, usableDests, r.judgment));
+  // Don't cache a fallback: once the AI call works again, the question should get a real answer.
+  if (!official) return { ...officialTextAnswer(question, chunks, store, usableDests, r.judgment), webIssue: aiIssue ?? lastWebIssue };
+  return remember(official);
 }
 
 let lastWebIssue: string | undefined;
