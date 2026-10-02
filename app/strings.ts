@@ -9,8 +9,7 @@ export const STRINGS = {
     heroTitle: ["Where are you ", "flying", " next?"],
     examplesLabel: "Try asking",
     thinking: ["Checking embassy pages…", "Asking the immigration desk…", "Reading the fine print…", "Stamping your passport…"],
-    heroBody:
-      "I'm Didi — ask me anything about visas and entry rules for your trip, in English, Hindi or Hinglish. I check official government pages first and tell you straight, with sources. 💁‍♀️",
+    heroBody: "Visa answers for Indian passports, straight from official sources. Pick a country or just ask.",
     examples: [
       "Do I need a visa for Vietnam?",
       "What documents do I need for a UK tourist visa?",
@@ -65,8 +64,7 @@ export const STRINGS = {
     heroTitle: ["अगली ", "उड़ान", " कहाँ की है?"],
     examplesLabel: "ऐसे पूछिए",
     thinking: ["दूतावास के पेज देख रही हूँ…", "इमिग्रेशन डेस्क से पूछ रही हूँ…", "बारीक नियम पढ़ रही हूँ…", "पासपोर्ट पर ठप्पा लगा रही हूँ…"],
-    heroBody:
-      "मैं दीदी हूँ — अपनी ट्रिप के वीज़ा और एंट्री नियमों के बारे में कुछ भी पूछिए, हिंदी, Hinglish या अंग्रेज़ी में। मैं पहले सरकारी वेबसाइटें देखती हूँ और सीधा जवाब देती हूँ, स्रोत के साथ। 💁‍♀️",
+    heroBody: "भारतीय पासपोर्ट के लिए वीज़ा जवाब, सीधे सरकारी स्रोतों से। कोई देश चुनिए या सीधे पूछिए।",
     examples: [
       "क्या मुझे वियतनाम के लिए वीज़ा चाहिए?",
       "UK टूरिस्ट वीज़ा के लिए कौन-से दस्तावेज़ चाहिए?",

@@ -288,6 +288,7 @@ export default function Home() {
         <span className="blob b2" />
         <span className="blob b3" />
       </div>
+      {items.length === 0 && <StampAndFly />}
       <header className="topbar">
         <div className="topbar-inner">
           <a className="brand" href="/" onClick={(e) => { e.preventDefault(); reset(); }}>
@@ -295,7 +296,6 @@ export default function Home() {
             <span className="brand-name">Visa Didi</span>
             <span className="brand-plane" aria-hidden>✈️</span>
           </a>
-          <span className="tag">{t.tag}</span>
           <div className="top-actions">
             <button
               className="lang-toggle"
@@ -316,28 +316,25 @@ export default function Home() {
       <main className="thread">
         {items.length === 0 && (
           <section className="hero">
-            <p className="kicker">{t.kicker}</p>
-            <h1>{t.heroTitle[0]}<em>{t.heroTitle[1]}</em>{t.heroTitle[2]}</h1>
-            <p className="hero-body">{t.heroBody}</p>
-            <p className="section-label">{t.examplesLabel}</p>
-            <div className="examples">
-              {t.examples.map((e, i) => (
-                // Styled like boarding passes: a flag stub, a perforation, and the question.
-                <button key={e} className={`example pass-${i % 4}`} onClick={() => ask(e)}>
-                  <span className="pass-stub" aria-hidden>{["🇻🇳", "🇬🇧", "🇯🇵", "🇪🇺"][i % 4]}</span>
-                  <span className="pass-body">
-                    <span className="pass-label">Q{i + 1} · DEL ✈︎</span>
-                    <span className="pass-q">{e}</span>
-                  </span>
-                </button>
-              ))}
-            </div>
-            <p className="section-label">{t.coverage}</p>
+            <h1>
+              {/* Animated parts drop edge spaces, so the spaces sit between them. */}
+              <span className="rise" style={{ animationDelay: "0ms" }}>{t.heroTitle[0].trim()}</span>{" "}
+              <em className="rise" style={{ animationDelay: "150ms" }}>{t.heroTitle[1].trim()}</em>{" "}
+              <span className="rise" style={{ animationDelay: "300ms" }}>{t.heroTitle[2].trim()}</span>
+            </h1>
+            <p className="hero-body rise" style={{ animationDelay: "450ms" }}>{t.heroBody}</p>
             <div className="pills">
               {DESTINATIONS.map((d, i) => (
                 // Passport stamps: tilted, colourful, with the country's flag.
-                <button key={d.id} className={`pill stamp-${i % 4}`} onClick={() => ask(t.pillQuestion(uiLang === "hi" ? d.nameHi : d.name))}>
-                  <span aria-hidden>{d.flag}</span> {uiLang === "hi" ? d.nameHi : d.name}
+                <button
+                  key={d.id}
+                  className={`pill stamp-${i % 4}`}
+                  style={{ animationDelay: `${600 + i * 70}ms` }}
+                  onClick={() => ask(t.pillQuestion(uiLang === "hi" ? d.nameHi : d.name))}
+                >
+                  <span className="stamp-ink">
+                    <span aria-hidden>{d.flag}</span> {uiLang === "hi" ? d.nameHi : d.name}
+                  </span>
                 </button>
               ))}
             </div>
@@ -408,7 +405,36 @@ export default function Home() {
             <SendIcon />
           </button>
         </form>
-        <p className="composer-foot">{t.foot}</p>
+      </div>
+    </div>
+  );
+}
+
+// Home-screen background: a big passport stamp slams down, then a big plane takes off
+// from the bottom of the screen and flies out the top. Faint, so text stays readable; loops.
+function StampAndFly() {
+  return (
+    <div className="stamp-fly" aria-hidden>
+      <svg className="big-stamp" viewBox="0 0 200 200">
+        <defs>
+          <path id="stamp-ring" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0" />
+        </defs>
+        <circle cx="100" cy="100" r="94" fill="none" stroke="currentColor" strokeWidth="6" />
+        <circle cx="100" cy="100" r="58" fill="none" stroke="currentColor" strokeWidth="3" strokeDasharray="6 5" />
+        <text fontSize="17" fontWeight="800" letterSpacing="3" fill="currentColor">
+          <textPath href="#stamp-ring">VISA DIDI ✦ APPROVED ✦ NEW DELHI ✦ DEL ✦</textPath>
+        </text>
+        <text x="100" y="96" textAnchor="middle" fontSize="22" fontWeight="800" fill="currentColor">APPROVED</text>
+        <text x="100" y="120" textAnchor="middle" fontSize="13" fontWeight="700" fill="currentColor" letterSpacing="2">✈ ENTRY ✈</text>
+      </svg>
+      <div className="big-plane">
+        <span className="trail" />
+        <svg viewBox="0 0 100 100">
+          <path
+            fill="currentColor"
+            d="M50 4 C54 4 56 11 56 20 L56 38 L93 58 L93 67 L56 55 L56 78 L69 88 L69 95 L50 90 L31 95 L31 88 L44 78 L44 55 L7 67 L7 58 L44 38 L44 20 C44 11 46 4 50 4 Z"
+          />
+        </svg>
       </div>
     </div>
   );

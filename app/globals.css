@@ -95,7 +95,7 @@ button { font: inherit; color: inherit; }
 
 /* ---------- Floating colour blobs behind everything ---------- */
 .bg-blobs { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
-.blob { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.55; animation: drift 18s ease-in-out infinite alternate; }
+.blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.4; animation: drift 18s ease-in-out infinite alternate; }
 .b1 { width: 420px; height: 420px; background: var(--blob-1); top: -120px; left: -100px; }
 .b2 { width: 360px; height: 360px; background: var(--blob-2); top: 30%; right: -120px; animation-delay: -6s; }
 .b3 { width: 380px; height: 380px; background: var(--blob-3); bottom: -140px; left: 20%; animation-delay: -12s; }
@@ -143,7 +143,7 @@ button { font: inherit; color: inherit; }
 .thread { flex: 1; width: 100%; max-width: 780px; margin: 0 auto; padding: 24px 16px 170px; }
 
 /* ---------- Hero ---------- */
-.hero { padding: 26px 0 8px; }
+.hero { padding: 9vh 0 8px; text-align: center; }
 .kicker {
   display: inline-block; margin: 0 0 10px; font-weight: 700; font-size: 14px; color: var(--pink);
   background: var(--accent-soft); padding: 5px 14px; border-radius: 999px; transform: rotate(-1.5deg);
@@ -161,7 +161,7 @@ button { font: inherit; color: inherit; }
   content: ""; position: absolute; left: 2%; right: 2%; bottom: 0.02em; height: 0.14em; border-radius: 99px;
   background: var(--marigold); opacity: 0.55; z-index: -1; transform: rotate(-1.5deg);
 }
-.hero-body { color: var(--ink-2); margin: 0 0 26px; max-width: 580px; font-size: 17px; }
+.hero-body { color: var(--ink-2); margin: 0 auto 30px; max-width: 460px; font-size: 17px; }
 .section-label {
   font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: .04em; text-transform: uppercase;
   color: var(--ink-3); margin: 0 0 10px;
@@ -189,17 +189,16 @@ button { font: inherit; color: inherit; }
 .pass-q { font-weight: 600; line-height: 1.35; }
 
 /* Passport-stamp destination pills */
-.pills { display: flex; flex-wrap: wrap; gap: 10px; }
+.pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 620px; margin: 0 auto; }
 .pill {
   --c: var(--pink);
   font-family: var(--font-display); font-weight: 700; font-size: 15px; letter-spacing: .02em;
   color: var(--c); background: color-mix(in srgb, var(--c) 8%, var(--surface));
   border: 2px dashed color-mix(in srgb, var(--c) 60%, transparent); border-radius: 10px;
-  padding: 4px 12px 3px; cursor: pointer; transform: rotate(-2deg);
+  padding: 4px 12px 3px; cursor: pointer; transform: rotate(-1.5deg);
   transition: transform .15s ease, background .15s ease;
 }
-.pill:nth-child(even) { transform: rotate(2deg); }
-.pill:nth-child(3n) { transform: rotate(-1deg); }
+.pill:nth-child(even) { transform: rotate(1.5deg); }
 .pill:hover, .pill:focus-visible { transform: rotate(0) scale(1.08); background: color-mix(in srgb, var(--c) 18%, var(--surface)); outline: none; }
 .stamp-1 { --c: var(--teal); }
 .stamp-2 { --c: var(--violet); }
@@ -338,7 +337,81 @@ button { font: inherit; color: inherit; }
   .examples { grid-template-columns: 1fr; }
 }
 
+/* ---------- Home-screen animation ---------- */
+.hero { position: relative; }
+
+/* Headline parts and the intro line slide up one after another */
+.rise { display: inline-block; opacity: 0; animation: rise .7s cubic-bezier(.2, .8, .2, 1) forwards; }
+.hero-body.rise { display: block; }
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+/* "flying" shimmers: its gradient slowly sweeps across */
+.hero h1 em {
+  background-size: 200% 100%;
+  animation: rise .7s cubic-bezier(.2, .8, .2, 1) forwards, shimmer 4s ease-in-out 1s infinite;
+}
+.hero h1 em { background-image: linear-gradient(90deg, #e8177a, #ff6a3d, #ffa400, #ff6a3d, #e8177a); }
+@keyframes shimmer { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+/* Background sequence (6 s loop): the stamp slams down and holds for 2 s, fades, then a big
+   plane flies from the far bottom-left corner to the far top-right corner; when it's gone,
+   the stamp comes back. Faint so the text stays readable. */
+.stamp-fly { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.big-stamp {
+  position: absolute; left: 50%; top: 22vh; width: min(62vw, 420px); margin-left: calc(min(62vw, 420px) / -2);
+  color: var(--pink); opacity: 0; transform-origin: center;
+  animation: stamp-slam 6s cubic-bezier(.3, 1.4, .5, 1) infinite;
+}
+@keyframes stamp-slam {
+  0% { opacity: 0; transform: scale(2.4) rotate(-28deg); }
+  8% { opacity: var(--stamp-opacity, .16); transform: scale(.94) rotate(-12deg); }   /* lands at ~0.5 s */
+  11% { transform: scale(1.02) rotate(-12deg); }
+  14% { transform: scale(1) rotate(-12deg); }
+  33% { opacity: var(--stamp-opacity, .16); transform: scale(1) rotate(-12deg); }     /* held until 2 s */
+  38%, 100% { opacity: 0; transform: scale(1) rotate(-12deg); }                       /* gone by 2.3 s */
+}
+.big-plane {
+  position: absolute; left: 0; bottom: 0; width: min(64vw, 480px);
+  color: var(--teal); opacity: 0;
+  animation: corner-flight 6s cubic-bezier(.4, 0, .6, 1) infinite;
+}
+.big-plane svg { width: 100%; display: block; position: relative; }
+/* a fading vapour trail behind the plane (it rotates with the plane) */
+.big-plane .trail {
+  position: absolute; left: 50%; top: 85%; width: 10%; height: 180%; margin-left: -5%;
+  background: linear-gradient(to bottom, currentColor, transparent); border-radius: 99px; opacity: .5;
+}
+@keyframes corner-flight {
+  /* waits off-screen past the bottom-left corner while the stamp shows */
+  0%, 39% { opacity: 0; transform: translate(-110%, 110%) rotate(45deg); }
+  40% { opacity: var(--plane-opacity, .22); transform: translate(-110%, 110%) rotate(45deg); }
+  /* flies diagonally out past the top-right corner by ~5.3 s */
+  88% { opacity: var(--plane-opacity, .22); transform: translate(calc(100vw + 10%), calc(-100vh - 10%)) rotate(45deg); }
+  89%, 100% { opacity: 0; transform: translate(calc(100vw + 10%), calc(-100vh - 10%)) rotate(45deg); }
+}
+@media (prefers-color-scheme: dark) {
+  .stamp-fly { --stamp-opacity: .22; --plane-opacity: .28; }
+}
+
+/* Stamps thud in one by one, then wiggle on hover */
+.pills .pill { opacity: 0; animation: stamp-in .45s cubic-bezier(.3, 1.6, .5, 1) forwards; }
+@keyframes stamp-in {
+  from { opacity: 0; transform: scale(1.6) rotate(-14deg); }
+  to { opacity: 1; transform: scale(1) rotate(var(--tilt, -1.5deg)); }
+}
+.pills .pill:nth-child(even) { --tilt: 1.5deg; }
+/* The wiggle is on the label, so leaving a stamp doesn't replay the thud */
+.stamp-ink { display: inline-block; }
+.pills .pill:hover .stamp-ink, .pills .pill:focus-visible .stamp-ink { animation: wiggle .5s ease-in-out; }
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0) scale(1.06); }
+  25% { transform: rotate(-5deg) scale(1.06); }
+  75% { transform: rotate(5deg) scale(1.06); }
+}
+
 /* Respect people who prefer less motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
+  .rise, .pills .pill { opacity: 1; }
+  .stamp-fly { display: none; }
 }
