@@ -1,0 +1,2787 @@
+{
+ "base": "https://visa-didi.vercel.app",
+ "ranAt": "2026-10-02T03:50:08.186Z",
+ "metrics": [
+  [
+   "Answer accuracy (covered + tricky)",
+   "100%",
+   "≥ 90%",
+   "32/32"
+  ],
+  [
+   "Citation accuracy (expected source cited)",
+   "100%",
+   "≥ 95%",
+   "27/27"
+  ],
+  [
+   "Honest refusal rate",
+   "100%",
+   "100%",
+   "8/8"
+  ],
+  [
+   "Unsupported numbers (official answers)",
+   "0",
+   "0",
+   "26 answers checked"
+  ],
+  [
+   "Response time p50 / p90",
+   "8.2s / 21.7s",
+   "< 5s",
+   "10/40 under 5s"
+  ]
+ ],
+ "results": [
+  {
+   "id": "TH1",
+   "ms": 10777,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "No, for a holiday you don't need a visa: Indian ordinary passport holders get a 30-day visa exemption for tourism and short-term business, effective from 15 September 2026 until further announcement.",
+    "details": [
+     {
+      "text": "The visa exemption covers tourism and short-term business engagements, for a stay not exceeding 30 days.",
+      "sources": [
+       "th-embassy-delhi"
+      ]
+     },
+     {
+      "text": "The exemption remains effective from 15 September 2026 until further announcement, so check before you fly.",
+      "sources": [
+       "th-embassy-delhi"
+      ]
+     },
+     {
+      "text": "If you want to stay longer, a Tourist visa (TR) is an option: single entry, 3 months validity, 60 days stay, 3,000 INR; or multiple entry, 6 months validity, 60 days stay per entry, 13,500 INR.",
+      "sources": [
+       "th-embassy-delhi"
+      ]
+     },
+     {
+      "text": "Since 1 January 2025, all visa applications must be made online at https://www.thaievisa.go.th.",
+      "sources": [
+       "th-embassy-delhi"
+      ]
+     }
+    ],
+    "notCovered": "The excerpts don't list the documents you'll need at the border under the visa exemption (e.g. passport validity, return ticket, funds).",
+    "sources": [
+     {
+      "id": "th-embassy-delhi",
+      "title": "Visa",
+      "authority": "Royal Thai Embassy, New Delhi",
+      "url": "https://newdelhi.thaiembassy.org/en/page/visa",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "TH2",
+   "ms": 11691,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "Yes. Indian ordinary passport holders can enter Thailand visa-free for up to 30 days for tourism and short-term business engagements, so a short business meeting is covered.",
+    "details": [
+     {
+      "text": "The 30-day visa exemption for Indian ordinary passport holders for tourism and short-term business engagements remains effective from 15 September 2026 until further announcement.",
+      "sources": [
+       "th-embassy-delhi"
+      ]
+     },
+     {
+      "text": "Your stay under the exemption must not exceed 30 days.",
+      "sources": [
+       "th-embassy-delhi"
+      ]
+     },
+     {
+      "text": "If you need a visa instead (for example, a longer stay), all applications go through the e-Visa website https://www.thaievisa.go.th, which has been in effect since 1 January 2025.",
+      "sources": [
+       "th-embassy-delhi"
+      ]
+     },
+     {
+      "text": "Example of a visa option: a single-entry Non-immigrant visa (which includes category B, Business) is valid for 3 months, allows 90 days per entry and costs 7,000 INR.",
+      "sources": [
+       "th-embassy-delhi"
+      ]
+     }
+    ],
+    "notCovered": "The excerpts don't list the documents or conditions you must show at the border to use the visa exemption. The embassy page links to more details, but those are not included here.",
+    "sources": [
+     {
+      "id": "th-embassy-delhi",
+      "title": "Visa",
+      "authority": "Royal Thai Embassy, New Delhi",
+      "url": "https://newdelhi.thaiembassy.org/en/page/visa",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "SG1",
+   "ms": 10583,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "Yes, as an ordinary Indian passport holder you need a valid visa to enter Singapore, whether for tourism or business. Only diplomatic, official and service passport holders are exempt.",
+    "details": [
+     {
+      "text": "India is on Singapore's list of countries whose travel document holders need a valid visa to enter.",
+      "sources": [
+       "sg-ica-requirements",
+       "sg-ica-india"
+      ]
+     },
+     {
+      "text": "You can apply online through a strategic partner or a local contact in Singapore, or at the nearest Singapore Overseas Mission or its authorised visa agent. You cannot apply at the immigration counters.",
+      "sources": [
+       "sg-ica-requirements",
+       "sg-ica-india"
+      ]
+     },
+     {
+      "text": "You are advised to apply within 30 days prior to arrival in Singapore.",
+      "sources": [
+       "sg-ica-india"
+      ]
+     },
+     {
+      "text": "For business or social visits you need: a signed Form 14A, a recent passport-sized colour photo taken within the last three months, and a photocopy of your passport biodata page.",
+      "sources": [
+       "sg-ica-india"
+      ]
+     },
+     {
+      "text": "Your passport must be valid for at least six months from the date of your entry into Singapore.",
+      "sources": [
+       "sg-ica-india"
+      ]
+     },
+     {
+      "text": "A visa does not guarantee entry. Your length of stay is set by the e-Pass issued at the checkpoint, not by your visa's validity.",
+      "sources": [
+       "sg-ica-requirements"
+      ]
+     },
+     {
+      "text": "The SG Arrival Card is not a visa. Give a valid email address on it, because your e-Pass is sent by email.",
+      "sources": [
+       "sg-ica-requirements"
+      ]
+     }
+    ],
+    "notCovered": "The sources don't mention the visa fee or processing time.",
+    "sources": [
+     {
+      "id": "sg-ica-requirements",
+      "title": "Visa requirements",
+      "authority": "Immigration & Checkpoints Authority, Singapore",
+      "url": "https://www.ica.gov.sg/enter-transit-depart/entering-singapore/visa_requirements",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     },
+     {
+      "id": "sg-ica-india",
+      "title": "Visa requirements — India",
+      "authority": "Immigration & Checkpoints Authority, Singapore",
+      "url": "https://www.ica.gov.sg/enter-transit-depart/entering-singapore/visa_requirements/visa-detail-page/india",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "SG2",
+   "ms": 7190,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "The Singapore entry visa has a S$30 non-refundable processing fee, and applications are processed within three working days (excluding the day of submission), though some may take longer.",
+    "details": [
+     {
+      "text": "Fee: S$30, non-refundable, paid online using a Visa or MasterCard credit/debit card.",
+      "sources": [
+       "sg-ica-india"
+      ]
+     },
+     {
+      "text": "Processing time: within three working days, not counting the day you submit. Some applications may take longer.",
+      "sources": [
+       "sg-ica-india"
+      ]
+     },
+     {
+      "text": "You are advised to apply within 30 days before you arrive in Singapore.",
+      "sources": [
+       "sg-ica-india"
+      ]
+     },
+     {
+      "text": "Indian passport holders do need a valid visa to enter Singapore.",
+      "sources": [
+       "sg-ica-requirements"
+      ]
+     }
+    ],
+    "notCovered": "The excerpts don't say whether an authorised visa agent or Singapore Overseas Mission charges any extra service fee on top of the S$30.",
+    "sources": [
+     {
+      "id": "sg-ica-india",
+      "title": "Visa requirements — India",
+      "authority": "Immigration & Checkpoints Authority, Singapore",
+      "url": "https://www.ica.gov.sg/enter-transit-depart/entering-singapore/visa_requirements/visa-detail-page/india",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     },
+     {
+      "id": "sg-ica-requirements",
+      "title": "Visa requirements",
+      "authority": "Immigration & Checkpoints Authority, Singapore",
+      "url": "https://www.ica.gov.sg/enter-transit-depart/entering-singapore/visa_requirements",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "MY1",
+   "ms": 6942,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "No, for now Indian citizens are visa exempt for Malaysia, until 31st December 2026.",
+    "details": [
+     {
+      "text": "The official note says: \"India** citizen: visa exempts until 31st December 2026.\" If you're travelling after that date, check again, because the exemption may change.",
+      "sources": [
+       "my-imi-by-country"
+      ]
+     },
+     {
+      "text": "India is not on the list of countries that don't need a visa for any purpose, so the exemption shouldn't be assumed to cover study or work. Those generally go through a Visa With Reference (VDR/eVDR) or Visa Approval Letter (eVAL).",
+      "sources": [
+       "my-imi-by-country"
+      ]
+     },
+     {
+      "text": "If you're arriving from a country at risk of yellow fever, you must show a Yellow Fever Vaccination Certificate on arrival. The country list is on the Ministry of Health Malaysia website.",
+      "sources": [
+       "my-imi-by-country"
+      ]
+     }
+    ],
+    "notCovered": "The excerpts don't say how long Indians can stay under the exemption, what documents are needed at entry, or what the '**' mark next to India means.",
+    "sources": [
+     {
+      "id": "my-imi-by-country",
+      "title": "Visa requirement by country",
+      "authority": "Immigration Department of Malaysia",
+      "url": "https://www.imi.gov.my/index.php/en/main-services/visa/visa-requirement-by-country/",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "MY2",
+   "ms": 7221,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "The visa exemption for Indian citizens visiting Malaysia is valid until 31st December 2026.",
+    "details": [
+     {
+      "text": "Malaysia's Immigration Department notes: \"India** citizen: visa exempts until 31st December 2026.\"",
+      "sources": [
+       "my-imi-by-country"
+      ]
+     },
+     {
+      "text": "Since this date could be extended or changed, check the Immigration Department of Malaysia's site closer to your travel date, especially if you're travelling near or after the end of 2026. More eVISA information is at https://malaysiavisa.imi.gov.my.",
+      "sources": [
+       "my-imi-by-country"
+      ]
+     }
+    ],
+    "notCovered": "The excerpts don't say how long Indians can stay per visit under the exemption, which trip purposes it covers, or what happens after 31st December 2026.",
+    "sources": [
+     {
+      "id": "my-imi-by-country",
+      "title": "Visa requirement by country",
+      "authority": "Immigration Department of Malaysia",
+      "url": "https://www.imi.gov.my/index.php/en/main-services/visa/visa-requirement-by-country/",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "ID1",
+   "ms": 21642,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "partial",
+    "shortAnswer": "You apply online through Indonesia's official e-Visa portal: choose a suitable visa, prepare the documents, pay the fee, and the visa is emailed to you once approved. The excerpt doesn't say which visa type applies to Indian passport holders.",
+    "details": [
+     {
+      "text": "Step 1: On the portal, explore and apply for a suitable visa, and have the required documents ready.",
+      "sources": [
+       "id-evisa"
+      ]
+     },
+     {
+      "text": "Step 2: Pay the visa fee by SIMPONI or by Mastercard, Visa or JCB credit/debit card.",
+      "sources": [
+       "id-evisa"
+      ]
+     },
+     {
+      "text": "Step 3: Once approved, a link to download the visa is sent to your email.",
+      "sources": [
+       "id-evisa"
+      ]
+     },
+     {
+      "text": "You can track your application status online.",
+      "sources": [
+       "id-evisa"
+      ]
+     },
+     {
+      "text": "An Electronic Visa on Arrival (e-VOA) application can be done for up to 5 people at the same time.",
+      "sources": [
+       "id-evisa"
+      ]
+     },
+     {
+      "text": "All travellers must submit an arrival card within 3 (three) days before arriving in Indonesia.",
+      "sources": [
+       "id-evisa"
+      ]
+     }
+    ],
+    "notCovered": "The excerpt doesn't confirm whether Indian passport holders are eligible for the e-VOA or which visa type they need. It also doesn't give the fee amount, processing time, length of stay, document list or passport validity rules.",
+    "sources": [
+     {
+      "id": "id-evisa",
+      "title": "Indonesia e-Visa portal",
+      "authority": "Directorate General of Immigration, Indonesia",
+      "url": "https://evisa.imigrasi.go.id/",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     },
+     {
+      "id": "https://blog.wego.com/indonesia-visa-for-indians/",
+      "title": "Indonesia Visa for Indians 2026: Types, Fees, and How to Apply - Wego Travel Blog",
+      "authority": "blog.wego.com",
+      "url": "https://blog.wego.com/indonesia-visa-for-indians/",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "web",
+      "official": false
+     }
+    ],
+    "officialLink": {
+     "label": "Indonesia (Bali) official site",
+     "url": "https://evisa.imigrasi.go.id/"
+    },
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en",
+    "webExtra": {
+     "shortAnswer": "Yes, you need a visa for Bali with an Indian passport, and the easiest option for most tourists is the e-VOA (electronic visa on arrival), which you apply for online before you travel.",
+     "details": [
+      {
+       "text": "The e-VOA lets you stay 30 days, and you can extend it once for another 30 days.",
+       "sources": [
+        "https://blog.wego.com/indonesia-visa-for-indians/"
+       ]
+      },
+      {
+       "text": "It costs IDR 500,000 (about ₹2,700), paid online by Visa, Mastercard or JCB credit card, and the extension costs the same.",
+       "sources": [
+        "https://blog.wego.com/indonesia-visa-for-indians/"
+       ]
+      },
+      {
+       "text": "You need a passport valid for at least 6 months from your arrival date with 2 blank pages, a passport-size photo and a confirmed return or onward ticket.",
+       "sources": [
+        "https://blog.wego.com/indonesia-visa-for-indians/"
+       ]
+      },
+      {
+       "text": "You upload your passport bio page and photo (JPG/PNG, max 200 KB each), then download the approved e-VOA from the portal, and a QR code is also emailed to you. My source didn't give a processing time.",
+       "sources": [
+        "https://blog.wego.com/indonesia-visa-for-indians/"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "ID2",
+   "ms": 6193,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "Yes, you need to submit an arrival card before you land in Indonesia. All travellers must submit it within 3 (three) days prior to arrival.",
+    "details": [
+     {
+      "text": "Arrival card submission is required for all travellers to Indonesia.",
+      "sources": [
+       "id-evisa"
+      ]
+     },
+     {
+      "text": "Submit it within 3 (three) days prior to your arrival in Indonesia.",
+      "sources": [
+       "id-evisa"
+      ]
+     }
+    ],
+    "notCovered": "The excerpt doesn't say exactly where or how to submit the arrival card, or whether there is any fee for it.",
+    "sources": [
+     {
+      "id": "id-evisa",
+      "title": "Indonesia e-Visa portal",
+      "authority": "Directorate General of Immigration, Indonesia",
+      "url": "https://evisa.imigrasi.go.id/",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "LK1",
+   "ms": 8515,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "Yes, you need to get an Electronic Travel Authorization (ETA) online before you arrive in Sri Lanka, because all foreign nationals need one, apart from listed exceptions that the excerpts don't spell out.",
+    "details": [
+     {
+      "text": "All foreign nationals (except a list not shown in the excerpts) must obtain an ETA prior to arrival in Sri Lanka.",
+      "sources": [
+       "lk-eta-info"
+      ]
+     },
+     {
+      "text": "You must apply for the ETA online. Alternative options also exist, but the excerpts don't describe them.",
+      "sources": [
+       "lk-eta-info"
+      ]
+     },
+     {
+      "text": "The ETA is issued by the Department of Immigration & Emigration, Baththaramulla, Sri Lanka.",
+      "sources": [
+       "lk-eta-info"
+      ]
+     },
+     {
+      "text": "From 25.05.2026, nationals of 40 countries get a free tourist ETA for 30 days, with double entry. On the second entry, only the balance of the 30 days is granted. ETA charges apply to all other countries.",
+      "sources": [
+       "lk-eta-info"
+      ]
+     },
+     {
+      "text": "The visa-on-arrival exemption without an ETA in the excerpts covers only diplomatic, official and service passport holders on official visits, and UN passport holders. It does not cover ordinary passport tourists.",
+      "sources": [
+       "lk-eta-info"
+      ]
+     }
+    ],
+    "notCovered": "The excerpts don't include the list of 40 free-ETA countries, so I can't tell whether India is on it, or whether you'll pay a fee. They also don't give the fee amount or the full list of exceptions.",
+    "sources": [
+     {
+      "id": "lk-eta-info",
+      "title": "ETA information centre",
+      "authority": "Department of Immigration & Emigration, Sri Lanka",
+      "url": "https://www.eta.gov.lk/slvisa/visainfo/center.jsp?locale=en_US",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "LK2",
+   "ms": 21749,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "partial",
+    "shortAnswer": "A free-of-charge tourist ETA is valid for 30 days, with double entry allowed. But it is only free for nationals of 40 listed countries, and that list isn't in the excerpts, so I can't confirm India is on it.",
+    "details": [
+     {
+      "text": "With effect from 25.05.2026, nationals of the 40 countries are eligible for a tourist visa (ETA) free of charge for a period of 30 days.",
+      "sources": [
+       "lk-eta-info"
+      ]
+     },
+     {
+      "text": "The free tourist ETA is valid for 30 days with double entry permitted, counted from the date of first arrival. On the second entry, you only get the balance of the 30 days.",
+      "sources": [
+       "lk-eta-info"
+      ]
+     },
+     {
+      "text": "Nationals of countries not on the list must pay ETA charges.",
+      "sources": [
+       "lk-eta-info"
+      ]
+     },
+     {
+      "text": "All foreign nationals, including those from the 40 countries, must get an ETA online before arriving in Sri Lanka.",
+      "sources": [
+       "lk-eta-info"
+      ]
+     }
+    ],
+    "notCovered": "The list of 40 countries isn't included in the excerpts, so I can't confirm whether Indian passport holders get the ETA free. The excerpts also don't give the stay length or fees for a paid ETA, or whether a stay can be extended.",
+    "sources": [
+     {
+      "id": "lk-eta-info",
+      "title": "ETA information centre",
+      "authority": "Department of Immigration & Emigration, Sri Lanka",
+      "url": "https://www.eta.gov.lk/slvisa/visainfo/center.jsp?locale=en_US",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     },
+     {
+      "id": "https://www.khaleejtimes.com/world/asia/sri-lanka-free-tourist-visa-eta-40-countries-uae-india-pakistan",
+      "title": "Sri Lanka announces free tourist ETA for nationals of UAE, India, Pakistan, 37 countries",
+      "authority": "khaleejtimes.com",
+      "url": "https://www.khaleejtimes.com/world/asia/sri-lanka-free-tourist-visa-eta-40-countries-uae-india-pakistan",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "web",
+      "official": false
+     },
+     {
+      "id": "https://discover.passportindex.org/policy-and-regulations/sri-lanka-to-offer-free-visas-to-40-countries-with-eta-still-required/",
+      "title": "Sri Lanka to Offer Free Visas to 40 Countries, with ETA Still Required - Passe/Port",
+      "authority": "discover.passportindex.org",
+      "url": "https://discover.passportindex.org/policy-and-regulations/sri-lanka-to-offer-free-visas-to-40-countries-with-eta-still-required/",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "web",
+      "official": false
+     }
+    ],
+    "officialLink": {
+     "label": "Sri Lanka official site",
+     "url": "https://www.eta.gov.lk/slvisa/"
+    },
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en",
+    "webExtra": {
+     "shortAnswer": "Indian passport holders are among the 40 nationalities that get a free tourist ETA for Sri Lanka, and it lets you stay for 30 days.",
+     "details": [
+      {
+       "text": "You can enter Sri Lanka twice within those 30 days, counted from the date you first arrive.",
+       "sources": [
+        "https://www.khaleejtimes.com/world/asia/sri-lanka-free-tourist-visa-eta-40-countries-uae-india-pakistan"
+       ]
+      },
+      {
+       "text": "If you want to stay longer than 30 days, you have to apply for a visa extension and pay the visa fee for it.",
+       "sources": [
+        "https://www.khaleejtimes.com/world/asia/sri-lanka-free-tourist-visa-eta-40-countries-uae-india-pakistan"
+       ]
+      },
+      {
+       "text": "The visa is free, but you still need to get the ETA before you travel.",
+       "sources": [
+        "https://discover.passportindex.org/policy-and-regulations/sri-lanka-to-offer-free-visas-to-40-countries-with-eta-still-required/"
+       ]
+      },
+      {
+       "text": "These are news sources, not the official site, and their dates don't match: one says the free ETA started on May 25, while the other says Parliament approved it on May 7, 2026 with no start date yet, so check eta.gov.lk before you fly.",
+       "sources": [
+        "https://discover.passportindex.org/policy-and-regulations/sri-lanka-to-offer-free-visas-to-40-countries-with-eta-still-required/"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "AE1",
+   "ms": 5948,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "You need a bank balance of 4,000 USD or its equivalent in foreign currencies during the last six months for the UAE 5-year multiple entry tourist visa.",
+    "details": [
+     {
+      "text": "Bank balance: 4,000 USD or its equivalent in foreign currencies during the last six months.",
+      "sources": [
+       "ae-tourist-visa"
+      ]
+     },
+     {
+      "text": "You also need a valid health insurance policy applicable in the UAE, valid for 180 days, and a ticket showing a continuing or return journey from the UAE.",
+      "sources": [
+       "ae-tourist-visa"
+      ]
+     },
+     {
+      "text": "This visa can be issued for all nationalities, so it applies to Indian passport holders too. It lets you stay 90 days on each visit, extendable for a further 90 days.",
+      "sources": [
+       "ae-tourist-visa"
+      ]
+     },
+     {
+      "text": "You can apply online through ICP or GDRFA Dubai.",
+      "sources": [
+       "ae-tourist-visa"
+      ]
+     }
+    ],
+    "sources": [
+     {
+      "id": "ae-tourist-visa",
+      "title": "Tourist visa",
+      "authority": "UAE Government portal (u.ae)",
+      "url": "https://u.ae/en/information-and-services/visa-and-emirates-id/Types-of-visas/tourist-visa",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "AE2",
+   "ms": 5861,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "With the multiple entry 5-year tourist visa, you can stay in the UAE for 90 days on each visit, and this can be extended for a further 90 days.",
+    "details": [
+     {
+      "text": "You can enter the UAE multiple times on self-sponsorship and stay 90 days per visit, extendable for a further 90 days.",
+      "sources": [
+       "ae-tourist-visa"
+      ]
+     },
+     {
+      "text": "This visa can be issued for all nationalities, so it applies to Indian passport holders too.",
+      "sources": [
+       "ae-tourist-visa"
+      ]
+     },
+     {
+      "text": "To get it, you need: a bank balance of 4,000 USD or its equivalent in foreign currencies during the last six months; a valid health insurance policy applicable in the UAE, valid for 180 days; and a ticket showing a continuing or return journey from the UAE.",
+      "sources": [
+       "ae-tourist-visa"
+      ]
+     },
+     {
+      "text": "You can apply online through ICP or GDRFA Dubai.",
+      "sources": [
+       "ae-tourist-visa"
+      ]
+     }
+    ],
+    "sources": [
+     {
+      "id": "ae-tourist-visa",
+      "title": "Tourist visa",
+      "authority": "UAE Government portal (u.ae)",
+      "url": "https://u.ae/en/information-and-services/visa-and-emirates-id/Types-of-visas/tourist-visa",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "JP1",
+   "ms": 1037,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "lang": "en",
+    "mode": "ai",
+    "details": [
+     {
+      "text": "From 1 July 2026, the visa fee for Indian nationals is 500 INR for a single or multiple visa.",
+      "sources": [
+       "jp-embassy-visa"
+      ]
+     },
+     {
+      "text": "A VFS Service Fee is also charged on top of the visa fee. The excerpts don't state the amount.",
+      "sources": [
+       "jp-embassy-visa"
+      ]
+     },
+     {
+      "text": "Transit visas are abolished.",
+      "sources": [
+       "jp-embassy-visa"
+      ]
+     },
+     {
+      "text": "Beware of fraud: the only payments are the visa fee and the service charge. The Embassy will never ask for payment by phone or e-mail.",
+      "sources": [
+       "jp-embassy-visa"
+      ]
+     }
+    ],
+    "sources": [
+     {
+      "id": "jp-embassy-visa",
+      "url": "https://www.in.emb-japan.go.jp/itpr_en/visa.html",
+      "stale": false,
+      "title": "Visa information",
+      "manual": false,
+      "origin": "stored",
+      "official": true,
+      "authority": "Embassy of Japan in India",
+      "lastVerified": "2026-10-01",
+      "recentlyUpdated": false
+     }
+    ],
+    "notCovered": "The exact amount of the VFS Service Fee is not given in the excerpts.",
+    "verifyLine": true,
+    "shortAnswer": "For Indian nationals, a Japan visa (single or multiple) costs 500 INR, plus a VFS Service Fee."
+   }
+  },
+  {
+   "id": "JP2",
+   "ms": 9043,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "Japan's foreign ministry says processing takes approximately one week if all requirements are met, but the Embassy of Japan in India warns that processing times can vary significantly due to high application volumes, so apply well in advance.",
+    "details": [
+     {
+      "text": "Processing takes approximately one week, provided all necessary requirements are met. It can take longer if additional documents are needed or if the mission needs to consult the Ministry of Foreign Affairs in Tokyo.",
+      "sources": [
+       "jp-mofa-visa"
+      ]
+     },
+     {
+      "text": "For applications in India, processing times can vary significantly due to increased application volume, and the process cannot be expedited or prioritised to suit your travel schedule.",
+      "sources": [
+       "jp-embassy-visa"
+      ]
+     },
+     {
+      "text": "Applications are accepted from 3 months prior to the travel date, and all applicants are asked to plan well in advance. You submit through VFS (no prior appointment needed).",
+      "sources": [
+       "jp-embassy-visa"
+      ]
+     },
+     {
+      "text": "The visa fee for Indian nationals (from 1 July 2026) is 500 INR for a single or multiple visa, plus the VFS Service Fee.",
+      "sources": [
+       "jp-embassy-visa"
+      ]
+     },
+     {
+      "text": "The Embassy does not take enquiries about application status. Beware of fraud: the Embassy will never ask for payment by phone or email to expedite your visa.",
+      "sources": [
+       "jp-embassy-visa"
+      ]
+     }
+    ],
+    "notCovered": "The sources don't give a specific processing time for the JAPAN eVISA route in India.",
+    "sources": [
+     {
+      "id": "jp-mofa-visa",
+      "title": "Visa",
+      "authority": "Ministry of Foreign Affairs of Japan",
+      "url": "https://www.mofa.go.jp/j_info/visit/visa/index.html",
+      "lastVerified": "2026-10-01",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     },
+     {
+      "id": "jp-embassy-visa",
+      "title": "Visa information",
+      "authority": "Embassy of Japan in India",
+      "url": "https://www.in.emb-japan.go.jp/itpr_en/visa.html",
+      "lastVerified": "2026-10-01",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "SC1",
+   "ms": 5462,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "The normal processing time for a Schengen visa is 15 days, but it can be extended to up to 45 days if a more detailed examination or extra documents are needed.",
+    "details": [
+     {
+      "text": "Normal processing time is 15 days.",
+      "sources": [
+       "eu-applying"
+      ]
+     },
+     {
+      "text": "This can stretch to up to 45 days if your application needs a more detailed examination and/or additional documents.",
+      "sources": [
+       "eu-applying"
+      ]
+     },
+     {
+      "text": "Apply at least 15 days before your intended journey and no earlier than 6 months beforehand, so leave yourself a buffer in case of delays.",
+      "sources": [
+       "eu-applying"
+      ]
+     },
+     {
+      "text": "You may have to book an appointment before you can lodge the application.",
+      "sources": [
+       "eu-applying"
+      ]
+     }
+    ],
+    "sources": [
+     {
+      "id": "eu-applying",
+      "title": "Applying for a Schengen visa",
+      "authority": "European Commission — Migration and Home Affairs",
+      "url": "https://home-affairs.ec.europa.eu/policies/schengen-borders-and-visa/visa-policy/applying-schengen-visa_en",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "SC2",
+   "ms": 8625,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "A Schengen visa lets you stay up to 90 days in any 180-day period across the Schengen area. Longer stays need a national visa from the specific country.",
+    "details": [
+     {
+      "text": "You can stay a total of 90 days in any 180-day period. The 180-day period starts when you enter a Schengen country, and you can enter as many times as your visa allows, but the total stay cannot go over 90 days.",
+      "sources": [
+       "eu-visa-policy",
+       "eu-applying"
+      ]
+     },
+     {
+      "text": "A single-entry visa lets you enter once. A multiple-entry visa allows several visits for as long as the visa is valid.",
+      "sources": [
+       "eu-applying"
+      ]
+     },
+     {
+      "text": "A Schengen visa is generally valid for every country in the Schengen area.",
+      "sources": [
+       "eu-visa-policy"
+      ]
+     },
+     {
+      "text": "Stays longer than 90 days fall under national procedures, not the Schengen visa.",
+      "sources": [
+       "eu-visa-policy"
+      ]
+     },
+     {
+      "text": "The official short-stay calculator can help you work out how many days you have left.",
+      "sources": [
+       "eu-applying"
+      ]
+     },
+     {
+      "text": "Your passport should expire at least 3 months after you leave the Schengen area. For multiple-entry visas, it should expire at least 3 months after you leave the last country you visit.",
+      "sources": [
+       "eu-applying"
+      ]
+     }
+    ],
+    "notCovered": "The sources do not say exactly how many days a particular visa will be issued for. That is decided by the issuing consulate.",
+    "sources": [
+     {
+      "id": "eu-visa-policy",
+      "title": "Visa policy",
+      "authority": "European Commission — Migration and Home Affairs",
+      "url": "https://home-affairs.ec.europa.eu/policies/schengen-borders-and-visa/visa-policy_en",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     },
+     {
+      "id": "eu-applying",
+      "title": "Applying for a Schengen visa",
+      "authority": "European Commission — Migration and Home Affairs",
+      "url": "https://home-affairs.ec.europa.eu/policies/schengen-borders-and-visa/visa-policy/applying-schengen-visa_en",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "UK1",
+   "ms": 8193,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "A standard UK Standard Visitor visa costs £135 and lets you stay up to 6 months. If you visit often, there are long-term options that cost more.",
+    "details": [
+     {
+      "text": "Standard Visitor visa: £135, maximum stay 6 months.",
+      "sources": [
+       "uk-apply",
+       "uk-standard-visitor"
+      ]
+     },
+     {
+      "text": "Standard Visitor visa for medical reasons: £234, maximum stay 11 months.",
+      "sources": [
+       "uk-apply"
+      ]
+     },
+     {
+      "text": "Standard Visitor visa for academics: £234, maximum stay 12 months.",
+      "sources": [
+       "uk-apply"
+      ]
+     },
+     {
+      "text": "Long-term Standard Visitor visas: 2 year £506, 5 year £903, 10 year £1,128. Each allows up to 6 months per visit.",
+      "sources": [
+       "uk-apply"
+      ]
+     },
+     {
+      "text": "If you're only passing through the UK, a Visitor in Transit visa costs £74.50.",
+      "sources": [
+       "uk-standard-visitor"
+      ]
+     },
+     {
+      "text": "If family members travel with you, each person needs their own application and must pay the fee.",
+      "sources": [
+       "uk-apply"
+      ]
+     },
+     {
+      "text": "You apply online, and the earliest you can apply is 3 months before you travel.",
+      "sources": [
+       "uk-standard-visitor",
+       "uk-apply"
+      ]
+     }
+    ],
+    "notCovered": "The excerpts don't say whether Indian passport holders need a visa or an ETA instead, and they don't mention any extra service charges at visa application centres.",
+    "sources": [
+     {
+      "id": "uk-apply",
+      "title": "Apply for a Standard Visitor visa",
+      "authority": "UK Government (GOV.UK)",
+      "url": "https://www.gov.uk/standard-visitor/apply-standard-visitor-visa",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     },
+     {
+      "id": "uk-standard-visitor",
+      "title": "Visit the UK as a Standard Visitor",
+      "authority": "UK Government (GOV.UK)",
+      "url": "https://www.gov.uk/standard-visitor",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "UK2",
+   "ms": 6875,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "Yes, attending meetings is a permitted business activity for a Standard Visitor, as long as you're not paid by a UK-based organisation or client for it.",
+    "details": [
+     {
+      "text": "As a Standard Visitor you can attend interviews, meetings, conferences and seminars, and negotiate and sign deals and contracts, if you're not paid by a UK-based organisation or client.",
+      "sources": [
+       "uk-visit-business"
+      ]
+     },
+     {
+      "text": "You can visit the UK as a Standard Visitor for business for up to 6 months.",
+      "sources": [
+       "uk-visit-business"
+      ]
+     },
+     {
+      "text": "You cannot do paid or unpaid work for a UK company or as a self-employed person (unless it's a permitted paid engagement). For any other work you'd need a work visa.",
+      "sources": [
+       "uk-visit-business",
+       "uk-standard-visitor"
+      ]
+     },
+     {
+      "text": "If you need a Standard Visitor visa, it costs £135 for up to 6 months. You must apply online before you travel and attend an appointment at a visa application centre. The earliest you can apply is 3 months before you travel.",
+      "sources": [
+       "uk-apply",
+       "uk-standard-visitor"
+      ]
+     }
+    ],
+    "notCovered": "The excerpts don't say whether Indian passport holders need a visa, need an ETA, or can visit without either. They only say this depends on nationality, so please check on GOV.UK.",
+    "sources": [
+     {
+      "id": "uk-visit-business",
+      "title": "Standard Visitor — visit on business",
+      "authority": "UK Government (GOV.UK)",
+      "url": "https://www.gov.uk/standard-visitor/visit-on-business",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     },
+     {
+      "id": "uk-standard-visitor",
+      "title": "Visit the UK as a Standard Visitor",
+      "authority": "UK Government (GOV.UK)",
+      "url": "https://www.gov.uk/standard-visitor",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     },
+     {
+      "id": "uk-apply",
+      "title": "Apply for a Standard Visitor visa",
+      "authority": "UK Government (GOV.UK)",
+      "url": "https://www.gov.uk/standard-visitor/apply-standard-visitor-visa",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "US1",
+   "ms": 8192,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": false,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "Book your visa interview at the U.S. Embassy or a U.S. Consulate in your country of residence or nationality. For most Indian passport holders living in India, that means New Delhi, Mumbai, Chennai, Hyderabad or Kolkata.",
+    "details": [
+     {
+      "text": "Nonimmigrant visa applicants should schedule their interview at the U.S. Embassy or Consulate in their country of residence or nationality.",
+      "sources": [
+       "us-embassy-india"
+      ]
+     },
+     {
+      "text": "Posts in India: U.S. Embassy New Delhi (Shantipath, Chanakyapuri), and U.S. Consulates General in Mumbai (Bandra Kurla Complex), Chennai (Gemini Circle), Hyderabad (Financial District, Nanakramguda) and Kolkata (Ho Chi Minh Sarani).",
+      "sources": [
+       "us-embassy-india"
+      ]
+     },
+     {
+      "text": "When booking, you or your representative must submit a properly completed DS-160 form (online visa application).",
+      "sources": [
+       "us-embassy-india"
+      ]
+     },
+     {
+      "text": "Visa application fees are non-refundable and non-transferable.",
+      "sources": [
+       "us-embassy-india"
+      ]
+     },
+     {
+      "text": "If you need an earlier date, you can request an expedited appointment through the online appointment system, but only after you already have a confirmed interview date. Slots are very limited. Don't cancel your existing appointment unless your expedite request is approved.",
+      "sources": [
+       "us-embassy-india"
+      ]
+     },
+     {
+      "text": "For booking help, email support-india@usvisascheduling.com (the fastest way) or call +91 20 69020000.",
+      "sources": [
+       "us-embassy-india"
+      ]
+     }
+    ],
+    "notCovered": "The sources don't say how to pick between the five Indian posts (for example, by the state you live in), and they don't give current wait times at each location.",
+    "sources": [
+     {
+      "id": "us-embassy-india",
+      "title": "Visas",
+      "authority": "U.S. Embassy & Consulates in India",
+      "url": "https://in.usembassy.gov/visas/",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "US2",
+   "ms": 4872,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": false,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "No, US visa application fees are non-refundable and non-transferable.",
+    "details": [
+     {
+      "text": "The U.S. Embassy states that visa application fees are non-refundable and non-transferable, so make sure you're ready before you pay.",
+      "sources": [
+       "us-embassy-india"
+      ]
+     },
+     {
+      "text": "For more information, the embassy points to travel.state.gov.",
+      "sources": [
+       "us-embassy-india"
+      ]
+     }
+    ],
+    "notCovered": "The sources do not give the fee amounts.",
+    "sources": [
+     {
+      "id": "us-embassy-india",
+      "title": "Visas",
+      "authority": "U.S. Embassy & Consulates in India",
+      "url": "https://in.usembassy.gov/visas/",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "VN1",
+   "ms": 21214,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": null,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": false,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "Yes. Indians need a visa to enter Vietnam, by air, land or sea. The easiest option is the e-visa, which you apply for online through the government's e-visa portal.",
+    "details": [
+     {
+      "text": "The e-visa lets you stay up to 90 days, and you can choose single or multiple entry.",
+      "sources": [
+       "https://www.goindigo.in/information/visa-information/vietnam-vn-visa.html"
+      ]
+     },
+     {
+      "text": "Your passport must be valid for at least 6 months after the day you arrive and have at least 2 blank visa pages.",
+      "sources": [
+       "https://www.myvietnamvisa.com/visa-requirements/india.html"
+      ]
+     },
+     {
+      "text": "A visa agency site says fees start from about USD 25 (around ₹2,045) and processing takes 3 to 7 working days, so check the official portal for the current fee.",
+      "sources": [
+       "https://www.myvietnamvisa.com/visa-requirements/india.html"
+      ]
+     },
+     {
+      "text": "If you prefer, you can also apply at the Vietnamese Embassy or a Consulate General in India.",
+      "sources": [
+       "https://www.vietnam-briefing.com/news/vietnam-visa-indian-tourists-guide.html/"
+      ]
+     }
+    ],
+    "sources": [
+     {
+      "id": "https://www.vietnam-briefing.com/news/vietnam-visa-indian-tourists-guide.html/",
+      "title": "Vietnam's Visa for Indian Tourists: A Brief Guide",
+      "authority": "vietnam-briefing.com",
+      "url": "https://www.vietnam-briefing.com/news/vietnam-visa-indian-tourists-guide.html/",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "web",
+      "official": false
+     },
+     {
+      "id": "https://www.goindigo.in/information/visa-information/vietnam-vn-visa.html",
+      "title": "Vietnam Visa - Requirements for Indians, How to apply, Types, Guidelines",
+      "authority": "goindigo.in",
+      "url": "https://www.goindigo.in/information/visa-information/vietnam-vn-visa.html",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "web",
+      "official": false
+     },
+     {
+      "id": "https://www.myvietnamvisa.com/visa-requirements/india.html",
+      "title": "Vietnam Visa / e-Visa for Indian Citizens",
+      "authority": "myvietnamvisa.com",
+      "url": "https://www.myvietnamvisa.com/visa-requirements/india.html",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "web",
+      "official": false
+     }
+    ],
+    "officialLink": {
+     "label": "Vietnam official site",
+     "url": "https://evisa.gov.vn/"
+    },
+    "mode": "web",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "VN2",
+   "ms": 14673,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": null,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": false,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "Apply online only on Vietnam's official e-visa portal, https://evisa.gov.vn (its other official address is https://thithucdientu.gov.vn). The Vietnam Embassy in India says every other website is invalid.",
+    "details": [
+     {
+      "text": "Since 11 November 2024 the portal has run on these two new web addresses, and you both apply and check your result there.",
+      "sources": [
+       "https://evisa.xuatnhapcanh.gov.vn/trang-chu-ttdt"
+      ]
+     },
+     {
+      "text": "You can check your result at https://evisa.gov.vn/e-visa/search.",
+      "sources": [
+       "https://vietnamembassydelhi.in/e-visa-application/"
+      ]
+     },
+     {
+      "text": "The e-visa lasts up to 90 days and can be single or multiple entry.",
+      "sources": [
+       "https://vietnamembassydelhi.in/e-visa-application/"
+      ]
+     },
+     {
+      "text": "Your passport must still be valid for at least 6 months after the day you arrive.",
+      "sources": [
+       "https://vietnamembassydelhi.in/e-visa-application/"
+      ]
+     }
+    ],
+    "sources": [
+     {
+      "id": "https://vietnamembassydelhi.in/e-visa-application/",
+      "title": "E- VISA - Vietnam Embassy in India",
+      "authority": "vietnamembassydelhi.in",
+      "url": "https://vietnamembassydelhi.in/e-visa-application/",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "web",
+      "official": true
+     },
+     {
+      "id": "https://evisa.xuatnhapcanh.gov.vn/trang-chu-ttdt",
+      "title": "Vietnam evisa - National portal on Immigration",
+      "authority": "evisa.xuatnhapcanh.gov.vn",
+      "url": "https://evisa.xuatnhapcanh.gov.vn/trang-chu-ttdt",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "web",
+      "official": true
+     }
+    ],
+    "officialLink": {
+     "label": "Vietnam official site",
+     "url": "https://evisa.gov.vn/"
+    },
+    "mode": "web",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "AU1",
+   "ms": 20423,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": null,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": false,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "As an Indian passport holder, you need the Australia Visitor Visa (Subclass 600) for a tourist trip.",
+    "details": [
+     {
+      "text": "You can use this visa for tourism, visiting family or friends, or limited business activities, but you cannot work or study on it.",
+      "sources": [
+       "https://www.aussizzgroup.com/india/blog/how-to-apply-australia-visitor-visa-from-india-subclass-600"
+      ]
+     },
+     {
+      "text": "You may be allowed to stay for up to 3, 6 or 12 months, depending on your purpose and eligibility.",
+      "sources": [
+       "https://www.y-axis.com/visa/visit/australia/"
+      ]
+     },
+     {
+      "text": "Australia's Department of Home Affairs checks whether you really plan to visit only for a short time and leave before your visa ends, so explain your travel purpose clearly.",
+      "sources": [
+       "https://www.aussizzgroup.com/india/blog/how-to-apply-australia-visitor-visa-from-india-subclass-600"
+      ]
+     },
+     {
+      "text": "One visa agency says the fee starts at AUD 200 and processing takes 20 to 45 days, but please confirm the current fee on the official Home Affairs website because I couldn't check it there.",
+      "sources": [
+       "https://www.y-axis.com/visa/visit/australia/"
+      ]
+     }
+    ],
+    "sources": [
+     {
+      "id": "https://www.aussizzgroup.com/india/blog/how-to-apply-australia-visitor-visa-from-india-subclass-600",
+      "title": "How to Apply for Australia Visitor Visa from India (Subclass 600)",
+      "authority": "aussizzgroup.com",
+      "url": "https://www.aussizzgroup.com/india/blog/how-to-apply-australia-visitor-visa-from-india-subclass-600",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "web",
+      "official": false
+     },
+     {
+      "id": "https://www.y-axis.com/visa/visit/australia/",
+      "title": "Australia Tourist Visa for Indians",
+      "authority": "y-axis.com",
+      "url": "https://www.y-axis.com/visa/visit/australia/",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "web",
+      "official": false
+     }
+    ],
+    "officialLink": {
+     "label": "Australia official site",
+     "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/visitor-600"
+    },
+    "mode": "web",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "AU2",
+   "ms": 14077,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": null,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": false,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "Yes. Indian passport holders can attend business meetings in Australia on the Visitor visa (subclass 600) – Business Visitor stream.",
+    "details": [
+     {
+      "text": "On this visa you can make general business enquiries, and you can negotiate, sign or review a business contract.",
+      "sources": [
+       "https://immi.homeaffairs.gov.au/form-listing/forms/1415.pdf"
+      ]
+     },
+     {
+      "text": "You can also attend a conference, trade fair or seminar, but the organisers can't pay you to take part. You can do tourist activities too.",
+      "sources": [
+       "https://immi.homeaffairs.gov.au/form-listing/forms/1415.pdf"
+      ]
+     },
+     {
+      "text": "You can't work for or provide services to a business based in Australia, and you can't sell goods or services directly to the public.",
+      "sources": [
+       "https://immi.homeaffairs.gov.au/form-listing/forms/1415.pdf"
+      ]
+     },
+     {
+      "text": "Most people apply online through ImmiAccount.",
+      "sources": [
+       "https://immi.homeaffairs.gov.au/form-listing/forms/1415.pdf"
+      ]
+     }
+    ],
+    "sources": [
+     {
+      "id": "https://immi.homeaffairs.gov.au/form-listing/forms/1415.pdf",
+      "title": "1415 - Application for a Visitor visa - Immigration and citizenship",
+      "authority": "immi.homeaffairs.gov.au",
+      "url": "https://immi.homeaffairs.gov.au/form-listing/forms/1415.pdf",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "web",
+      "official": true
+     }
+    ],
+    "officialLink": {
+     "label": "Australia official site",
+     "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/visitor-600"
+    },
+    "mode": "web",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "X1",
+   "ms": 7740,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "Your passport should expire at least 3 months after the date you leave the Schengen area. For a multiple-entry visa, it should expire at least 3 months after you leave the last country you visit.",
+    "details": [
+     {
+      "text": "Single-entry trip: passport expiry date at least 3 months after your departure from the Schengen area.",
+      "sources": [
+       "eu-applying"
+      ]
+     },
+     {
+      "text": "Multiple-entry visa: passport expiry date at least 3 months after your departure from the last Schengen country you visit.",
+      "sources": [
+       "eu-applying"
+      ]
+     },
+     {
+      "text": "Consulates may also ask for additional documents, so check with the consulate where you apply.",
+      "sources": [
+       "eu-applying"
+      ]
+     }
+    ],
+    "notCovered": "The excerpts don't say how recently the passport must have been issued or how many blank pages it needs.",
+    "sources": [
+     {
+      "id": "eu-applying",
+      "title": "Applying for a Schengen visa",
+      "authority": "European Commission — Migration and Home Affairs",
+      "url": "https://home-affairs.ec.europa.eu/policies/schengen-borders-and-visa/visa-policy/applying-schengen-visa_en",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "X2",
+   "ms": 7475,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "No — as a Standard Visitor you cannot do paid or unpaid work for a UK company or client, unless it is a 'permitted paid engagement' as an expert in your profession. For any other paid work you'd need a work visa.",
+    "details": [
+     {
+      "text": "Standard Visitors cannot do paid or unpaid work for a UK company or as a self-employed person, unless it's a permitted paid engagement or event.",
+      "sources": [
+       "uk-standard-visitor"
+      ]
+     },
+     {
+      "text": "Business activities like meetings, conferences, negotiating and signing deals, site visits and inspections are allowed only if you're not paid by a UK-based organisation or client.",
+      "sources": [
+       "uk-visit-business"
+      ]
+     },
+     {
+      "text": "The exception: if you're visiting as an expert in your profession to do a permitted paid engagement (for example, giving lectures or performing), you can be paid.",
+      "sources": [
+       "uk-visit-business",
+       "uk-standard-visitor"
+      ]
+     },
+     {
+      "text": "For any other paid or unpaid work in the UK, you'll need to apply for a work visa.",
+      "sources": [
+       "uk-visit-business"
+      ]
+     }
+    ],
+    "notCovered": "The excerpts don't list which specific engagements count as a 'permitted paid engagement' or give the rules for work visas.",
+    "sources": [
+     {
+      "id": "uk-visit-business",
+      "title": "Standard Visitor — visit on business",
+      "authority": "UK Government (GOV.UK)",
+      "url": "https://www.gov.uk/standard-visitor/visit-on-business",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     },
+     {
+      "id": "uk-standard-visitor",
+      "title": "Visit the UK as a Standard Visitor",
+      "authority": "UK Government (GOV.UK)",
+      "url": "https://www.gov.uk/standard-visitor",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "X3",
+   "ms": 25716,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "partial",
+    "shortAnswer": "A Standard Visitor visa costs £135 and lets you stay up to 6 months. One correction: these excerpts don't actually confirm whether Indian passport holders need a visa, an ETA, or neither, so please check that on GOV.UK before applying.",
+    "details": [
+     {
+      "text": "Standard Visitor visa: £135, maximum stay 6 months.",
+      "sources": [
+       "uk-apply"
+      ]
+     },
+     {
+      "text": "If you visit regularly, there are long-term Standard Visitor visas: 2 year £506, 5 year £903, 10 year £1,128. Each allows a maximum of 6 months per visit.",
+      "sources": [
+       "uk-apply"
+      ]
+     },
+     {
+      "text": "If family members are travelling with you, each person needs their own application and must pay the fee.",
+      "sources": [
+       "uk-apply"
+      ]
+     },
+     {
+      "text": "You won't get the fee back if your application is refused or you're given a shorter visa than you asked for.",
+      "sources": [
+       "uk-apply"
+      ]
+     },
+     {
+      "text": "If you cancel, you only get a refund if your application hasn't been processed yet.",
+      "sources": [
+       "uk-apply"
+      ]
+     }
+    ],
+    "notCovered": "The excerpts say visa needs depend on nationality, but they don't list which nationalities need a visa, need an ETA, or need neither. So they don't confirm whether Indian passport holders need a Standard Visitor visa. My earlier answer stated this too confidently. They also don't give ETA fees or processing times.",
+    "sources": [
+     {
+      "id": "uk-apply",
+      "title": "Apply for a Standard Visitor visa",
+      "authority": "UK Government (GOV.UK)",
+      "url": "https://www.gov.uk/standard-visitor/apply-standard-visitor-visa",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     },
+     {
+      "id": "https://www.zurichkotak.com/knowledge-center/travel-insurance/uk-tourist-visa-for-indians",
+      "title": "UK Tourist Visa for Indians: Fees and Timeline",
+      "authority": "zurichkotak.com",
+      "url": "https://www.zurichkotak.com/knowledge-center/travel-insurance/uk-tourist-visa-for-indians",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "web",
+      "official": false
+     },
+     {
+      "id": "https://www.business-standard.com/finance/personal-finance/uk-visa-fee-hike-from-april-6-month-visa-to-cost-rs-13-400-for-indians-125040100431_1.html",
+      "title": "UK visa fee hike from April: 6-month visa to cost Rs 13,400 for Indians",
+      "authority": "business-standard.com",
+      "url": "https://www.business-standard.com/finance/personal-finance/uk-visa-fee-hike-from-april-6-month-visa-to-cost-rs-13-400-for-indians-125040100431_1.html",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "web",
+      "official": false
+     }
+    ],
+    "officialLink": {
+     "label": "UK official site",
+     "url": "https://www.gov.uk/standard-visitor"
+    },
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en",
+    "webExtra": {
+     "shortAnswer": "The latest source I found says a UK Standard Visitor visa for Indians costs £135 for a stay of up to six months, a price that applies from April 2026. Please check GOV.UK before you pay, because the fee has gone up more than once.",
+     "details": [
+      {
+       "text": "Indian passport holders can't use the UK ETA (Electronic Travel Authorisation), so you do need the Standard Visitor visa, and you don't need to look at ETA fees.",
+       "sources": [
+        "https://www.zurichkotak.com/knowledge-center/travel-insurance/uk-tourist-visa-for-indians"
+       ]
+      },
+      {
+       "text": "A decision usually takes about three weeks, and you can pay extra for faster priority processing.",
+       "sources": [
+        "https://www.zurichkotak.com/knowledge-center/travel-insurance/uk-tourist-visa-for-indians"
+       ]
+      },
+      {
+       "text": "An older report says the fee went from £115 to £127 on 1 April 2025, so you may see that lower figure on older pages.",
+       "sources": [
+        "https://www.business-standard.com/finance/personal-finance/uk-visa-fee-hike-from-april-6-month-visa-to-cost-rs-13-400-for-indians-125040100431_1.html"
+       ]
+      },
+      {
+       "text": "Travel insurance isn't required for the visa, but it's still a good idea because medical treatment in the UK is expensive.",
+       "sources": [
+        "https://www.zurichkotak.com/knowledge-center/travel-insurance/uk-tourist-visa-for-indians"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "X4",
+   "ms": 9334,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "हाँ, ordinary Indian passport पर सिंगापुर जाने के लिए आपको वीज़ा चाहिए। सिर्फ diplomatic, official और service passport वालों को वीज़ा नहीं चाहिए।",
+    "details": [
+     {
+      "text": "भारत उन देशों की सूची में है जिनके travel document वालों को सिंगापुर में entry के लिए valid visa चाहिए।",
+      "sources": [
+       "sg-ica-requirements",
+       "sg-ica-india"
+      ]
+     },
+     {
+      "text": "Business या social visit के entry visa के लिए चाहिए: Form 14A (भरा और साइन किया हुआ), पिछले तीन महीने के अंदर खींची गई रंगीन passport-size फोटो, और passport biodata page की फोटोकॉपी।",
+      "sources": [
+       "sg-ica-india"
+      ]
+     },
+     {
+      "text": "Passport सिंगापुर में entry की तारीख से कम से कम छह महीने तक valid होना चाहिए।",
+      "sources": [
+       "sg-ica-india"
+      ]
+     },
+     {
+      "text": "कभी-कभी Form V39A (Letter of Introduction) जैसे अतिरिक्त documents माँगे जा सकते हैं।",
+      "sources": [
+       "sg-ica-india"
+      ]
+     },
+     {
+      "text": "Approve होने पर आपका local contact, strategic partner या authorised visa agent e-Service से आपका e-Visa print कर सकता है।",
+      "sources": [
+       "sg-ica-india"
+      ]
+     },
+     {
+      "text": "ध्यान रखें: visa होने से entry की गारंटी नहीं है, और कितने दिन रुक सकते हैं ये checkpoint पर मिले Visit Pass (e-Pass) से तय होता है, visa की validity से नहीं। SG Arrival Card visa नहीं है।",
+      "sources": [
+       "sg-ica-requirements"
+      ]
+     },
+     {
+      "text": "अगर आप सिर्फ transit कर रहे हैं, तो Indian nationals Visa-Free Transit Facility (VFTF) के लिए eligible हो सकते हैं।",
+      "sources": [
+       "sg-ica-requirements"
+      ]
+     }
+    ],
+    "notCovered": "वीज़ा fee, processing time और VFTF की पूरी शर्तें इन sources में नहीं दी गई हैं।",
+    "sources": [
+     {
+      "id": "sg-ica-requirements",
+      "title": "Visa requirements",
+      "authority": "Immigration & Checkpoints Authority, Singapore",
+      "url": "https://www.ica.gov.sg/enter-transit-depart/entering-singapore/visa_requirements",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     },
+     {
+      "id": "sg-ica-india",
+      "title": "Visa requirements — India",
+      "authority": "Immigration & Checkpoints Authority, Singapore",
+      "url": "https://www.ica.gov.sg/enter-transit-depart/entering-singapore/visa_requirements/visa-detail-page/india",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "hi"
+   }
+  },
+  {
+   "id": "X5",
+   "ms": 8693,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "answered",
+    "shortAnswer": "UK Standard Visitor visa ki fee £135 hai, jismein aap 6 months tak ruk sakte ho. Agar aap regularly UK jaate ho toh long-term Standard Visitor visa bhi le sakte ho, jiski fees zyada hai.",
+    "details": [
+     {
+      "text": "Standard Visitor visa: £135, maximum stay 6 months.",
+      "sources": [
+       "uk-apply",
+       "uk-standard-visitor"
+      ]
+     },
+     {
+      "text": "Standard Visitor visa for medical reasons: £234 (11 months). Standard Visitor visa for academics: £234 (12 months).",
+      "sources": [
+       "uk-apply"
+      ]
+     },
+     {
+      "text": "Long-term Standard Visitor visa: 2 year ke liye £506, 5 year ke liye £903, 10 year ke liye £1,128. Har visit mein maximum 6 months ruk sakte ho.",
+      "sources": [
+       "uk-apply"
+      ]
+     },
+     {
+      "text": "Agar sirf UK se transit karna hai, toh Visitor in Transit visa £74.50 ka hai.",
+      "sources": [
+       "uk-standard-visitor"
+      ]
+     },
+     {
+      "text": "Family ke saath apply kar rahe ho toh har person ki alag application aur alag fee lagegi.",
+      "sources": [
+       "uk-apply"
+      ]
+     },
+     {
+      "text": "Dhyan rakho: application refuse ho jaye ya shorter visa mile toh fee refund nahi hoti. Cancel karne par refund tabhi milega jab application process na hui ho.",
+      "sources": [
+       "uk-apply"
+      ]
+     }
+    ],
+    "sources": [
+     {
+      "id": "uk-apply",
+      "title": "Apply for a Standard Visitor visa",
+      "authority": "UK Government (GOV.UK)",
+      "url": "https://www.gov.uk/standard-visitor/apply-standard-visitor-visa",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     },
+     {
+      "id": "uk-standard-visitor",
+      "title": "Visit the UK as a Standard Visitor",
+      "authority": "UK Government (GOV.UK)",
+      "url": "https://www.gov.uk/standard-visitor",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "hinglish"
+   }
+  },
+  {
+   "id": "X6",
+   "ms": 675,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": null,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": false,
+    "missing": []
+   },
+   "answer": {
+    "kind": "clarify",
+    "shortAnswer": "Which country are you travelling to? I can help with Thailand, Vietnam, Singapore, Malaysia, Indonesia (Bali), Sri Lanka, UAE, Japan, Schengen area, UK, US, Australia.",
+    "details": [],
+    "sources": [],
+    "mode": "rule",
+    "verifyLine": false,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "X7",
+   "ms": 26370,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "partial",
+    "shortAnswer": "For Singapore, yes — Indian passport holders need a valid visa to enter. For Thailand, the excerpts don't say whether India is on the visa-exemption or visa-on-arrival lists, so I can't confirm whether you need one; they do list Thai visa options and fees if you apply.",
+    "details": [
+     {
+      "text": "Singapore: India is on the list of countries whose travel documents require a valid visa to enter Singapore.",
+      "sources": [
+       "sg-ica-requirements"
+      ]
+     },
+     {
+      "text": "Singapore: You can apply online through a strategic partner or a local contact in Singapore, or at the nearest Singapore Overseas Mission or its authorised visa agent. You are advised to apply within 30 days prior to arrival.",
+      "sources": [
+       "sg-ica-india",
+       "sg-ica-requirements"
+      ]
+     },
+     {
+      "text": "Singapore: ICA does not accept visa applications at the immigration counters. A visa is pre-entry permission only; the period of stay is decided by ICA officers at entry and sent to you by email as an e-Pass, so give a valid email on the SG Arrival Card.",
+      "sources": [
+       "sg-ica-requirements"
+      ]
+     },
+     {
+      "text": "Thailand: The embassy refers to separate lists of countries entitled to visa exemption for tourism and short-term business for up to 30 days, and to visa on arrival, but those lists are not in the excerpts.",
+      "sources": [
+       "th-embassy-delhi"
+      ]
+     },
+     {
+      "text": "Thailand: If you apply for a Tourist visa, a single-entry visa (TR/MT) is valid 3 months, allows 60 days per entry, and costs 3,000 INR. A multiple-entry TR is valid 6 months, allows 60 days per entry, and costs 13,500 INR.",
+      "sources": [
+       "th-embassy-delhi"
+      ]
+     },
+     {
+      "text": "Thailand: A single-entry Non-immigrant visa (which includes category B) is valid 3 months, allows 90 days per entry, and costs 7,000 INR.",
+      "sources": [
+       "th-embassy-delhi"
+      ]
+     }
+    ],
+    "notCovered": "Whether India is on Thailand's visa-exemption or visa-on-arrival lists. Singapore visa fees, processing times and required documents are also not given in the excerpts.",
+    "sources": [
+     {
+      "id": "sg-ica-requirements",
+      "title": "Visa requirements",
+      "authority": "Immigration & Checkpoints Authority, Singapore",
+      "url": "https://www.ica.gov.sg/enter-transit-depart/entering-singapore/visa_requirements",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     },
+     {
+      "id": "sg-ica-india",
+      "title": "Visa requirements — India",
+      "authority": "Immigration & Checkpoints Authority, Singapore",
+      "url": "https://www.ica.gov.sg/enter-transit-depart/entering-singapore/visa_requirements/visa-detail-page/india",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     },
+     {
+      "id": "th-embassy-delhi",
+      "title": "Visa",
+      "authority": "Royal Thai Embassy, New Delhi",
+      "url": "https://newdelhi.thaiembassy.org/en/page/visa",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "officialLink": {
+     "label": "Thailand official site",
+     "url": "https://www.thaievisa.go.th/"
+    },
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "X8",
+   "ms": 26489,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": true,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "partial",
+    "shortAnswer": "Very likely yes, but these excerpts don't confirm it for Indian passports specifically. One official page says non-EU nationals need a visa for short Schengen visits, and France is in Schengen, but another says only citizens of 'certain' countries need one and the list isn't included here.",
+    "details": [
+     {
+      "text": "One official page says non-EU nationals need a visa to enter the Schengen area for a visit of up to 90 days in any 180-day period.",
+      "sources": [
+       "eu-visa-policy"
+      ]
+     },
+     {
+      "text": "Another official page says citizens of certain non-EU countries must hold a short-stay visa and points to an EU list of those countries. That list isn't in these excerpts, so I can't confirm India is on it.",
+      "sources": [
+       "eu-applying"
+      ]
+     },
+     {
+      "text": "If you need one, a Schengen visa covers a short visit of up to 90 days in any 180-day period and is generally valid for every Schengen country.",
+      "sources": [
+       "eu-applying",
+       "eu-visa-policy"
+      ]
+     },
+     {
+      "text": "Visa fee: €90 for adults and €45 for children aged 6-12. An additional fee may apply if you apply through a visa service centre.",
+      "sources": [
+       "eu-applying"
+      ]
+     },
+     {
+      "text": "Stays longer than 90 days fall under national procedures, not the Schengen visa.",
+      "sources": [
+       "eu-visa-policy"
+      ]
+     }
+    ],
+    "notCovered": "The excerpts don't include the EU list of countries whose citizens need a visa, so they don't confirm India is on it. They also don't say that Paris is in France or that France is a Schengen country, don't cover the documents needed, processing time or passport validity rules, and don't say where Indian applicants should apply.",
+    "conflict": "S7 says non-EU nationals in general need a visa for short Schengen stays, while S5 says only citizens of certain non-EU countries (on an EU list not included here) need one.",
+    "sources": [
+     {
+      "id": "eu-applying",
+      "title": "Applying for a Schengen visa",
+      "authority": "European Commission — Migration and Home Affairs",
+      "url": "https://home-affairs.ec.europa.eu/policies/schengen-borders-and-visa/visa-policy/applying-schengen-visa_en",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     },
+     {
+      "id": "eu-visa-policy",
+      "title": "Visa policy",
+      "authority": "European Commission — Migration and Home Affairs",
+      "url": "https://home-affairs.ec.europa.eu/policies/schengen-borders-and-visa/visa-policy_en",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     },
+     {
+      "id": "https://www.airindia.com/in/en/travel-information/visa-services/france-visa.html",
+      "title": "France Visa - E-Visa Requirements, Eligibility & How to Apply",
+      "authority": "airindia.com",
+      "url": "https://www.airindia.com/in/en/travel-information/visa-services/france-visa.html",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "web",
+      "official": false
+     },
+     {
+      "id": "https://pickyourtrail.com/visa/france-visa",
+      "title": "France Visa for Indians (2026): Complete Application Guide",
+      "authority": "pickyourtrail.com",
+      "url": "https://pickyourtrail.com/visa/france-visa",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "web",
+      "official": false
+     }
+    ],
+    "officialLink": {
+     "label": "Schengen area official site",
+     "url": "https://home-affairs.ec.europa.eu/policies/schengen-borders-and-visa/visa-policy/applying-schengen-visa_en"
+    },
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en",
+    "webExtra": {
+     "shortAnswer": "Yes. Paris is in France, and Indian passport holders need a Schengen short-stay visa to visit France for tourism or business.",
+     "details": [
+      {
+       "text": "The visa lets you stay up to 90 days in any 180-day period.",
+       "sources": [
+        "https://pickyourtrail.com/visa/france-visa"
+       ]
+      },
+      {
+       "text": "In India, you apply through VFS Global: fill in the form, book an appointment at your nearest France Visa Application Centre, then hand in your documents and give fingerprints and a photo.",
+       "sources": [
+        "https://pickyourtrail.com/visa/france-visa"
+       ]
+      },
+      {
+       "text": "You'll need a passport with 6 months' validity and 2 blank pages, 2 photos (35 x 45 mm), bank statements for the last 3 months or your tax returns (ITR), and return flight tickets. This list comes from a travel site, so check it on VFS before you apply.",
+       "sources": [
+        "https://pickyourtrail.com/visa/france-visa"
+       ]
+      },
+      {
+       "text": "Processing takes about 15 days after you submit, and the clock starts only once all your documents are in.",
+       "sources": [
+        "https://www.airindia.com/in/en/travel-information/visa-services/france-visa.html"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "R1",
+   "ms": 728,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": null,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": false,
+    "missing": []
+   },
+   "answer": {
+    "kind": "refused",
+    "shortAnswer": "I don't cover Canada yet, sorry! Right now I can help with Thailand, Vietnam, Singapore, Malaysia, Indonesia (Bali), Sri Lanka, UAE, Japan, Schengen area, UK, US, Australia.",
+    "details": [],
+    "sources": [],
+    "mode": "rule",
+    "verifyLine": false,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "R2",
+   "ms": 728,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": null,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": false,
+    "missing": []
+   },
+   "answer": {
+    "kind": "refused",
+    "shortAnswer": "I don't cover New Zealand yet, sorry! Right now I can help with Thailand, Vietnam, Singapore, Malaysia, Indonesia (Bali), Sri Lanka, UAE, Japan, Schengen area, UK, US, Australia.",
+    "details": [],
+    "sources": [],
+    "mode": "rule",
+    "verifyLine": false,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "R3",
+   "ms": 763,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": null,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": false,
+    "missing": []
+   },
+   "answer": {
+    "kind": "refused",
+    "shortAnswer": "I only cover tourist and short business visits for now, so I can't help with student visas. Please check the destination's official embassy or immigration website for those.",
+    "details": [],
+    "sources": [],
+    "mode": "rule",
+    "verifyLine": false,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "R4",
+   "ms": 750,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": null,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": false,
+    "missing": []
+   },
+   "answer": {
+    "kind": "refused",
+    "shortAnswer": "I only cover tourist and short business visits for now, so I can't help with work visas. Please check the destination's official embassy or immigration website for those.",
+    "details": [],
+    "sources": [],
+    "mode": "rule",
+    "verifyLine": false,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "R5",
+   "ms": 1124,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": null,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": false,
+    "missing": []
+   },
+   "answer": {
+    "kind": "refused",
+    "shortAnswer": "I only cover tourist and short business visits for now, so I can't help with residency or long-term visas. Please check the destination's official embassy or immigration website for those.",
+    "details": [],
+    "sources": [],
+    "mode": "rule",
+    "verifyLine": false,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "R6",
+   "ms": 1231,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": null,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": false,
+    "missing": []
+   },
+   "answer": {
+    "kind": "refused",
+    "shortAnswer": "I only cover Indian passport holders for now. For other passports, please check the destination's official immigration website.",
+    "details": [],
+    "sources": [],
+    "mode": "rule",
+    "verifyLine": false,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "R7",
+   "ms": 8861,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": null,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": true,
+    "missing": []
+   },
+   "answer": {
+    "kind": "judgment",
+    "shortAnswer": "Didi can't tell you whether you'll be approved; only the consulate of the Schengen country you apply to makes that decision. The official sources I have also don't say how much money you need to show.",
+    "details": [
+     {
+      "text": "A Schengen visa is for a short, temporary visit of up to 90 days in any 180-day period.",
+      "sources": [
+       "eu-applying"
+      ]
+     },
+     {
+      "text": "The visa fee is €90 for adults and €45 for children aged 6-12. An extra fee may apply if you apply through a visa service centre.",
+      "sources": [
+       "eu-applying"
+      ]
+     },
+     {
+      "text": "Normal processing time is 15 days. It can be extended to up to 45 days if a closer look or extra documents are needed.",
+      "sources": [
+       "eu-applying"
+      ]
+     },
+     {
+      "text": "If your application is refused, you will be told why it was refused and how to appeal.",
+      "sources": [
+       "eu-applying"
+      ]
+     },
+     {
+      "text": "For exact document and funds requirements, contact the embassy or consulate of your main destination country.",
+      "sources": [
+       "eu-applying"
+      ]
+     }
+    ],
+    "notCovered": "The sources don't say what bank balance or proof of funds is required, or how financial means are assessed.",
+    "sources": [
+     {
+      "id": "eu-applying",
+      "title": "Applying for a Schengen visa",
+      "authority": "European Commission — Migration and Home Affairs",
+      "url": "https://home-affairs.ec.europa.eu/policies/schengen-borders-and-visa/visa-policy/applying-schengen-visa_en",
+      "lastVerified": "2026-10-02",
+      "stale": false,
+      "recentlyUpdated": false,
+      "manual": false,
+      "origin": "stored",
+      "official": true
+     }
+    ],
+    "mode": "ai",
+    "verifyLine": true,
+    "lang": "en"
+   }
+  },
+  {
+   "id": "R8",
+   "ms": 855,
+   "score": {
+    "outcome": true,
+    "facts": true,
+    "lang": true,
+    "citation": null,
+    "mustNot": true
+   },
+   "numbers": {
+    "checked": false,
+    "missing": []
+   },
+   "answer": {
+    "kind": "refused",
+    "shortAnswer": "माफ़ कीजिए, कनाडा अभी मेरी लिस्ट में नहीं है। अभी मैं इनमें मदद कर सकती हूँ: थाईलैंड, वियतनाम, सिंगापुर, मलेशिया, इंडोनेशिया (बाली), श्रीलंका, यूएई, जापान, शेंगेन क्षेत्र, यूके, अमेरिका, ऑस्ट्रेलिया।",
+    "details": [],
+    "sources": [],
+    "mode": "rule",
+    "verifyLine": false,
+    "lang": "hi"
+   }
+  }
+ ]
+}

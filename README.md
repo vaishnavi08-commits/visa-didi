@@ -53,6 +53,23 @@ With `ANTHROPIC_API_KEY` set, questions about these three (and anything the stor
 
 Thin sources worth adding next: the Sri Lanka 40-country ETA list, the Malaysia country list, and a fuller Indonesia visa-on-arrival page.
 
+## Evaluation
+
+- `npm run eval` — 26 guardrail and routing checks (refusals, Hindi/Hinglish, small talk). Free, runs locally, no API key.
+- `npm run eval:answers` — the PRD test set: 40 questions in `evals/testset.json` (24 covered, 8 tricky, 8 should-refuse), each with
+  expected facts written from the stored official text. Runs against the live site (or `EVAL_URL`), costs about $2–3 per run, and
+  reports the PRD metrics. Results are saved to `evals/results-<date>.json`.
+
+Latest run (2 Oct 2026):
+
+| PRD metric | Result | Target |
+|---|---|---|
+| Answer accuracy | 100% (32/32) | ≥ 90% |
+| Citation accuracy | 100% (27/27) | ≥ 95% |
+| Honest refusals | 100% (8/8) | 100% |
+| Unsupported numbers in official answers | 0 (26 checked) | 0 |
+| Response time p50 / p90 | 8.2 s / 21.7 s | < 5 s — **missed** |
+
 ## Storage (Supabase)
 
 With `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` set, the app uses Supabase tables prefixed `vd_` (schema in `supabase/migrations/`):
