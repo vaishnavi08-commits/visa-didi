@@ -327,7 +327,9 @@ async function answerIn(question: string, history: Turn[], lang: Lang, wantWeb: 
   // Step 2 (only when asked): search the web for what the official pages don't cover.
   // Web search is the costly part, so it runs only when the person taps "Search the web for more".
   if (!wantWeb || !hasKey) {
-    return official ?? remember(baseKey, { ...nothing, canSearchWeb: hasKey });
+    if (official) return official;
+    if (!hasKey) return nothing;
+    return remember(baseKey, { ...nothing, shortAnswer: MESSAGES.unavailable_offer[lang](displayName(dests[0], lang)), canSearchWeb: true });
   }
 
   if (!official || official.kind === "not_covered") {

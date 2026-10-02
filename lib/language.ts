@@ -106,6 +106,12 @@ export const MESSAGES = {
     hi: (name: string) => `मेरे पास अभी ${name} के आधिकारिक पेज नहीं हैं, इसलिए मैं इसकी पुष्टि नहीं कर सकती। कृपया सीधे आधिकारिक वेबसाइट देखिए।`,
     hinglish: (name: string) => `Mere paas abhi ${name} ke official pages nahi hain, toh main confirm nahi kar sakti. Please seedha official website dekhiye.`,
   },
+  // Shown when the official pages can't answer but a web search is offered below.
+  unavailable_offer: {
+    en: (name: string) => `I don't have ${name}'s official pages yet. Tap below and I'll check the web for you.`,
+    hi: (name: string) => `मेरे पास अभी ${name} के आधिकारिक पेज नहीं हैं। नीचे टैप करें, मैं वेब पर देख लेती हूँ।`,
+    hinglish: (name: string) => `Mere paas abhi ${name} ke official pages nahi hain. Neeche tap kijiye, main web par dekh leti hoon.`,
+  },
   not_covered: {
     en: (names: string) => `I couldn't find this in the official ${names} sources I have.`,
     hi: (names: string) => `मुझे यह ${names} के मेरे आधिकारिक स्रोतों में नहीं मिला।`,
