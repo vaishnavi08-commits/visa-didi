@@ -50,6 +50,8 @@ export type Answer = {
   webIssue?: string;
   // Language the answer is written in (drives the read-aloud voice).
   lang: Lang;
+  // True when AI answers failed (e.g. API credits ran out) and the official text is shown instead.
+  fallback?: boolean;
   // Signature that lets /api/speak voice this answer in Didi's own voice (set by the API route).
   speakToken?: string;
   // When official pages only partly answer: what live web search found for the rest.
@@ -327,7 +329,7 @@ async function answerIn(question: string, history: Turn[], lang: Lang): Promise<
     }
   }
   // Don't cache a fallback: once the AI call works again, the question should get a real answer.
-  if (!official) return { ...officialTextAnswer(question, chunks, store, usableDests, r.judgment), webIssue: aiIssue ?? lastWebIssue };
+  if (!official) return { ...officialTextAnswer(question, chunks, store, usableDests, r.judgment), fallback: true, webIssue: aiIssue ?? lastWebIssue };
   return remember(official);
 }
 

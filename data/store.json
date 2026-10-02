@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-01",
+ "updatedAt": "2026-10-02",
  "sources": {
   "th-embassy-delhi": {
    "id": "th-embassy-delhi",
@@ -10,8 +10,8 @@
    "status": "ok",
    "method": "fetched",
    "contentHash": "118f66620afb495f177aeb117bdb4c2d0d3d5b42d15a3d7bd12e9541e7668516",
-   "lastVerified": "2026-10-01",
-   "lastAttempt": "2026-10-01",
+   "lastVerified": "2026-10-02",
+   "lastAttempt": "2026-10-02",
    "lastError": null
   },
   "th-evisa": {
@@ -24,7 +24,7 @@
    "method": null,
    "contentHash": null,
    "lastVerified": null,
-   "lastAttempt": "2026-10-01",
+   "lastAttempt": "2026-10-02",
    "lastError": "Page content not readable (likely rendered by JavaScript)"
   },
   "vn-evisa": {
@@ -37,7 +37,7 @@
    "method": null,
    "contentHash": null,
    "lastVerified": null,
-   "lastAttempt": "2026-10-01",
+   "lastAttempt": "2026-10-02",
    "lastError": "fetch failed"
   },
   "sg-ica-india": {
@@ -49,8 +49,8 @@
    "status": "ok",
    "method": "fetched",
    "contentHash": "e9226c5aa43018b58966fd5a41fd91c56b7f3ed03900a73140fef796aa8c5966",
-   "lastVerified": "2026-10-01",
-   "lastAttempt": "2026-10-01",
+   "lastVerified": "2026-10-02",
+   "lastAttempt": "2026-10-02",
    "lastError": null
   },
   "sg-ica-requirements": {
@@ -62,8 +62,8 @@
    "status": "ok",
    "method": "fetched",
    "contentHash": "2b4c47eb2c945460c629f5ea7ada0ca6a1b375b99fa049d40c2a9194b9945c12",
-   "lastVerified": "2026-10-01",
-   "lastAttempt": "2026-10-01",
+   "lastVerified": "2026-10-02",
+   "lastAttempt": "2026-10-02",
    "lastError": null
   },
   "my-imi-by-country": {
@@ -75,8 +75,8 @@
    "status": "ok",
    "method": "fetched",
    "contentHash": "31fd2427fa3a075d3dfb574e0fba26d6768fe841a865953c691dc0dcdbb8771b",
-   "lastVerified": "2026-10-01",
-   "lastAttempt": "2026-10-01",
+   "lastVerified": "2026-10-02",
+   "lastAttempt": "2026-10-02",
    "lastError": null
   },
   "my-evisa": {
@@ -89,7 +89,7 @@
    "method": null,
    "contentHash": null,
    "lastVerified": null,
-   "lastAttempt": "2026-10-01",
+   "lastAttempt": "2026-10-02",
    "lastError": "Page content not readable (likely rendered by JavaScript)"
   },
   "id-evisa": {
@@ -101,8 +101,8 @@
    "status": "ok",
    "method": "fetched",
    "contentHash": "6d39d0cf306870ad4e404112f41786bdb26b29722d490ddba5491ddedd8009f4",
-   "lastVerified": "2026-10-01",
-   "lastAttempt": "2026-10-01",
+   "lastVerified": "2026-10-02",
+   "lastAttempt": "2026-10-02",
    "lastError": null
   },
   "lk-eta": {
@@ -115,7 +115,7 @@
    "method": null,
    "contentHash": null,
    "lastVerified": null,
-   "lastAttempt": "2026-10-01",
+   "lastAttempt": "2026-10-02",
    "lastError": "Page content not readable (likely rendered by JavaScript)"
   },
   "lk-eta-info": {
@@ -127,8 +127,8 @@
    "status": "ok",
    "method": "fetched",
    "contentHash": "0cbc885c4cddfa08a8a040b1538315f8583f960e6e2c5d352f1d341fd41e6cfc",
-   "lastVerified": "2026-10-01",
-   "lastAttempt": "2026-10-01",
+   "lastVerified": "2026-10-02",
+   "lastAttempt": "2026-10-02",
    "lastError": null
   },
   "ae-visit-visa": {
@@ -141,7 +141,7 @@
    "method": null,
    "contentHash": null,
    "lastVerified": null,
-   "lastAttempt": "2026-10-01",
+   "lastAttempt": "2026-10-02",
    "lastError": "Page content not readable (likely rendered by JavaScript)"
   },
   "ae-tourist-visa": {
@@ -152,9 +152,9 @@
    "destinationId": "uae",
    "status": "ok",
    "method": "fetched",
-   "contentHash": "d48d9ad3471e0f9f953ff14d13c51c86d68ca0e0b2dd754cdaabe788e9e19618",
-   "lastVerified": "2026-10-01",
-   "lastAttempt": "2026-10-01",
+   "contentHash": "aba659591d00c9b02d20276a2485b129cedbfe341f7f6e6f5739b8e324f404a4",
+   "lastVerified": "2026-10-02",
+   "lastAttempt": "2026-10-02",
    "lastError": null
   },
   "jp-embassy-visa": {
@@ -163,12 +163,12 @@
    "title": "Visa information",
    "authority": "Embassy of Japan in India",
    "destinationId": "japan",
-   "status": "ok",
+   "status": "check_failed",
    "method": "fetched",
    "contentHash": "519a0efcf7b33d7fb591738f6e4d4955712c2c2cd9d286532b05967bcb04e9c3",
    "lastVerified": "2026-10-01",
-   "lastAttempt": "2026-10-01",
-   "lastError": null
+   "lastAttempt": "2026-10-02",
+   "lastError": "gone: HTTP 404"
   },
   "jp-mofa-visa": {
    "id": "jp-mofa-visa",
@@ -179,8 +179,8 @@
    "status": "ok",
    "method": "fetched",
    "contentHash": "f675faa3194f3bec522ee176613e6300c619da3d1f0dee394e51d7c755842c93",
-   "lastVerified": "2026-10-01",
-   "lastAttempt": "2026-10-01",
+   "lastVerified": "2026-10-02",
+   "lastAttempt": "2026-10-02",
    "lastError": null
   },
   "eu-applying": {
@@ -192,8 +192,8 @@
    "status": "ok",
    "method": "fetched",
    "contentHash": "cf38a760ff49c939b2738b51630d21e731cf6173120e9e9ce0b0230342554a83",
-   "lastVerified": "2026-10-01",
-   "lastAttempt": "2026-10-01",
+   "lastVerified": "2026-10-02",
+   "lastAttempt": "2026-10-02",
    "lastError": null
   },
   "eu-visa-policy": {
@@ -205,8 +205,8 @@
    "status": "ok",
    "method": "fetched",
    "contentHash": "8e1294abd9481f40a634070d6c202c3d185bee7147d759b33c41ae15c645a96d",
-   "lastVerified": "2026-10-01",
-   "lastAttempt": "2026-10-01",
+   "lastVerified": "2026-10-02",
+   "lastAttempt": "2026-10-02",
    "lastError": null
   },
   "uk-standard-visitor": {
@@ -218,8 +218,8 @@
    "status": "ok",
    "method": "fetched",
    "contentHash": "4edf36cafb8e728710ce2b3deef0dd2d34e4238aad630e850fc4ac049ca684ff",
-   "lastVerified": "2026-10-01",
-   "lastAttempt": "2026-10-01",
+   "lastVerified": "2026-10-02",
+   "lastAttempt": "2026-10-02",
    "lastError": null
   },
   "uk-visit-business": {
@@ -231,8 +231,8 @@
    "status": "ok",
    "method": "fetched",
    "contentHash": "fcf6d02d59f77835f1d3f116dce7eeb7fb938fc532a7506d68ed2762880c33e6",
-   "lastVerified": "2026-10-01",
-   "lastAttempt": "2026-10-01",
+   "lastVerified": "2026-10-02",
+   "lastAttempt": "2026-10-02",
    "lastError": null
   },
   "uk-apply": {
@@ -244,8 +244,8 @@
    "status": "ok",
    "method": "fetched",
    "contentHash": "9e5c8448b1678001538b835eceb2113831c55c878f1e20a83542e03fef192032",
-   "lastVerified": "2026-10-01",
-   "lastAttempt": "2026-10-01",
+   "lastVerified": "2026-10-02",
+   "lastAttempt": "2026-10-02",
    "lastError": null
   },
   "us-state-visitor": {
@@ -258,7 +258,7 @@
    "method": null,
    "contentHash": null,
    "lastVerified": null,
-   "lastAttempt": "2026-10-01",
+   "lastAttempt": "2026-10-02",
    "lastError": "HTTP 403 (blocked or unavailable)"
   },
   "us-embassy-india": {
@@ -271,7 +271,7 @@
    "method": null,
    "contentHash": null,
    "lastVerified": null,
-   "lastAttempt": "2026-10-01",
+   "lastAttempt": "2026-10-02",
    "lastError": "fetch failed"
   },
   "au-visitor-600": {
@@ -284,7 +284,7 @@
    "method": null,
    "contentHash": null,
    "lastVerified": null,
-   "lastAttempt": "2026-10-01",
+   "lastAttempt": "2026-10-02",
    "lastError": "Page content not readable (likely rendered by JavaScript)"
   },
   "au-tourist-stream": {
@@ -297,7 +297,7 @@
    "method": null,
    "contentHash": null,
    "lastVerified": null,
-   "lastAttempt": "2026-10-01",
+   "lastAttempt": "2026-10-02",
    "lastError": "Page content not readable (likely rendered by JavaScript)"
   },
   "au-business-stream": {
@@ -310,8 +310,34 @@
    "method": null,
    "contentHash": null,
    "lastVerified": null,
-   "lastAttempt": "2026-10-01",
+   "lastAttempt": "2026-10-02",
    "lastError": "Page content not readable (likely rendered by JavaScript)"
+  },
+  "jp-mofa-validity": {
+   "id": "jp-mofa-validity",
+   "url": "https://www.mofa.go.jp/j_info/visit/visa/procedure/validity.html",
+   "title": "Validity of a Visa",
+   "authority": "Ministry of Foreign Affairs of Japan",
+   "destinationId": "japan",
+   "status": "ok",
+   "method": "fetched",
+   "contentHash": "c115a61afbfc83287fa9df489b00eb22b0955e50dde419722be0e5154ff5da3d",
+   "lastVerified": "2026-10-02",
+   "lastAttempt": "2026-10-02",
+   "lastError": null
+  },
+  "jp-mofa-exempt": {
+   "id": "jp-mofa-exempt",
+   "url": "https://www.mofa.go.jp/j_info/visit/visa/short/novisa.html",
+   "title": "Exemption of Visa (Short-Term Stay)",
+   "authority": "Ministry of Foreign Affairs of Japan",
+   "destinationId": "japan",
+   "status": "ok",
+   "method": "fetched",
+   "contentHash": "40f3d5d12333e39e43353d7a24a99364fef8f3eadb25847224fe116bb234f9bf",
+   "lastVerified": "2026-10-02",
+   "lastAttempt": "2026-10-02",
+   "lastError": null
   }
  },
  "chunks": [
@@ -510,48 +536,6 @@
    "destinationId": "srilanka",
    "heading": "",
    "text": "As per the reciprocal and bilateral arrangements with the Government of Sri Lanka, holders of Diplomatic, Official Service and Service Passports in specified countries (for more info...), who are visiting Sri Lanka for official purposes and holders of Diplomatic and Official Passports issued by the United Nations (UN) and United Nations Organizations (UNO) shall be permitted to obtain visa without obtaining ETA prior to arrival.\nUnder this scheme, tourists of above 40 countries are entitled to a Tourist visa (ETA) free of charge valid for 30 days, with double-entry permitted from the date of first arrival in Sri Lanka during the second entry only the balance period of the 30 days will be granted.\nExcept for the above-mentioned countries, ETA charges are applicable for other countries.\nFor more information , visit http://www.immigration.gov.lk\nThe Official Website of Sri Lanka Tourism\nTerms and Conditions | Privacy Statement."
-  },
-  {
-   "id": "ae-tourist-visa#0",
-   "sourceId": "ae-tourist-visa",
-   "destinationId": "uae",
-   "heading": "Related eServices",
-   "text": "• Multiple entry long-term tourism (5 Years) for all nationalities – Federal Authority for Identity, Citizenship, Customs & Port Security (ICP)\n• Issue family group multiple entry long-term tourist visa - 5 years (all nationalities) – ICP\n• Issuing a multi-entry tourist visa (5 years) – General Directorate for Identity and Foreginers Affairs Dubai\n• Tourist visa from Etihad Airways - Etihad Airways\n• Tourist visa from Emirates Airline - Emirates Airline\n• Tourist visa from Fly Dubai - Fly Dubai"
-  },
-  {
-   "id": "ae-tourist-visa#1",
-   "sourceId": "ae-tourist-visa",
-   "destinationId": "uae",
-   "heading": "Multiple entry 5-year tourist visa",
-   "text": "The multiple entry 5-year tourist visa enables tourists to enter the UAE multiple times on self-sponsorship and remain in the country for 90 days on each visit, and can be extended for further 90 days. This type of tourist visa can be issued for all nationalities.\nTo obtain this visa, the applicant must have:\n• a bank balance of 4,000 USD or its equivalent in foreign currencies during the last six months\n• a valid health insurance policy applicable in the UAE, valid for 180 days\n• a ticket showing continuing or return journey from the UAE.\nRead related news coverage on WAM.\nSource: Family/group multiple entry long-term tourist visa - ICP"
-  },
-  {
-   "id": "ae-tourist-visa#2",
-   "sourceId": "ae-tourist-visa",
-   "destinationId": "uae",
-   "heading": "How can you apply for a tourist visa?",
-   "text": "You can apply for a tourist visa online through the Federal Authority for Identity, Citizenship, Customs and Port Security or the General Directorate of Identity and Foreigners Affairs – Dubai. You can also apply through airlines, licensed travel agents, or hotels.\nTourist visas through airlines\nEach airline has some conditions, which must be met in order for your visa to be arranged by them. One of the conditions is flying with them. For more updated and specific information, check the following UAE-based airlines for visa types, facilities, terms and conditions:\n• Visa services from Etihad Airways - Etihad Airways\n• Visa services offered by Emirates Airline - Emirates Airline\n• Visa services from Fly Dubai - Fly Dubai.\nTourist visas through agencies and hotels\nLicensed travel agents and hotels in the UAE can arrange a tourist visa for you provided you purchase the ticket through them and maintain hotel reservation with the specific hotel.\nYou can also contact travel agencies in your country for any tourist packages available to the UAE in collaboration with a local tour operator.\nIt is important to check the authenticity of travel agents you are dealing with and refrain from paying or sending copies of your official documents until after you are 100 per cent sure the tour operator is genuine. You can seek the help of the UAE embassy in your country for verification."
-  },
-  {
-   "id": "ae-tourist-visa#3",
-   "sourceId": "ae-tourist-visa",
-   "destinationId": "uae",
-   "heading": "How can you apply for a tourist visa?",
-   "text": "Note: The UAE's embassies do not issue tourist visas. In order to get a tourist visa to the UAE, you need to get in touch with one of the UAE-based airlines, a tour agency or a hotel (where you intend to stay) in the UAE who will apply for visa on your behalf to the official visa-issuing authorities in the UAE."
-  },
-  {
-   "id": "ae-tourist-visa#4",
-   "sourceId": "ae-tourist-visa",
-   "destinationId": "uae",
-   "heading": "eVisa for GCC residents",
-   "text": "eVisa application\nGCC residents and their companions need to apply online for a visa and must obtain the same before arriving in the UAE.\n• Entry permit for residents in the GCC countries - GDRFA, Dubai\n• Issue entry permit for GCC resident - Federal Authority for Identity, Citizenship, Customs and Port Security (ICP)\nNotes and conditions\nRead notes and conditions relating to eVisa for GCC residents.\n• GCC residents’ entry permit is valid for 30 days from the date of issue and they are allowed to stay for 30 days from the date of entry. The visa is extendable once for 30 days.\n• GCC residency must be valid for at least 1 year from the arrival date.\n• The passport of GCC residents must be valid at least 6 months from the arrival date.\n• The profession of the applicant must be on the list of professions approved for issuing the visa (subject to evaluation by the concerned authority).\n10 Aug 2026"
-  },
-  {
-   "id": "ae-tourist-visa#5",
-   "sourceId": "ae-tourist-visa",
-   "destinationId": "uae",
-   "heading": "Did you find this content useful?",
-   "text": "You can help us improve by providing your feedback about your experience.\nYes NO\nThank you for your feedback.\nHave you used our services at our service center or digitally recently?\nGive us your feedback\nThank you for your feedback.\nPrev topic\nInvestor visa\nView all Services\nNext topic\nTransit visa"
   },
   {
    "id": "jp-embassy-visa#0",
@@ -958,6 +942,97 @@
    "destinationId": "uk",
    "heading": "If you need to change or cancel your application",
    "text": "If you need to change something in your application after you’ve sent it, contact UKVI.\nYou can ask to cancel your application. You’ll only get your fee refunded if the application has not been processed yet.\nView a printable version of the whole guide"
+  },
+  {
+   "id": "ae-tourist-visa#0",
+   "sourceId": "ae-tourist-visa",
+   "destinationId": "uae",
+   "heading": "Related eServices",
+   "text": "• Multiple entry long-term tourism (5 Years) for all nationalities – Federal Authority for Identity, Citizenship, Customs & Port Security (ICP)\n• Issue family group multiple entry long-term tourist visa - 5 years (all nationalities) – ICP\n• Issuing a multi-entry tourist visa (5 years) – General Directorate for Identity and Foreginers Affairs Dubai\n• Tourist visa from Etihad Airways - Etihad Airways\n• Tourist visa from Emirates Airline - Emirates Airline\n• Tourist visa from Fly Dubai - Fly Dubai"
+  },
+  {
+   "id": "ae-tourist-visa#1",
+   "sourceId": "ae-tourist-visa",
+   "destinationId": "uae",
+   "heading": "Multiple entry 5-year tourist visa",
+   "text": "The multiple entry 5-year tourist visa enables tourists to enter the UAE multiple times on self-sponsorship and remain in the country for 90 days on each visit, and can be extended for further 90 days. This type of tourist visa can be issued for all nationalities.\nTo obtain this visa, the applicant must have:\n• a bank balance of 4,000 USD or its equivalent in foreign currencies during the last six months\n• a valid health insurance policy applicable in the UAE, valid for 180 days\n• a ticket showing continuing or return journey from the UAE.\nRead related news coverage on WAM.\nSource: Family/group multiple entry long-term tourist visa - ICP"
+  },
+  {
+   "id": "ae-tourist-visa#2",
+   "sourceId": "ae-tourist-visa",
+   "destinationId": "uae",
+   "heading": "How can you apply for a tourist visa?",
+   "text": "You can apply for a tourist visa online through the Federal Authority for Identity, Citizenship, Customs and Port Security or the General Directorate of Identity and Foreigners Affairs – Dubai. You can also apply through airlines, licensed travel agents, or hotels.\nTourist visas through airlines\nEach airline has some conditions, which must be met in order for your visa to be arranged by them. One of the conditions is flying with them. For more updated and specific information, check the following UAE-based airlines for visa types, facilities, terms and conditions:\n• Visa services from Etihad Airways - Etihad Airways\n• Visa services offered by Emirates Airline - Emirates Airline\n• Visa services from Fly Dubai - Fly Dubai.\nTourist visas through agencies and hotels\nLicensed travel agents and hotels in the UAE can arrange a tourist visa for you provided you purchase the ticket through them and maintain hotel reservation with the specific hotel.\nYou can also contact travel agencies in your country for any tourist packages available to the UAE in collaboration with a local tour operator.\nIt is important to check the authenticity of travel agents you are dealing with and refrain from paying or sending copies of your official documents until after you are 100 per cent sure the tour operator is genuine. You can seek the help of the UAE embassy in your country for verification."
+  },
+  {
+   "id": "ae-tourist-visa#3",
+   "sourceId": "ae-tourist-visa",
+   "destinationId": "uae",
+   "heading": "How can you apply for a tourist visa?",
+   "text": "Note: The UAE's embassies do not issue tourist visas. In order to get a tourist visa to the UAE, you need to get in touch with one of the UAE-based airlines, a tour agency or a hotel (where you intend to stay) in the UAE who will apply for visa on your behalf to the official visa-issuing authorities in the UAE."
+  },
+  {
+   "id": "ae-tourist-visa#4",
+   "sourceId": "ae-tourist-visa",
+   "destinationId": "uae",
+   "heading": "eVisa for GCC residents",
+   "text": "eVisa application\nGCC residents and their companions need to apply online for a visa and must obtain the same before arriving in the UAE.\n• Entry permit for residents in the GCC countries - GDRFA, Dubai\n• Issue entry permit for GCC resident - Federal Authority for Identity, Citizenship, Customs and Port Security (ICP)\nNotes and conditions\nRead notes and conditions relating to eVisa for GCC residents.\n• GCC residents’ entry permit is valid for 30 days from the date of issue and they are allowed to stay for 30 days from the date of entry. The visa is extendable once for 30 days.\n• GCC residency must be valid for at least 1 year from the arrival date.\n• The passport of GCC residents must be valid at least 6 months from the arrival date.\n• The profession of the applicant must be on the list of professions approved for issuing the visa (subject to evaluation by the concerned authority).\n01 Oct 2026"
+  },
+  {
+   "id": "ae-tourist-visa#5",
+   "sourceId": "ae-tourist-visa",
+   "destinationId": "uae",
+   "heading": "Did you find this content useful?",
+   "text": "You can help us improve by providing your feedback about your experience.\nYes NO\nThank you for your feedback.\nHave you used our services at our service center or digitally recently?\nGive us your feedback\nThank you for your feedback.\nPrev topic\nInvestor visa\nView all Services\nNext topic\nTransit visa"
+  },
+  {
+   "id": "jp-mofa-validity#0",
+   "sourceId": "jp-mofa-validity",
+   "destinationId": "japan",
+   "heading": "Validity of a Visa",
+   "text": "July 22, 2015\nJapanese\nPost\nVisas are only valid for entering Japan on one occasion. The period of validity of the single-entry visa is three months. Please make sure that the bearer of visa apply for landing with an immigration inspector at the port of entry where he/she seeks to land and undergo an examination for landing before the visa is expired. The visa will become invalid once he/she applied for landing or be expired by reaching expiry date which is earlier.\nThe extension of period of validity of visa is not possible. If a foreign national residing in Japan wish to have his/her period of stay extended while he/she is in Japan, please consult with the regional immigration bureau.\nMultiple-entry visas can be issued to business travelers, etc. The period of validity of these visas is from one to five years, and these visas can be used any number of times during their period of validity."
+  },
+  {
+   "id": "jp-mofa-exempt#0",
+   "sourceId": "jp-mofa-exempt",
+   "destinationId": "japan",
+   "heading": "Exemption of Visa (Short-Term Stay)",
+   "text": "Post\ne-mail\nSeptember 1, 2025\nJapanese\nJapan has reciprocal visa exemption arrangements with 74 countries and regions listed in the table below.\nAsia\nEurope\nBrunei (30 days)\nAndorra\nIndonesia (Note 1)\nAustria (Note 8)\nMalaysia (Note 3)\nBelgium\nRepublic of Korea\nBulgaria\nSingapore\nCroatia\nThailand (Note 2) (15 days)\nCyprus\nHong Kong (Note 5)\nCzech Republic\nMacao (Note 6)\nDenmark\nTaiwan (Note 4)\nGermany (Note 8)\nLatin America and the Caribbean\nGreece\nArgentina\nHungary\nBahamas\nIceland\nBarbados (Note 7)\nIreland (Note 8)\nBrazil (Note 2)\nItaly\nChile\nLatvia\nCosta Rica\nLiechtenstein (Note 8)\nPanama (Note 2)\nMontenegro (Note 2)\nParaguay (Note 2)\nNetherlands\nPeru (Note 2)\nNorth Macedonia\nMexico (Note 8)\nNorway\nSuriname\nPoland\nUruguay (Note 11)\nSerbia (Note 2)\nMiddle East\nSlovakia\nIsrael\nSlovenia\nQatar (Note 9)\nSpain\nTürkiye (Note 7)\nSweden\nUnited Arab Emirates (Note 2)\nSwitzerland (Note 8)\nAfrica\nUnited Kingdom (Note 8)\nLesotho (Note 7)\nMauritius\nTunisia\n・Period of Stay\n• The period of stay granted upon landing permission will be \"15 days\" for Indonesia and Thailand, “30 days” for Brunei and Qatar, and \"90 days\" for other countries and regions."
+  },
+  {
+   "id": "jp-mofa-exempt#1",
+   "sourceId": "jp-mofa-exempt",
+   "destinationId": "japan",
+   "heading": "Exemption of Visa (Short-Term Stay)",
+   "text": "• (Note 1) For nationals of Indonesia (since December 1, 2014), visas are not required only for those who have registered ICAO-compliant ePassport to diplomatic missions of Japan in Indonesia (the embassy, consulates-general, or the consulate). Validity of the registration is three years or until the passport expires, whichever comes first.\n• (Note 2) For nationals of Montenegro (since September 1, 2025), Peru（since July 1, 2025), Paraguay (since June 1, 2025), Panama (since April 1, 2024), Brazil (since September 30, 2023), United Arab Emirates (since November 1, 2022), Thailand (since July 1, 2013) and Serbia (since May 1, 2011), visas are not required only for holders of ePassport in compliance with ICAO standards. Those who do not hold such ePassport are requested to obtain a visa in advance, otherwise will be refused to enter Japan.\n• (Note 3) For nationals of Malaysia (since July 1, 2013), visas are not required only for holders of ePassport in compliance with ICAO standards. Those who do not hold such ePassport are advised to obtain a visa in advance, otherwise will be strictly examined and may be refused entry to Japan.\n• (Note 4) Visa exemption arrangement for Taiwan is limited to passport holders with a personal ID number."
+  },
+  {
+   "id": "jp-mofa-exempt#2",
+   "sourceId": "jp-mofa-exempt",
+   "destinationId": "japan",
+   "heading": "Exemption of Visa (Short-Term Stay)",
+   "text": "• (Note 5) For citizens of Hong Kong, visas are not required only for holders of Special Administrative Region (SAR) passport issued by the Hong Kong SAR of the People’s Republic of China or British National Overseas (BNO) passports who have the right of residence in Hong Kong.\n• (Note 6) For citizens of Macao, visas are not required only for holders of SAR passport issued by the Macao SAR of the People’s Republic of China.\n• (Note 7) For nationals of Barbados (since April 1, 2010), Türkiye (since April 1, 2011) and Lesotho (since April 1, 2010), visas are not required only for holders of Machine-Readable Passport (MRP) in compliance with ICAO standards. Those who do not hold an MRP are advised to obtain a visa in advance, otherwise will be strictly examined and may be refused entry to Japan.\n• (Note 8) For nationals of those countries with visa exemptions permitting stays of up to 6 months under the bilateral visa exemption arrangements, those who wish to stay in Japan for more than 90 days are required to apply for an extension of the period of stay to the Ministry of Justice (Regional Immigration Bureau) before the period of permitted stay is to expire."
+  },
+  {
+   "id": "jp-mofa-exempt#3",
+   "sourceId": "jp-mofa-exempt",
+   "destinationId": "japan",
+   "heading": "Exemption of Visa (Short-Term Stay)",
+   "text": "• (Note 9) For nationals of Qatar (since April 2, 2023), visas are not required only for those who have registered ICAO-compliant ePassport to diplomatic missions of Japan (the embassy, consulates-general, or the consulate). Validity of the registration is three years period or until the passport expires, whichever comes first.\n• (Note 10) Nationals of Colombia (since February 1, 2004) are advised to obtain a visa in advance, otherwise will be strictly examined and may be refused entry to Japan.\n• (Note 11) The new version of Uruguayan ordinary passport issued after April 16, 2025, which does not include a 'place of birth' on the personal data page, is not recognized as valid by the Japanese government. Therefore, these new passports will not be eligible for travel to Japan. The Japanese visa exemption arrangement applies only to Uruguayan nationals holding the old version of Uruguayan passports. Uruguayan nationals holding the old version of passports will remain eligible for visa exemption even if their passports were issued after April 16, 2025."
+  },
+  {
+   "id": "jp-mofa-exempt#4",
+   "sourceId": "jp-mofa-exempt",
+   "destinationId": "japan",
+   "heading": "Machine-Readable Passport (MRP) in compliance with ICAO standards",
+   "text": "MRP in compliance with ICAO (International Civil Aviation Organization) standards has certain individual information, which is able to be read by computer, entered on the identity page of the passport."
+  },
+  {
+   "id": "jp-mofa-exempt#5",
+   "sourceId": "jp-mofa-exempt",
+   "destinationId": "japan",
+   "heading": "ePassport in compliance with ICAO standards",
+   "text": "ePassport in compliance with ICAO (International Civil Aviation Organization) standards has IC chip that stores certain individual and biometric data including a digital image of the passport photograph. ePassport in compliance with ICAO standards has ePassport’s symbol on the front cover of the passport."
   }
  ],
  "changeLog": [
@@ -1268,6 +1343,87 @@
   {
    "sourceId": "au-business-stream",
    "date": "2026-10-01",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "th-evisa",
+   "date": "2026-10-02",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "vn-evisa",
+   "date": "2026-10-02",
+   "kind": "fetch_failed",
+   "note": "fetch failed"
+  },
+  {
+   "sourceId": "my-evisa",
+   "date": "2026-10-02",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "lk-eta",
+   "date": "2026-10-02",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "ae-visit-visa",
+   "date": "2026-10-02",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "ae-tourist-visa",
+   "date": "2026-10-02",
+   "kind": "changed"
+  },
+  {
+   "sourceId": "jp-embassy-visa",
+   "date": "2026-10-02",
+   "kind": "fetch_failed",
+   "note": "HTTP 404 (removed if still missing next check)"
+  },
+  {
+   "sourceId": "jp-mofa-validity",
+   "date": "2026-10-02",
+   "kind": "initial"
+  },
+  {
+   "sourceId": "jp-mofa-exempt",
+   "date": "2026-10-02",
+   "kind": "initial"
+  },
+  {
+   "sourceId": "us-state-visitor",
+   "date": "2026-10-02",
+   "kind": "fetch_failed",
+   "note": "HTTP 403 (blocked or unavailable)"
+  },
+  {
+   "sourceId": "us-embassy-india",
+   "date": "2026-10-02",
+   "kind": "fetch_failed",
+   "note": "fetch failed"
+  },
+  {
+   "sourceId": "au-visitor-600",
+   "date": "2026-10-02",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "au-tourist-stream",
+   "date": "2026-10-02",
+   "kind": "fetch_failed",
+   "note": "Page content not readable (likely rendered by JavaScript)"
+  },
+  {
+   "sourceId": "au-business-stream",
+   "date": "2026-10-02",
    "kind": "fetch_failed",
    "note": "Page content not readable (likely rendered by JavaScript)"
   }

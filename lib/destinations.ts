@@ -182,6 +182,18 @@ export const DESTINATIONS: Destination[] = [
         title: "Visa",
         authority: "Ministry of Foreign Affairs of Japan",
       },
+      {
+        id: "jp-mofa-validity",
+        url: "https://www.mofa.go.jp/j_info/visit/visa/procedure/validity.html",
+        title: "Validity of a Visa",
+        authority: "Ministry of Foreign Affairs of Japan",
+      },
+      {
+        id: "jp-mofa-exempt",
+        url: "https://www.mofa.go.jp/j_info/visit/visa/short/novisa.html",
+        title: "Exemption of Visa (Short-Term Stay)",
+        authority: "Ministry of Foreign Affairs of Japan",
+      },
     ],
   },
   {

@@ -403,7 +403,7 @@ function AnswerCard({ t, uiLang, answer, speaking, voiceLoading, onSpeak }: { t:
         <div className="note web">{t.webNote}</div>
       )}
       {answer.mode === "official_text" && (
-        <div className="note mode">{t.demoNote}</div>
+        <div className="note mode">{answer.fallback ? t.pausedNote : t.demoNote}</div>
       )}
 
       {hasFacts && (

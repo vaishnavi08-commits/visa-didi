@@ -220,15 +220,18 @@ export async function runRecheck(opts: { log?: (s: string) => void; save?: boole
       log(`✓ ${def.id} (${method})`);
     } else if (!fetched.ok) {
       summary.failed++;
-      rec.lastError = fetched.error;
-      if (fetched.gone) {
+      // Sites that block bots sometimes answer "not found". Only drop a page after it has been
+      // reported gone on two checks in a row; a single 404 counts as a failed check.
+      const goneBefore = rec.status === "removed" || /^gone:/.test(rec.lastError ?? "");
+      rec.lastError = fetched.gone ? `gone: ${fetched.error}` : fetched.error;
+      if (fetched.gone && goneBefore) {
         rec.status = "removed";
         store.chunks = store.chunks.filter((ch) => ch.sourceId !== def.id);
         rechunked.add(def.id);
         store.changeLog.push({ sourceId: def.id, date: today, kind: "removed", note: fetched.error });
       } else {
         rec.status = rec.lastVerified ? "check_failed" : "unavailable";
-        store.changeLog.push({ sourceId: def.id, date: today, kind: "fetch_failed", note: fetched.error });
+        store.changeLog.push({ sourceId: def.id, date: today, kind: "fetch_failed", note: fetched.gone ? `${fetched.error} (removed if still missing next check)` : fetched.error });
       }
       log(`✗ ${def.id}: ${fetched.error}`);
     }
