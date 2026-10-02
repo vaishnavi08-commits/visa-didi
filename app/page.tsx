@@ -132,7 +132,11 @@ export default function Home() {
     const q = question.trim();
     if (!q || loading) return;
     const history: Turn[] = items.flatMap((it): Turn[] =>
-      it.role === "user" ? [{ role: "user", text: it.text }] : it.role === "assistant" ? [{ role: "assistant", text: it.answer.shortAnswer }] : [],
+      it.role === "user"
+        ? [{ role: "user", text: it.text }]
+        : it.role === "assistant"
+          ? [{ role: "assistant", text: it.answer.shortAnswer, kind: it.answer.kind }]
+          : [],
     );
     setItems((prev) => [...prev, { role: "user", text: q }]);
     setInput("");

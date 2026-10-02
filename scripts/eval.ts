@@ -20,6 +20,10 @@ const CASES: Case[] = [
   { q: "What about the fees?", history: [{ role: "user", text: "Do I need a visa for the UK?" }, { role: "assistant", text: "Yes, you need a Standard Visitor visa." }], expect: ["answered", "partial", "not_covered"], note: "follow-up inherits destination" },
   { q: "Can you tell us about Bali entry rules?", expect: ["answered", "partial", "not_covered", "clarify"], note: "'us' pronoun is not the US; Bali → Indonesia" },
   { q: "Do I need a visa for the US?", expect: ["unavailable", "answered", "partial", "not_covered"], note: "blocked source → can't confirm (until manual capture)" },
+  // A reply to Didi's follow-up question completes the original question
+  { q: "Japan", history: [{ role: "user", text: "How long does the visa take?" }, { role: "assistant", text: "Which country are you travelling to?", kind: "clarify" }], expect: ["answered", "partial", "not_covered", "unavailable"], note: "reply to 'which country?' answers the original question" },
+  { q: "Part of my job", history: [{ role: "user", text: "Can I attend a conference in Japan on a tourist visa?" }, { role: "assistant", text: "Are you attending as part of your job?", kind: "clarify" }], expect: ["answered", "partial", "not_covered"], note: "reply to a purpose question doesn't loop" },
+  { q: "work visa", history: [{ role: "user", text: "Can I attend a conference in Japan on a tourist visa?" }, { role: "assistant", text: "Is this for work or a holiday?", kind: "clarify" }], expect: ["refused"], note: "the person's own words still route normally" },
   // Small talk never triggers a search, even mid-conversation
   { q: "ही वीजा दीदी", history: [{ role: "user", text: "Do I need a visa for Vietnam?" }, { role: "assistant", text: "Yes, you need an e-visa." }], expect: ["off_topic"], note: "Hindi greeting after a Vietnam question" },
   { q: "Hi Didi!", expect: ["off_topic"], note: "greeting" },

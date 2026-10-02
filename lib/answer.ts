@@ -63,7 +63,8 @@ export type Answer = {
   webExtra?: { shortAnswer: string; details: { text: string; sources: string[] }[] };
 };
 
-export type Turn = { role: "user" | "assistant"; text: string };
+// kind is sent for Didi's turns, so a reply to a follow-up question can be recognised.
+export type Turn = { role: "user" | "assistant"; text: string; kind?: string };
 
 
 
@@ -103,7 +104,7 @@ How to choose a status:
 - "answered": the excerpts clearly answer the question.
 - "partial": they answer part of it. Answer that part and put what is missing in not_covered.
 - "not_covered": they don't answer it. short_answer says you couldn't find this in the official sources.
-- "clarify": the destination or trip purpose (tourism vs business) is missing AND the excerpts show it changes the answer. Ask ONE short question in clarify_question. Don't ask if the answer is the same either way.
+- "clarify": only when the destination or trip purpose (tourism vs business) is missing AND the excerpts show it changes the answer AND you can't simply answer each case in a sentence. Ask ONE short question in clarify_question. Prefer answering: if you can cover both cases briefly (e.g. "For tourism…; for a work trip…"), do that instead of asking.
 - "judgment": the person asks whether they will be approved or their chances. Don't predict; short_answer explains that only the issuing authority decides, and details list what the official requirements are (from the excerpts).
 
 Writing rules — keep it simple and short; most people read this on a phone:
@@ -160,7 +161,7 @@ async function budgetLeft() {
   );
 }
 
-async function askClaude(question: string, history: Turn[], chunks: Retrieved[], store: Store, dests: Destination[], lang: Lang, deadline: number) {
+async function askClaude(question: string, history: Turn[], chunks: Retrieved[], store: Store, dests: Destination[], lang: Lang, deadline: number, noClarify = false) {
   client ??= new Anthropic();
   const labelled = chunks.map((c, i) => ({ label: `S${i + 1}`, chunk: c }));
   const sourcesXml = labelled
@@ -182,7 +183,7 @@ async function askClaude(question: string, history: Turn[], chunks: Retrieved[],
   const messages: Anthropic.Beta.BetaMessageParam[] = turns.map((t) => ({ role: t.role, content: t.text }));
   messages.push({
     role: "user",
-    content: `Destination(s) detected: ${dests.map((d) => d.name).join(", ")}\n\n<sources>\n${sourcesXml}\n</sources>\n\nQuestion: ${question}\n\nLanguage: ${writingInstruction(lang)}`,
+    content: `Destination(s) detected: ${dests.map((d) => d.name).join(", ")}\n\n<sources>\n${sourcesXml}\n</sources>\n\nQuestion: ${question}${noClarify ? "\n\nYou already asked a follow-up question and the person answered it. Do not ask another: answer now (status must not be \"clarify\"), stating any assumption in one short phrase." : ""}\n\nLanguage: ${writingInstruction(lang)}`,
   });
 
   const { effort, ...options } = modelOptions();
@@ -250,9 +251,28 @@ export async function answerQuestion(question: string, history: Turn[], opts: { 
 // The API route may run for 60 s; leave room to send the reply.
 const TIME_BUDGET_MS = 52_000;
 
-async function answerIn(question: string, history: Turn[], lang: Lang, wantWeb: boolean): Promise<Answer> {
+// A short reply to Didi's own follow-up question ("employer", "Japan") is not a new question:
+// it completes the original one. Returns the combined question (for Claude) and the text to route on
+// (the person's own words only, so Didi's question can't trigger a refusal), or null.
+function completeFollowUp(reply: string, history: Turn[]): { question: string; routeText: string } | null {
+  const last = history[history.length - 1];
+  if (last?.role !== "assistant" || last.kind !== "clarify") return null;
+  if (reply.trim().split(/\s+/).length > 10) return null;
+  const original = [...history].reverse().find((t) => t.role === "user");
+  if (!original) return null;
+  return {
+    question: `${original.text} (My answer to your follow-up question "${last.text}": ${reply.trim()})`,
+    routeText: `${original.text} ${reply.trim()}`,
+  };
+}
+
+async function answerIn(asked: string, history: Turn[], lang: Lang, wantWeb: boolean): Promise<Answer> {
   const deadline = Date.now() + TIME_BUDGET_MS;
-  const r = route(question, history.filter((t) => t.role === "user").map((t) => t.text));
+  // Didi asks at most one follow-up question; after the person replies, it must answer.
+  const completed = completeFollowUp(asked, history);
+  const question = completed?.question ?? asked;
+  const noClarify = !!completed;
+  const r = route(completed?.routeText ?? asked, history.filter((t) => t.role === "user").map((t) => t.text));
 
   switch (r.kind) {
     case "greeting":
@@ -305,7 +325,7 @@ async function answerIn(question: string, history: Turn[], lang: Lang, wantWeb: 
     if (wantWeb && history.length === 0) official = await cacheGet<Answer>(baseKey);
     if (!official) {
       let aiIssue: string | undefined;
-      const result = await askClaude(question, history, chunks, store, usableDests, lang, deadline).catch((e) => {
+      const result = await askClaude(question, history, chunks, store, usableDests, lang, deadline, noClarify).catch((e) => {
         console.error("official answer failed", e);
         aiIssue = (e instanceof Error ? e.message : String(e)).slice(0, 300);
         return null;
@@ -314,7 +334,7 @@ async function answerIn(question: string, history: Turn[], lang: Lang, wantWeb: 
         // Not cached: once the AI call works again, the question should get a real answer.
         return { ...officialTextAnswer(question, chunks, store, usableDests, r.judgment), fallback: true, webIssue: aiIssue };
       }
-      official = toAnswer(result.out, result.labelled, store, usableDests, lang);
+      official = toAnswer(result.out, result.labelled, store, usableDests, lang, noClarify);
       const gap = official.kind === "not_covered" || official.kind === "partial";
       official = await remember(baseKey, { ...official, canSearchWeb: hasKey && gap });
     }
@@ -407,7 +427,7 @@ function hostname(url: string) {
   }
 }
 
-function toAnswer(out: ModelOutput, labelled: { label: string; chunk: Retrieved }[], store: Store, dests: Destination[], lang: Lang): Answer {
+function toAnswer(out: ModelOutput, labelled: { label: string; chunk: Retrieved }[], store: Store, dests: Destination[], lang: Lang, noClarify = false): Answer {
   const byLabel = new Map(labelled.map((l) => [l.label, l.chunk.sourceId]));
   // Only citations that point at excerpts we actually sent are kept.
   const resolve = (ids: string[]) => [...new Set(ids.map((id) => byLabel.get(id)).filter((x): x is string => !!x))];
@@ -421,6 +441,12 @@ function toAnswer(out: ModelOutput, labelled: { label: string; chunk: Retrieved 
   const link = siteLink(dests[0], lang);
 
   if (out.status === "clarify") {
+    // Never a second follow-up in a row: say honestly that the official pages don't settle it.
+    if (noClarify) {
+      return rule("not_covered", MESSAGES.not_covered[lang](dests.map((d) => displayName(d, lang)).join(" / ")), {
+        officialLink: link, mode: "ai", verifyLine: true,
+      });
+    }
     return rule("clarify", out.clarify_question || out.short_answer, { mode: "ai" });
   }
   // A substantive answer with no valid citation is treated as not covered — never shown uncited.

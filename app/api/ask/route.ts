@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     ? body.history
         .filter((t): t is Turn => !!t && (t.role === "user" || t.role === "assistant") && typeof t.text === "string")
         .slice(-6)
-        .map((t) => ({ role: t.role, text: t.text.slice(0, 1000) }))
+        .map((t) => ({ role: t.role, text: t.text.slice(0, 1000), kind: typeof t.kind === "string" ? t.kind.slice(0, 20) : undefined }))
     : [];
 
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "local";
