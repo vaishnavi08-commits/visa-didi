@@ -295,7 +295,9 @@ async function answerIn(asked: string, history: Turn[], lang: Lang, wantWeb: boo
 
   const store = await getStore();
   const dests = r.destinations;
-  const hasKey = !!(process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN);
+  // Kill switch: the Anthropic API (answers and web search) is used only when AI_ENABLED=true.
+  // Otherwise Didi shows the official page text directly, at no API cost.
+  const hasKey = process.env.AI_ENABLED === "true" && !!(process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN);
   const link = siteLink(dests[0], lang);
 
   const baseKey = JSON.stringify([dests.map((d) => d.id), question.toLowerCase().replace(/\s+/g, " ").trim(), r.judgment, lang]);
