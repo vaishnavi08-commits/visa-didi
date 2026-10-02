@@ -248,6 +248,20 @@ button { font: inherit; color: inherit; }
 .note.conflict, .note.stale, .note.web { background: var(--warn-soft); color: var(--warn); }
 .note.mode { background: var(--surface-2); color: var(--ink-2); }
 
+/* Compact card: answer line, one source line, then "More details" */
+.lead-source { margin: 8px 0 0 46px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; font-size: 13px; }
+.lead-source a { font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--line); }
+.lead-source a:hover { color: var(--pink); border-color: var(--pink); }
+.lead-source .date { color: var(--ink-3); }
+.lead-source .date.stale { color: var(--warn); }
+.card-actions { margin: 12px 0 0 46px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.more-toggle {
+  background: none; border: 0; padding: 4px 0; font-size: 14px; font-weight: 700; color: var(--pink); cursor: pointer;
+}
+.more-toggle:hover { text-decoration: underline; }
+.card-actions .web-button { padding: 7px 14px; font-size: 13px; }
+.more { animation: pop-in .2s ease-out; }
+@media (max-width: 560px) { .lead-source, .card-actions { margin-left: 0; } }
 .web-offer { margin: 16px 0 0 46px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
 .web-button {
   border: 0; color: #fff; background: var(--grad-btn); border-radius: 999px; padding: 9px 18px;

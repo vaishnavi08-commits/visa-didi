@@ -26,7 +26,7 @@ export function writingInstruction(lang: Lang) {
 
 // Hindi / Hinglish topic words mapped to English, so keyword search over English official pages still works.
 const TOPIC_TERMS: [RegExp, string][] = [
-  [/वीज़ा चाहिए|वीजा चाहिए|वीज़ा की ज़रूरत|वीजा की जरूरत|वीज़ा लगेगा|वीजा लगेगा|visa chahiye|visa lagega|visa ki zaroorat|visa ki zarurat|वीज़ा-फ्री|बिना वीज़ा|bina visa|visa free/i, "visa required need exemption free"],
+  [/वीज़ा चाहिए|वीजा चाहिए|वीज़ा की ज़रूरत|वीजा की जरूरत|वीज़ा लगेगा|वीजा लगेगा|visa chahiye|visa lagega|visa ki zaroorat|visa ki zarurat|वीज़ा-फ्री|बिना वीज़ा|bina visa|visa free|need a visa|visa required|require a visa|visa-free|visa exempt/i, "visa required need exemption free countries listed"],
   [/फीस|शुल्क|खर्च|कितने पैसे|kitne paise|fees?|kharcha|kharch/i, "fee fees cost"],
   [/दस्तावेज़|दस्तावेज|कागज़|कागज|कागजात|डॉक्यूमेंट|kagaz|kaagaz|kagzaat|kaagzaat|documents?/i, "documents required"],
   [/कितने दिन|कितना समय|समय लगता|प्रोसेसिंग|kitne din|kitna time|kitna samay|time lagta|processing/i, "processing time days"],

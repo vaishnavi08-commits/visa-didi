@@ -63,7 +63,8 @@ export function retrieve(store: Store, destinationIds: string[], query: string, 
   for (const d of docs) for (const t of new Set(d)) df.set(t, (df.get(t) ?? 0) + 1);
 
   const qTokens = expand(tokenize(query));
-  const k1 = 1.2, b = 0.75, N = docs.length;
+  // Mild length penalty: official lists (e.g. visa-exempt countries) are long but often hold the answer.
+  const k1 = 1.2, b = 0.4, N = docs.length;
   const scored = pool.map((c, i) => {
     const d = docs[i];
     const tf = new Map<string, number>();
@@ -81,7 +82,17 @@ export function retrieve(store: Store, destinationIds: string[], query: string, 
   });
 
   scored.sort((a, b) => b.score - a.score);
-  // Comparing two destinations: give each its fair share of the context.
+  // Comparing two destinations: give each its fair share of the context. Within a destination, take the
+  // best passage from each official page first (so e.g. an exemption list isn't crowded out), then fill by score.
   const perDest = Math.ceil(k / destinationIds.length);
-  return destinationIds.flatMap((id) => scored.filter((c) => c.destinationId === id).slice(0, perDest));
+  return destinationIds.flatMap((id) => {
+    const mine = scored.filter((c) => c.destinationId === id);
+    const firstPerPage = mine.filter((c, i) => mine.findIndex((o) => o.sourceId === c.sourceId) === i);
+    const picked = firstPerPage.slice(0, perDest);
+    for (const c of mine) {
+      if (picked.length >= perDest) break;
+      if (!picked.includes(c)) picked.push(c);
+    }
+    return picked.sort((a, b) => b.score - a.score);
+  });
 }

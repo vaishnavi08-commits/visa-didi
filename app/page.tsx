@@ -448,6 +448,12 @@ function AnswerCard({
   const sourceIndex = new Map(answer.sources.map((s, i) => [s.id, i + 1]));
   const stale = answer.sources.filter((s) => s.stale);
   const hasFacts = answer.sources.length > 0;
+  // In the no-AI fallback the official passage is the answer, so show it straight away.
+  const [open, setOpen] = useState(answer.mode === "official_text");
+  // Everything beyond the 1–2 line answer lives behind "More details".
+  const hasMore =
+    answer.details.length > 0 || !!answer.notCovered || !!answer.webExtra || !!answer.conflict || answer.sources.length > 1 || !!answer.officialLink;
+  const lead = answer.sources[0];
 
   return (
     <article className="card">
@@ -459,27 +465,46 @@ function AnswerCard({
         </button>
       </div>
 
-      {answer.details.length > 0 && (
-        <ul className="details">
-          {answer.details.map((d, i) => (
-            <li key={i}>
-              {d.text}
-              {d.sources.length > 0 && (
-                <span className="cite">[{d.sources.map((s) => sourceIndex.get(s)).filter(Boolean).join(", ")}]</span>
-              )}
-            </li>
-          ))}
-        </ul>
+      {/* One compact source line is always visible (the PRD requires the source and date on every answer). */}
+      {lead && (
+        <p className="lead-source">
+          <a href={lead.url} target="_blank" rel="noopener noreferrer" title={`${lead.title} — ${lead.authority}`}>{siteName(lead.url)}</a>
+          {lead.origin === "web" && (
+            <span className={`badge ${lead.official ? "ok" : "stale"}`}>{lead.official ? t.officialSite : t.travelSite}</span>
+          )}
+          <span className={`date ${lead.stale ? "stale" : ""}`}>
+            {lead.origin === "web" ? t.found : lead.manual ? t.captured : t.lastVerified} {formatDate(lead.lastVerified, uiLang)}
+          </span>
+          {answer.sources.length > 1 && <span className="date">+{answer.sources.length - 1}</span>}
+        </p>
       )}
 
-      {answer.notCovered && <div className="note partial"><strong>{t.notCovered}</strong> {answer.notCovered}</div>}
-      {answer.webExtra && (
-        <section className="web-extra">
-          <p className="web-extra-title">{t.webExtraTitle}</p>
-          <p className="web-extra-short">{answer.webExtra.shortAnswer}</p>
-          {answer.webExtra.details.length > 0 && (
+      {stale.length > 0 && <div className="note stale">{t.stale(stale.length)}</div>}
+      {answer.webSearched && <div className="note mode">{t.webNothing}</div>}
+      {answer.mode === "official_text" && (
+        <div className="note mode">{answer.fallback ? t.pausedNote : t.demoNote}</div>
+      )}
+
+      {(hasMore || answer.canSearchWeb || searching) && (
+        <div className="card-actions">
+          {hasMore && (
+            <button className="more-toggle" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
+              {open ? t.lessDetails : t.moreDetails} <span aria-hidden>{open ? "▴" : "▾"}</span>
+            </button>
+          )}
+          {(answer.canSearchWeb || searching) && (
+            <button className="web-button" onClick={onSearchWeb} disabled={searching} aria-busy={searching}>
+              {searching ? t.searchingWeb : t.searchWeb}
+            </button>
+          )}
+        </div>
+      )}
+
+      {open && (
+        <div className="more">
+          {answer.details.length > 0 && (
             <ul className="details">
-              {answer.webExtra.details.map((d, i) => (
+              {answer.details.map((d, i) => (
                 <li key={i}>
                   {d.text}
                   {d.sources.length > 0 && (
@@ -489,57 +514,56 @@ function AnswerCard({
               ))}
             </ul>
           )}
-          <div className="note web">{t.webExtraNote}</div>
-        </section>
-      )}
-      {answer.conflict && <div className="note conflict"><strong>{t.conflict}</strong> {answer.conflict}</div>}
-      {stale.length > 0 && (
-        <div className="note stale">{t.stale(stale.length)}</div>
-      )}
-      {answer.mode === "web" && (
-        <div className="note web">{t.webNote}</div>
-      )}
-      {(answer.canSearchWeb || searching) && (
-        <div className="web-offer">
-          <button className="web-button" onClick={onSearchWeb} disabled={searching} aria-busy={searching}>
-            {searching ? t.searchingWeb : t.searchWeb}
-          </button>
-          {!searching && <span className="web-offer-hint">{t.searchWebHint}</span>}
-        </div>
-      )}
-      {answer.webSearched && <div className="note mode">{t.webNothing}</div>}
-      {answer.mode === "official_text" && (
-        <div className="note mode">{answer.fallback ? t.pausedNote : t.demoNote}</div>
-      )}
-
-      {hasFacts && (
-        <div className="sources">
-          <p className="sources-title">{t.sources}</p>
-          {answer.sources.map((s, i) => (
-            // One compact line per source: number, linked site, official/travel tag, date.
-            <div className="source" key={s.id}>
-              <span className="cite">{i + 1}.</span>
-              <a href={s.url} target="_blank" rel="noopener noreferrer" title={`${s.title} — ${s.authority}`}>{shortTitle(s.title)}</a>
-              <span className="site">{siteName(s.url)}</span>
-              {s.origin === "web" && (
-                <span className={`badge ${s.official ? "ok" : "stale"}`}>{s.official ? t.officialSite : t.travelSite}</span>
+          {answer.notCovered && <div className="note partial"><strong>{t.notCovered}</strong> {answer.notCovered}</div>}
+          {answer.webExtra && (
+            <section className="web-extra">
+              <p className="web-extra-title">{t.webExtraTitle}</p>
+              <p className="web-extra-short">{answer.webExtra.shortAnswer}</p>
+              {answer.webExtra.details.length > 0 && (
+                <ul className="details">
+                  {answer.webExtra.details.map((d, i) => (
+                    <li key={i}>
+                      {d.text}
+                      {d.sources.length > 0 && (
+                        <span className="cite">[{d.sources.map((s) => sourceIndex.get(s)).filter(Boolean).join(", ")}]</span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
               )}
-              <span className={`date ${s.stale ? "stale" : ""}`}>
-                {s.origin === "web" ? t.found : s.manual ? t.captured : t.lastVerified} {formatDate(s.lastVerified, uiLang)}
-              </span>
-              {s.recentlyUpdated && <span className="badge new">{t.updatedRecently}</span>}
+              <div className="note web">{t.webExtraNote}</div>
+            </section>
+          )}
+          {answer.conflict && <div className="note conflict"><strong>{t.conflict}</strong> {answer.conflict}</div>}
+          {answer.mode === "web" && <div className="note web">{t.webNote}</div>}
+
+          {hasFacts && (
+            <div className="sources">
+              <p className="sources-title">{t.sources}</p>
+              {answer.sources.map((s, i) => (
+                <div className="source" key={s.id}>
+                  <span className="cite">{i + 1}.</span>
+                  <a href={s.url} target="_blank" rel="noopener noreferrer" title={`${s.title} — ${s.authority}`}>{shortTitle(s.title)}</a>
+                  <span className="site">{siteName(s.url)}</span>
+                  {s.origin === "web" && (
+                    <span className={`badge ${s.official ? "ok" : "stale"}`}>{s.official ? t.officialSite : t.travelSite}</span>
+                  )}
+                  <span className={`date ${s.stale ? "stale" : ""}`}>
+                    {s.origin === "web" ? t.found : s.manual ? t.captured : t.lastVerified} {formatDate(s.lastVerified, uiLang)}
+                  </span>
+                  {s.recentlyUpdated && <span className="badge new">{t.updatedRecently}</span>}
+                </div>
+              ))}
             </div>
-          ))}
+          )}
+          {answer.officialLink && (
+            <p className="official-link">
+              {t.checkHere} <a href={answer.officialLink.url} target="_blank" rel="noopener noreferrer">{answer.officialLink.label} ↗</a>
+            </p>
+          )}
+          {(answer.verifyLine || hasFacts) && <p className="disclaimer">{t.footnote}</p>}
         </div>
       )}
-
-      {answer.officialLink && (
-        <p className="official-link">
-          {t.checkHere} <a href={answer.officialLink.url} target="_blank" rel="noopener noreferrer">{answer.officialLink.label} ↗</a>
-        </p>
-      )}
-
-      {(answer.verifyLine || hasFacts) && <p className="disclaimer">{t.footnote}</p>}
     </article>
   );
 }
